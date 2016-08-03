@@ -300,7 +300,7 @@ app.get('/api/transfer/', function (req, res) {
     }
 });
 
-app.get('/api/transfer/', function (req, res) {
+app.get('/api/endshow/', function (req, res) {
     console.log("Got a transfer request from the homepage");
     var db_streaming = new sqlite3.Database(file_streaming);
     get_show_key(function handleResult(err, result) {
