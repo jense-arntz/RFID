@@ -91,29 +91,27 @@
 
                                 <p>Change ESHOW KEY as you want.</p>
                             </div>
-                            <div class="col-sm-3 col-md-6">
-                                <form id="edit_id" method="post">
+                            <form id="edit_id" method="post">
+                                <div class="col-sm-3 col-md-6">
                                     <input type="text" name='eshow_id' id='eshow_id' class="form-control">
-                                </form>
-                            </div>
-                            <div class="col-sm-3 col-md-3">
-                                <button type="button" class="btn btn-primary" id="create_id">Create ID/EDIT</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3 col-md-12">
-                                <label class="control-label">Client KEY</label>
+                                </div>
+                                <div class="col-sm-3 col-md-3">
+                                    <button type="button" class="btn btn-primary" id="create_id">Create/EDIT
+                                        Show_key&Client_key
+                                    </button>
+                                </div>
 
-                                <p>Change Client KEY as you want.</p>
-                            </div>
-                            <div class="col-sm-3 col-md-6">
-                                <form id="client_form" method="post">
+                                <div class="col-sm-3 col-md-12">
+                                    <label class="control-label">Client KEY</label>
+
+                                    <p>Change Client KEY as you want.</p>
+                                </div>
+                                <div class="col-sm-3 col-md-6">
+
                                     <input type="text" name='client_key' id='client_key' class="form-control">
-                                </form>
-                            </div>
-                            <div class="col-sm-3 col-md-3">
-                                <button type="button" class="btn btn-primary" id="create_key">Create key/EDIT</button>
-                            </div>
+                                </div>
+
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -259,6 +257,7 @@
         App.init();
         $('.md-trigger').modalEffects();
         pageloads();
+        dataload();
         settingloads();
     });
 
@@ -344,8 +343,8 @@
                     .find('[name="mac_address"]').val(data.mac_address).end()
                     .find('[name="ip_address"]').val(data.address).end()
                     .find('[name="power_level"]').val(data.power).end();
-
         }
+
         else if (data_modal == "form-remove") {
             remove_address = address;
         }
@@ -376,8 +375,7 @@
         $.getJSON('/api/id/', function (data) {
             $.each(data, function (key, item) {
                 $('#edit_id')
-                        .find('[name="eshow_id"]').val(item.eshow_id).end();
-                $('#client_form')
+                        .find('[name="eshow_id"]').val(item.eshow_id).end()
                         .find('[name="client_key"]').val(item.client_key).end();
             });
         });
@@ -386,34 +384,26 @@
     // Create and Edit the eshow id.
     $("#create_id").click(function () {
         var eshow_id = $('#edit_id').find('input[name="eshow_id"]').val();
-        $.ajax({
-            url: "/api/id/",
-            type: 'POST',
-            data: {eshow_id: eshow_id}
-        }).success(function (data) {
-            alert(data);
-            $('#edit_id')
-                    .find('[name="eshow_id"]').val(eshow_id).end();
-        }).error(function (data) {
-            alert(data);
-        });
+        var client_key = $('#edit_id').find('input[name="client_key"]').val();
+        if (eshow_id == '' && client_key == '') {
+            alert('Please input data!!!');
+        }
+        else {
+            $.ajax({
+                url: "/api/id/",
+                type: 'POST',
+                data: {eshow_id: eshow_id, client_key: client_key}
+            }).success(function (data) {
+                alert(data);
+                $('#edit_id')
+                        .find('[name="eshow_id"]').val(eshow_id).end()
+                        .find('[name="client_key"]').val(item.client_key).end();
+            }).error(function (data) {
+                alert(data);
+            });
+        }
     });
-    // Create and Edit the eshow id.
-    $("#create_key").click(function () {
-        var client_key = $('#client_form').find('input[name="client_key"]').val();
 
-        $.ajax({
-            url: "/api/key/",
-            type: 'POST',
-            data: {client_key: client_key}
-        }).success(function (data) {
-            alert(data);
-            $('#client_form')
-                    .find('[name="client_key"]').val(client_key).end();
-        }).error(function (data) {
-            alert(data);
-        });
-    });
 </script>
 </body>
 </html>

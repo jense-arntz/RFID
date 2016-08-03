@@ -67,10 +67,12 @@ app.get('/api/id/', function (req, res) {
     var posts = [];
     db_id.serialize(function () {
         db_id.each("SELECT * FROM eshow", function (err, row) {
+            console.log('0');
             posts.push({eshow_id: row.show_key, client_key: row.client_key});
             console.log(row.show_key, row.client_key);
             eshow_flag = row.show_key;
             eshow_key = row.client_key;
+            console.log('1');
         }, function () {
             // All done fetching records, render response
             res.set('Content-Type', 'application/json');
@@ -83,38 +85,38 @@ app.get('/api/id/', function (req, res) {
 // Create/Edit eshow id
 app.post('/api/id/', function (req, res) {
     var db_id = new sqlite3.Database(file);
-    if (eshow_flag == '') {
-        db_id.run("INSERT into eshow (show_key) VALUES (?)",
-            [req.body.eshow_id]);
+    if (eshow_flag == '' && eshow_key == '') {
+        db_id.run("INSERT into eshow (show_key, client_key) VALUES (?,?)",
+            [req.body.eshow_id, req.body.client_key]);
         console.log('Insert Eshow ID Success!');
         data = 'Insert Eshow ID Success!';
     }
     else {
-        db_id.run("UPDATE eshow set show_key=? where id=1",
-            [req.body.eshow_id]);
+        db_id.run("UPDATE eshow set show_key=?, client_key=? where id=1",
+            [req.body.eshow_id, req.body.client_key]);
         console.log('Edit Eshow ID Success!');
         data = 'Update Eshow ID Success!';
     }
     res.send(data);
 });
 
-// Create/Edit client_key
-app.post('/api/key/', function (req, res) {
-    var db_id = new sqlite3.Database(file);
-    if (eshow_flag == '') {
-        db_id.run("INSERT into eshow (client_key) VALUES (?)",
-            [req.body.client_key]);
-        console.log('Insert Client Key Success!');
-        data = 'Insert Client Key Success!';
-    }
-    else {
-        db_id.run("UPDATE eshow set client_key=? where id=1",
-            [req.body.client_key]);
-        console.log('Edit Client Key Success!');
-        data = 'Update Client Key Success!';
-    }
-    res.send(data);
-});
+// // Create/Edit client_key
+// app.post('/api/key/', function (req, res) {
+//     var db_id = new sqlite3.Database(file);
+//     if (eshow_flag == '') {
+//         db_id.run("INSERT into eshow (client_key) VALUES (?)",
+//             [req.body.client_key]);
+//         console.log('Insert Client Key Success!');
+//         data = 'Insert Client Key Success!';
+//     }
+//     else {
+//         db_id.run("UPDATE eshow set client_key=? where id=1",
+//             [req.body.client_key]);
+//         console.log('Edit Client Key Success!');
+//         data = 'Update Client Key Success!';
+//     }
+//     res.send(data);
+// });
 
 // Load the device list
 app.get('/api/device/list/', function (req, res) {
@@ -310,6 +312,7 @@ app.get('/api/endshow/', function (req, res) {
         }
         eshow_flag = result;
     });
+
     try {
         if (!exists_streaming_db) {
             console.log('no streaming.db file exists.');

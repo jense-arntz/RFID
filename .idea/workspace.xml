@@ -2,195 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5d3ce0e-5cfb-47fb-afb3-80f3906e189b" name="Default" comment="Fixing the code on database design.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/.idea/Code.iml" afterPath="$PROJECT_DIR$/Code/.idea/Code.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/.idea/deployment.xml" afterPath="$PROJECT_DIR$/Code/.idea/deployment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/.idea/encodings.xml" afterPath="$PROJECT_DIR$/Code/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/.idea/misc.xml" afterPath="$PROJECT_DIR$/Code/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/.idea/modules.xml" afterPath="$PROJECT_DIR$/Code/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/.idea/webServers.xml" afterPath="$PROJECT_DIR$/Code/.idea/webServers.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/.idea/workspace.xml" afterPath="$PROJECT_DIR$/Code/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/index.html" afterPath="$PROJECT_DIR$/Code/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/live_data.html" afterPath="$PROJECT_DIR$/Code/live_data.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/bootstrap-table.css" afterPath="$PROJECT_DIR$/Code/public/css/bootstrap-table.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/404.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/404.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/block-panels.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/block-panels.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/config.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/config.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/dropdown-menu.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/dropdown-menu.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/accordions.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/accordions.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/alerts.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/alerts.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/buttons.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/buttons.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/charts.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/charts.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/chat-widget.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/chat-widget.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/circle.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/circle.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/color-boxes.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/color-boxes.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/date-picker.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/date-picker.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/dropzone.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/dropzone.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/full-calendar.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/full-calendar.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/gritter.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/gritter.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/icons.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/icons.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/labels_badges.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/labels_badges.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/lists.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/lists.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/modals.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/modals.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/multiselect.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/multiselect.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/nano-scroll.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/nano-scroll.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/nestable-lists.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/nestable-lists.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/pagination.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/pagination.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/progress.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/progress.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/select2.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/select2.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/slider.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/slider.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/switch.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/switch.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/tables.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/tables.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/tabs.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/tabs.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/tickets-widget.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/tickets-widget.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/tiles.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/tiles.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/timeline.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/timeline.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/todo-widget.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/todo-widget.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/treeview.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/treeview.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/validation.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/validation.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/widgets.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/widgets.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/wizard.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/wizard.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/forms.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/forms.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/gallery.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/gallery.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/general.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/general.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/helpers.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/helpers.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/login.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/login.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/main-container.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/main-container.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/navbar.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/navbar.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/page-aside.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/page-aside.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/page-code-editor.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/page-code-editor.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/page-email.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/page-email.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/page-head.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/page-head.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/page-profile.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/page-profile.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/page-search.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/page-search.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/profile-menu.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/profile-menu.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/responsive.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/responsive.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/sidebar.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/sidebar.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/sign-up.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/sign-up.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/typography.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/typography.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/style.css" afterPath="$PROJECT_DIR$/Code/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/style.less" afterPath="$PROJECT_DIR$/Code/public/css/style.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/img/photos_licenses.txt" afterPath="$PROJECT_DIR$/Code/public/img/photos_licenses.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/js/cleanzone.js" afterPath="$PROJECT_DIR$/Code/public/js/cleanzone.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/js/jquery.js" afterPath="$PROJECT_DIR$/Code/public/js/jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/js/voice-recognition.js" afterPath="$PROJECT_DIR$/Code/public/js/voice-recognition.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap-theme.css" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap-theme.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap-theme.min.css" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap-theme.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap.css" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.svg" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/js/bootstrap.js" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/js/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/js/bootstrap.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/js/npm.js" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/js/npm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/alerts.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/alerts.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/badges.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/badges.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/bootstrap.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/bootstrap.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/breadcrumbs.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/breadcrumbs.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/button-groups.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/button-groups.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/buttons.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/buttons.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/carousel.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/carousel.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/close.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/close.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/code.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/code.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/component-animations.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/component-animations.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/dropdowns.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/dropdowns.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/forms.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/forms.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/glyphicons.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/glyphicons.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/grid.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/grid.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/input-groups.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/input-groups.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/jumbotron.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/jumbotron.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/labels.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/labels.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/list-group.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/list-group.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/media.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/media.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/alerts.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/alerts.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/background-variant.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/background-variant.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/border-radius.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/border-radius.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/buttons.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/buttons.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/center-block.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/center-block.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/clearfix.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/clearfix.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/forms.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/forms.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/gradients.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/gradients.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/grid-framework.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/grid-framework.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/grid.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/grid.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/hide-text.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/hide-text.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/image.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/image.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/labels.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/labels.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/list-group.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/list-group.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/nav-divider.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/nav-divider.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/nav-vertical-align.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/nav-vertical-align.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/opacity.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/opacity.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/pagination.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/pagination.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/panels.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/panels.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/progress-bar.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/progress-bar.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/reset-filter.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/reset-filter.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/resize.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/resize.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/responsive-visibility.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/responsive-visibility.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/size.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/size.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/tab-focus.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/tab-focus.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/table-row.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/table-row.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/text-emphasis.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/text-emphasis.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/text-overflow.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/text-overflow.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/vendor-prefixes.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/vendor-prefixes.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/modals.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/modals.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/navbar.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/navbar.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/navs.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/navs.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/normalize.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/normalize.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/pager.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/pager.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/pagination.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/pagination.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/panels.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/panels.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/popovers.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/popovers.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/print.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/print.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/progress-bars.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/progress-bars.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/responsive-embed.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/responsive-embed.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/responsive-utilities.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/responsive-utilities.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/scaffolding.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/scaffolding.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/tables.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/tables.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/theme.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/theme.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/thumbnails.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/thumbnails.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/tooltip.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/tooltip.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/type.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/type.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/utilities.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/utilities.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/variables.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/variables.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/wells.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/wells.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/font-awesome/css/font-awesome.css" afterPath="$PROJECT_DIR$/Code/public/lib/font-awesome/css/font-awesome.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/font-awesome/css/font-awesome.min.css" afterPath="$PROJECT_DIR$/Code/public/lib/font-awesome/css/font-awesome.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/font-awesome/fonts/fontawesome-webfont.svg" afterPath="$PROJECT_DIR$/Code/public/lib/font-awesome/fonts/fontawesome-webfont.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/css/main.css" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/css/nanoscroller.css" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/css/nanoscroller.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/css/nanoscroller.less" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/css/nanoscroller.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/css/style.css" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/dev.html" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/dev.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/index.html" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/ga.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/ga.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.js.map" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.min.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/main.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/overthrow.min.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/overthrow.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/readme.html" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/readme.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nestable/README.md" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nestable/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nestable/bower.json" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nestable/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nestable/index.html" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nestable/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nestable/jquery.nestable.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nestable/jquery.nestable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/README.md" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/bower.json" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/css/component.css" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/css/component.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/fonts/codropsicons/codropsicons.svg" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/fonts/codropsicons/codropsicons.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/fonts/codropsicons/license.txt" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/fonts/codropsicons/license.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/index.html" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/classie.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/classie.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/css-filters-polyfill.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/css-filters-polyfill.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/cssParser.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/cssParser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/modalEffects.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/modalEffects.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/modernizr.custom.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/modernizr.custom.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery/jquery.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery/jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery/jquery.min.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery/jquery.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/rfid.iml" afterPath="$PROJECT_DIR$/.idea/rfid.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/dashboard.html" afterPath="$PROJECT_DIR$/Code/dashboard.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/server.js" afterPath="$PROJECT_DIR$/Code/server.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/settings.html" afterPath="$PROJECT_DIR$/Code/settings.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tagreader/.idea/misc.xml" afterPath="$PROJECT_DIR$/tagreader/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tagreader/.idea/modules.xml" afterPath="$PROJECT_DIR$/tagreader/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tagreader/.idea/tagreader.iml" afterPath="$PROJECT_DIR$/tagreader/.idea/tagreader.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tagreader/.idea/workspace.xml" afterPath="$PROJECT_DIR$/tagreader/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tagreader/db.py" afterPath="$PROJECT_DIR$/tagreader/db.py" />
     </list>
     <list id="01bde2cc-1132-4afb-a724-ad6325737a77" name="Rejected commit: Default" comment="Fixing the code on database design." />
     <ignored path="rfid.iws" />
@@ -225,18 +42,18 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4590">
-              <caret line="270" column="5" selection-start-line="270" selection-start-column="5" selection-end-line="270" selection-end-column="5" />
+            <state relative-caret-position="323">
+              <caret line="102" column="28" selection-start-line="102" selection-start-column="28" selection-end-line="102" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="db.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tagreader/db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="100" column="16" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
+            <state relative-caret-position="442">
+              <caret line="93" column="25" selection-start-line="93" selection-start-column="25" selection-end-line="93" selection-end-column="25" />
               <folding>
                 <marker date="1470231212930" expanded="true" signature="1429:1587" placeholder="CREATE TABLE... missing_value" />
                 <marker date="1470231212930" expanded="true" signature="2578:2738" placeholder="INSERT INTO missing_value... " />
@@ -246,16 +63,6 @@
                 <marker date="1470231212930" expanded="true" signature="4228:4242" placeholder="SELECT * FRO... missing_value" />
                 <marker date="1470231212930" expanded="true" signature="4322:4336" placeholder="SELECT * FRO... missing_value" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tagreader.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tagreader/tagreader.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6494">
-              <caret line="390" column="0" selection-start-line="390" selection-start-column="0" selection-end-line="390" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -283,8 +90,18 @@
       <file leaf-file-name="settings.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/settings.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2091">
-              <caret line="123" column="4" selection-start-line="123" selection-start-column="4" selection-end-line="123" selection-end-column="4" />
+            <state relative-caret-position="211">
+              <caret line="148" column="22" selection-start-line="148" selection-start-column="12" selection-end-line="148" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Code/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -303,8 +120,18 @@
       <file leaf-file-name="live_data.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/live_data.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4369">
-              <caret line="257" column="19" selection-start-line="257" selection-start-column="19" selection-end-line="257" selection-end-column="19" />
+            <state relative-caret-position="273">
+              <caret line="177" column="79" selection-start-line="177" selection-start-column="79" selection-end-line="177" selection-end-column="79" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Code/dashboard.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="460">
+              <caret line="281" column="30" selection-start-line="281" selection-start-column="30" selection-end-line="281" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -313,18 +140,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="353" column="7" selection-start-line="353" selection-start-column="7" selection-end-line="353" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="readme.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Code/readme.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
+            <state relative-caret-position="1480">
+              <caret line="329" column="25" selection-start-line="329" selection-start-column="25" selection-end-line="329" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -365,12 +182,13 @@
         <option value="$PROJECT_DIR$/Code/live_data.html" />
         <option value="$PROJECT_DIR$/tagreader/rfidservice.py" />
         <option value="$PROJECT_DIR$/tagreader/protocol.py" />
-        <option value="$PROJECT_DIR$/Code/settings.html" />
         <option value="$PROJECT_DIR$/Code/readme.md" />
         <option value="$PROJECT_DIR$/tagreader/db.py" />
-        <option value="$PROJECT_DIR$/Code/server.js" />
         <option value="$PROJECT_DIR$/tagreader/tagreader.py" />
         <option value="$PROJECT_DIR$/Code/index.html" />
+        <option value="$PROJECT_DIR$/Code/dashboard.html" />
+        <option value="$PROJECT_DIR$/Code/settings.html" />
+        <option value="$PROJECT_DIR$/Code/server.js" />
       </list>
     </option>
   </component>
@@ -463,7 +281,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -645,6 +463,19 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <module name="rfid" />
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -801,13 +632,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1468123022189</updated>
-    </task>
-    <task id="LOCAL-00056" summary="version 1.1">
-      <created>1468620283498</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1468620283498</updated>
     </task>
     <task id="LOCAL-00057" summary="version 1.1">
       <created>1468620348554</created>
@@ -1145,7 +969,14 @@
       <option name="project" value="LOCAL" />
       <updated>1469739044569</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="Fixing the code on database design.">
+      <created>1470252558303</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1470252558303</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1161,21 +992,21 @@
     <frame x="-9" y="-9" width="1298" height="994" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2301092" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13182527" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945284" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918552" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2945285" sideWeight="0.51230013" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18778281" sideWeight="0.48769987" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945284" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17811409" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2496925" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22817229" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32945284" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18859139" sideWeight="0.48769987" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28172293" sideWeight="0.4895449" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945284" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1209,20 +1040,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tagreader/rfidservice.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="66" column="39" selection-start-line="66" selection-start-column="39" selection-end-line="66" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tagreader/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1456,26 +1273,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Code/live_data.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4369">
-          <caret line="257" column="19" selection-start-line="257" selection-start-column="19" selection-end-line="257" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Code/readme.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
           <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Code/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4590">
-          <caret line="270" column="5" selection-start-line="270" selection-start-column="5" selection-end-line="270" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1504,14 +1305,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Code/settings.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2091">
-          <caret line="123" column="4" selection-start-line="123" selection-start-column="4" selection-end-line="123" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Code/public/css/includes/elements/todo-widget.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -1520,18 +1313,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Code/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="353" column="7" selection-start-line="353" selection-start-column="7" selection-end-line="353" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="100" column="16" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
+        <state relative-caret-position="442">
+          <caret line="93" column="25" selection-start-line="93" selection-start-column="25" selection-end-line="93" selection-end-column="25" />
           <folding>
             <marker date="1470231212930" expanded="true" signature="1429:1587" placeholder="CREATE TABLE... missing_value" />
             <marker date="1470231212930" expanded="true" signature="2578:2738" placeholder="INSERT INTO missing_value... " />
@@ -1541,6 +1326,54 @@
             <marker date="1470231212930" expanded="true" signature="4228:4242" placeholder="SELECT * FRO... missing_value" />
             <marker date="1470231212930" expanded="true" signature="4322:4336" placeholder="SELECT * FRO... missing_value" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1480">
+          <caret line="329" column="25" selection-start-line="329" selection-start-column="25" selection-end-line="329" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/live_data.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="177" column="79" selection-start-line="177" selection-start-column="79" selection-end-line="177" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/settings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="148" column="22" selection-start-line="148" selection-start-column="12" selection-end-line="148" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="102" column="28" selection-start-line="102" selection-start-column="28" selection-end-line="102" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="281" column="30" selection-start-line="281" selection-start-column="30" selection-end-line="281" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
