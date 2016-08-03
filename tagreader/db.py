@@ -36,30 +36,33 @@ class reader_db():
         table_name = 'reader'
         fn_1 = 'show_key'
         ft_1 = 'TEXT'
-        fn_2 = 'reader_name'
+        fn_2 = 'client_key'
         ft_2 = 'TEXT'
-        fn_3 = 'mac_address'
+        fn_3 = 'reader_name'
         ft_3 = 'TEXT'
-        fn_4 = 'antenna'
+        fn_4 = 'mac_address'
         ft_4 = 'TEXT'
-        fn_5 = 'card_data'
+        fn_5 = 'antenna'
         ft_5 = 'TEXT'
-        fn_6 = 'timestamp'
+        fn_6 = 'card_data'
         ft_6 = 'TEXT'
-        fn_7 = 'custom_field'
+        fn_7 = 'timestamp'
         ft_7 = 'TEXT'
+        fn_8 = 'custom_field'
+        ft_8 = 'TEXT'
 
         con = sqlite.connect(db_file)
         c = con.cursor()
         c.execute('CREATE TABLE {tn}({nf_1} {ft_1}, {nf_2} {ft_2}, {nf_3} {ft_3}, {nf_4} {ft_4}, {nf_5} {ft_5}'
-                  ', {nf_6} {ft_6}, {nf_7} {ft_7})'.format(tn=table_name,
+                  ', {nf_6} {ft_6}, {nf_7} {ft_7}, {nf_8} {ft_8})'.format(tn=table_name,
                                                            nf_1=fn_1, ft_1=ft_1,
                                                            nf_2=fn_2, ft_2=ft_2,
                                                            nf_3=fn_3, ft_3=ft_3,
                                                            nf_4=fn_4, ft_4=ft_4,
                                                            nf_5=fn_5, ft_5=ft_5,
                                                            nf_6=fn_6, ft_6=ft_6,
-                                                           nf_7=fn_7, ft_7=ft_7))
+                                                           nf_7=fn_7, ft_7=ft_7,
+                                                           nf_8=fn_8, ft_8=ft_8))
         con.commit()
         con.close()
 
@@ -72,9 +75,9 @@ class reader_db():
         """
         self.exist_db()
         data = self.get_setting()
-        sql = 'INSERT INTO {table_name}(show_key, reader_name, mac_address, card_data, ' \
-              'timestamp, antenna, custom_field) VALUES(?,?,?,?,?,?,?)'.format(table_name=self.table_name)
-        self.cur.execute(sql, (data['show_key'], data['reader_name'], data['mac_address'],
+        sql = 'INSERT INTO {table_name}(show_key, client_key, reader_name, mac_address, card_data, ' \
+              'timestamp, antenna, custom_field) VALUES(?,?,?,?,?,?,?,?)'.format(table_name=self.table_name)
+        self.cur.execute(sql, (data['show_key'], data['client_key'], data['reader_name'], data['mac_address'],
                                card_data, timestamp, antenna, Custom_data))
         self.con.commit()
 
@@ -90,7 +93,7 @@ class reader_db():
         self.cur.execute(sql)
         self.con.commit()
 
-    def update_db(self, EPC, EPC_time, Name=None):
+    def update_db(self, card_data, timestamp, Name=None):
         """
         Update data in database.
         :param reg_no:
@@ -98,9 +101,9 @@ class reader_db():
         :return:
         """
         self.exist_db()
-        sql = 'UPDATE {table_name} SET timestamp=? WHERE card_data={EPC}'.format(table_name=self.table_name, EPC=EPC)
+        sql = 'UPDATE {table_name} SET timestamp=? WHERE card_data={card_data}'.format(table_name=self.table_name, card_data=card_data)
 
-        self.cur.execute(sql, (EPC_time,))
+        self.cur.execute(sql, (timestamp,))
 
         self.con.commit()
 
@@ -129,13 +132,15 @@ class reader_db():
             return {
                     'reader_name': setting_data[1],
                     'mac_address': setting_data[2],
-                    'show_key': show_key_data[1]
+                    'show_key': show_key_data[1],
+                    'client_key': show_key_data[2]
                    }
         except Exception as e:
             return {
                     'reader_name': 'None',
                     'mac_address': 'None',
-                    'show_key': 'None'
+                    'show_key': 'None',
+                    'client_key': 'None'
                    }
 
 db = reader_db()

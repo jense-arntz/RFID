@@ -29,15 +29,21 @@ var exists_streaming_db = fs.existsSync(file_streaming);
 var sqlite3 = require("sqlite3").verbose();
 
 var eshow_flag = '';
+var eshow_key = '';
 
 // ========================= Pages ========================//
 
 // index.html
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + "/" + "index.html");
+    res.sendFile(__dirname + "/" + "dashboard.html");
 });
 
+//dashboard.html
+app.get('/dashboard.html', function (req, res) {
+    res.sendFile(__dirname + "/" + "dashboard.html");
+});
 
+//index.html
 app.get('/index.html', function (req, res) {
     res.sendFile(__dirname + "/" + "index.html");
 });
@@ -61,9 +67,10 @@ app.get('/api/id/', function (req, res) {
     var posts = [];
     db_id.serialize(function () {
         db_id.each("SELECT * FROM eshow", function (err, row) {
-            posts.push({eshow_id: row.show_key});
-            console.log(row.eshow_id);
+            posts.push({eshow_id: row.show_key, client_key: row.client_key});
+            console.log(row.show_key, row.client_key);
             eshow_flag = row.show_key;
+            eshow_key = row.client_key;
         }, function () {
             // All done fetching records, render response
             res.set('Content-Type', 'application/json');
@@ -87,6 +94,24 @@ app.post('/api/id/', function (req, res) {
             [req.body.eshow_id]);
         console.log('Edit Eshow ID Success!');
         data = 'Update Eshow ID Success!';
+    }
+    res.send(data);
+});
+
+// Create/Edit client_key
+app.post('/api/key/', function (req, res) {
+    var db_id = new sqlite3.Database(file);
+    if (eshow_flag == '') {
+        db_id.run("INSERT into eshow (client_key) VALUES (?)",
+            [req.body.client_key]);
+        console.log('Insert Client Key Success!');
+        data = 'Insert Client Key Success!';
+    }
+    else {
+        db_id.run("UPDATE eshow set client_key=? where id=1",
+            [req.body.client_key]);
+        console.log('Edit Client Key Success!');
+        data = 'Update Client Key Success!';
     }
     res.send(data);
 });
@@ -249,17 +274,67 @@ app.get('/api/transfer/', function (req, res) {
             // Copy the file to given path.
             fs.createReadStream(file_streaming).pipe(fs.createWriteStream(folder_path + '/' + filename));
 
-            var Ftp = new JSFtp({
-                host: "192.168.1.37",
-                port: 21, // defaults to 21
-                user: "FTP-user", // defaults to "anonymous"
-                pass: "Jense" // defaults to "@anonymous"
+            // var Ftp = new JSFtp({
+            //     host: "192.168.1.37",
+            //     port: 21, // defaults to 21
+            //     user: "FTP-user", // defaults to "anonymous"
+            //     pass: "Jense" // defaults to "@anonymous"
+            // });
+            //
+            // Ftp.put(file_streaming, filename, function (hadError) {
+            //     if (!hadError)
+            //         console.log("File transferred successfully!");
+            // });
+            
+            db_streaming.run("DELETE FROM reader", function (error) {
+                if (error)
+                    console.log(error);
+            });
+            res.send('Transfer File Successful.');
+        }
+
+    }
+    catch (e) {
+        console.log('\r\n', e);
+        res.send(e);
+    }
+});
+
+app.get('/api/transfer/', function (req, res) {
+    console.log("Got a transfer request from the homepage");
+    var db_streaming = new sqlite3.Database(file_streaming);
+    get_show_key(function handleResult(err, result) {
+        if (err) {
+            console.log('Get the show key error.');
+            res.send('No show key error');
+        }
+        eshow_flag = result;
+    });
+    try {
+        if (!exists_streaming_db) {
+            console.log('no streaming.db file exists.');
+            res.send('No DB File to transfer.');
+        }
+        else {
+            console.log("table exists. cleaning existing records");
+            var folder_path = '/home/pi/' + eshow_flag;
+
+            // make eshow dir.
+            checkDirectory(folder_path, function (error) {
+                if (error) {
+                    console.log("oh no!!!", error);
+                    res.send('no created directory');
+                }
             });
 
-            Ftp.put(file_streaming, filename, function (hadError) {
-                if (!hadError)
-                    console.log("File transferred successfully!");
-            });
+            // Filename
+            var timeStamp = (new Date).toISOString().replace(/z|t/gi, '-').trim();
+            console.log(timeStamp);
+            var filename = 'reader' + eshow_flag + ':' + timeStamp + '.db';
+            console.log(filename);
+
+            // Copy the file to given path.
+            fs.createReadStream(file_streaming).pipe(fs.createWriteStream(folder_path + '/' + filename));
 
             db_streaming.run("DELETE FROM reader", function (error) {
                 if (error)
@@ -382,7 +457,7 @@ function create_db() {
         if (!exists) {
             console.log("Creating table.");
             db.run("CREATE TABLE reader_setting (id INTEGER PRIMARY KEY AUTOINCREMENT, reader_name TEXT, mac_address TEXT, ip_address TEXT, power_level Text)");
-            db.run("CREATE TABLE eshow(id INTEGER PRIMARY KEY AUTOINCREMENT, show_key TEXT)");
+            db.run("CREATE TABLE eshow(id INTEGER PRIMARY KEY AUTOINCREMENT, show_key TEXT, client_key TEXT)");
         }
     });
     db.close();

@@ -1,7 +1,197 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5d3ce0e-5cfb-47fb-afb3-80f3906e189b" name="Default" comment="Fixing the code on database design." />
+    <list default="true" id="a5d3ce0e-5cfb-47fb-afb3-80f3906e189b" name="Default" comment="Fixing the code on database design.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/.idea/Code.iml" afterPath="$PROJECT_DIR$/Code/.idea/Code.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/.idea/deployment.xml" afterPath="$PROJECT_DIR$/Code/.idea/deployment.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/.idea/encodings.xml" afterPath="$PROJECT_DIR$/Code/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/.idea/misc.xml" afterPath="$PROJECT_DIR$/Code/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/.idea/modules.xml" afterPath="$PROJECT_DIR$/Code/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/.idea/webServers.xml" afterPath="$PROJECT_DIR$/Code/.idea/webServers.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/.idea/workspace.xml" afterPath="$PROJECT_DIR$/Code/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/index.html" afterPath="$PROJECT_DIR$/Code/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/live_data.html" afterPath="$PROJECT_DIR$/Code/live_data.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/bootstrap-table.css" afterPath="$PROJECT_DIR$/Code/public/css/bootstrap-table.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/404.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/404.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/block-panels.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/block-panels.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/config.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/config.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/dropdown-menu.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/dropdown-menu.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/accordions.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/accordions.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/alerts.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/alerts.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/buttons.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/buttons.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/charts.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/charts.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/chat-widget.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/chat-widget.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/circle.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/circle.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/color-boxes.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/color-boxes.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/date-picker.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/date-picker.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/dropzone.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/dropzone.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/full-calendar.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/full-calendar.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/gritter.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/gritter.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/icons.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/icons.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/labels_badges.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/labels_badges.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/lists.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/lists.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/modals.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/modals.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/multiselect.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/multiselect.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/nano-scroll.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/nano-scroll.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/nestable-lists.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/nestable-lists.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/pagination.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/pagination.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/progress.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/progress.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/select2.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/select2.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/slider.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/slider.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/switch.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/switch.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/tables.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/tables.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/tabs.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/tabs.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/tickets-widget.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/tickets-widget.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/tiles.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/tiles.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/timeline.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/timeline.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/todo-widget.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/todo-widget.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/treeview.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/treeview.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/validation.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/validation.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/widgets.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/widgets.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/elements/wizard.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/elements/wizard.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/forms.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/forms.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/gallery.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/gallery.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/general.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/general.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/helpers.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/helpers.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/login.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/login.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/main-container.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/main-container.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/navbar.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/navbar.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/page-aside.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/page-aside.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/page-code-editor.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/page-code-editor.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/page-email.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/page-email.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/page-head.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/page-head.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/page-profile.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/page-profile.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/page-search.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/page-search.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/profile-menu.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/profile-menu.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/responsive.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/responsive.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/sidebar.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/sidebar.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/sign-up.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/sign-up.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/includes/typography.less" afterPath="$PROJECT_DIR$/Code/public/css/includes/typography.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/style.css" afterPath="$PROJECT_DIR$/Code/public/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/css/style.less" afterPath="$PROJECT_DIR$/Code/public/css/style.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/img/photos_licenses.txt" afterPath="$PROJECT_DIR$/Code/public/img/photos_licenses.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/js/cleanzone.js" afterPath="$PROJECT_DIR$/Code/public/js/cleanzone.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/js/jquery.js" afterPath="$PROJECT_DIR$/Code/public/js/jquery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/js/voice-recognition.js" afterPath="$PROJECT_DIR$/Code/public/js/voice-recognition.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap-theme.css" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap-theme.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap-theme.min.css" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap-theme.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap.css" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.svg" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/js/bootstrap.js" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/js/bootstrap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/js/bootstrap.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/js/npm.js" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/dist/js/npm.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/alerts.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/alerts.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/badges.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/badges.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/bootstrap.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/bootstrap.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/breadcrumbs.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/breadcrumbs.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/button-groups.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/button-groups.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/buttons.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/buttons.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/carousel.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/carousel.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/close.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/close.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/code.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/code.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/component-animations.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/component-animations.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/dropdowns.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/dropdowns.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/forms.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/forms.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/glyphicons.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/glyphicons.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/grid.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/grid.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/input-groups.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/input-groups.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/jumbotron.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/jumbotron.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/labels.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/labels.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/list-group.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/list-group.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/media.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/media.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/alerts.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/alerts.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/background-variant.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/background-variant.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/border-radius.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/border-radius.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/buttons.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/buttons.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/center-block.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/center-block.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/clearfix.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/clearfix.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/forms.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/forms.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/gradients.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/gradients.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/grid-framework.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/grid-framework.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/grid.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/grid.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/hide-text.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/hide-text.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/image.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/image.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/labels.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/labels.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/list-group.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/list-group.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/nav-divider.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/nav-divider.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/nav-vertical-align.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/nav-vertical-align.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/opacity.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/opacity.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/pagination.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/pagination.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/panels.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/panels.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/progress-bar.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/progress-bar.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/reset-filter.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/reset-filter.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/resize.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/resize.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/responsive-visibility.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/responsive-visibility.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/size.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/size.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/tab-focus.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/tab-focus.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/table-row.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/table-row.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/text-emphasis.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/text-emphasis.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/text-overflow.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/text-overflow.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/vendor-prefixes.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/mixins/vendor-prefixes.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/modals.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/modals.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/navbar.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/navbar.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/navs.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/navs.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/normalize.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/normalize.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/pager.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/pager.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/pagination.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/pagination.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/panels.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/panels.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/popovers.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/popovers.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/print.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/print.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/progress-bars.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/progress-bars.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/responsive-embed.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/responsive-embed.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/responsive-utilities.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/responsive-utilities.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/scaffolding.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/scaffolding.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/tables.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/tables.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/theme.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/theme.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/thumbnails.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/thumbnails.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/tooltip.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/tooltip.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/type.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/type.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/utilities.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/utilities.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/variables.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/variables.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/wells.less" afterPath="$PROJECT_DIR$/Code/public/lib/bootstrap/less/wells.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/font-awesome/css/font-awesome.css" afterPath="$PROJECT_DIR$/Code/public/lib/font-awesome/css/font-awesome.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/font-awesome/css/font-awesome.min.css" afterPath="$PROJECT_DIR$/Code/public/lib/font-awesome/css/font-awesome.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/font-awesome/fonts/fontawesome-webfont.svg" afterPath="$PROJECT_DIR$/Code/public/lib/font-awesome/fonts/fontawesome-webfont.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/css/main.css" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/css/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/css/nanoscroller.css" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/css/nanoscroller.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/css/nanoscroller.less" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/css/nanoscroller.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/css/style.css" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/dev.html" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/dev.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/index.html" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/ga.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/ga.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.js.map" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.min.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/main.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/overthrow.min.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/javascripts/overthrow.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/readme.html" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nanoscroller/readme.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nestable/README.md" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nestable/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nestable/bower.json" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nestable/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nestable/index.html" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nestable/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.nestable/jquery.nestable.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.nestable/jquery.nestable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/README.md" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/bower.json" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/css/component.css" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/css/component.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/fonts/codropsicons/codropsicons.svg" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/fonts/codropsicons/codropsicons.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/fonts/codropsicons/license.txt" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/fonts/codropsicons/license.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/index.html" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/classie.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/classie.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/css-filters-polyfill.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/css-filters-polyfill.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/cssParser.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/cssParser.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/modalEffects.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/modalEffects.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/modernizr.custom.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery.niftymodals/js/modernizr.custom.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery/jquery.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery/jquery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/public/lib/jquery/jquery.min.js" afterPath="$PROJECT_DIR$/Code/public/lib/jquery/jquery.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/server.js" afterPath="$PROJECT_DIR$/Code/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/settings.html" afterPath="$PROJECT_DIR$/Code/settings.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tagreader/.idea/misc.xml" afterPath="$PROJECT_DIR$/tagreader/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tagreader/.idea/modules.xml" afterPath="$PROJECT_DIR$/tagreader/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tagreader/.idea/tagreader.iml" afterPath="$PROJECT_DIR$/tagreader/.idea/tagreader.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tagreader/.idea/workspace.xml" afterPath="$PROJECT_DIR$/tagreader/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tagreader/db.py" afterPath="$PROJECT_DIR$/tagreader/db.py" />
+    </list>
     <list id="01bde2cc-1132-4afb-a724-ad6325737a77" name="Rejected commit: Default" comment="Fixing the code on database design." />
     <ignored path="rfid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -15,13 +205,13 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/rfid$test__2_.coverage" NAME="test (2) Coverage Results" MODIFIED="1468587318274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Code" />
+    <SUITE FILE_PATH="coverage/rfid$websocket__2_.coverage" NAME="websocket (2) Coverage Results" MODIFIED="1468486833773" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tagreader" />
     <SUITE FILE_PATH="coverage/rfid$tagreader.coverage" NAME="tagreader Coverage Results" MODIFIED="1468145159271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tagreader" />
+    <SUITE FILE_PATH="coverage/rfid$test__2_.coverage" NAME="test (2) Coverage Results" MODIFIED="1468587318274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Code" />
+    <SUITE FILE_PATH="coverage/rfid$websocket.coverage" NAME="websocket Coverage Results" MODIFIED="1468232735963" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tagreader" />
     <SUITE FILE_PATH="coverage/rfid$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1468581546156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tagreader" />
     <SUITE FILE_PATH="coverage/rfid$test.coverage" NAME="test Coverage Results" MODIFIED="1469204382909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/rfid$websocket__2_.coverage" NAME="websocket (2) Coverage Results" MODIFIED="1468486833773" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tagreader" />
     <SUITE FILE_PATH="coverage/rfid$websocket__1_.coverage" NAME="websocket (1) Coverage Results" MODIFIED="1468583536821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Code" />
-    <SUITE FILE_PATH="coverage/rfid$websocket.coverage" NAME="websocket Coverage Results" MODIFIED="1468232735963" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tagreader" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="D:\My_Projects\RFID\rfid" />
@@ -35,24 +225,26 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state relative-caret-position="4590">
               <caret line="270" column="5" selection-start-line="270" selection-start-column="5" selection-end-line="270" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="db.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tagreader/db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="80" column="21" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
+            <state relative-caret-position="561">
+              <caret line="100" column="16" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
               <folding>
-                <marker date="1469734527310" expanded="true" signature="2432:2578" placeholder="INSERT INTO ..." />
-                <marker date="1469734527310" expanded="true" signature="2966:2990" placeholder="DELETE FROM ..." />
-                <marker date="1469734527310" expanded="true" signature="3677:3703" placeholder="SELECT * FRO..." />
-                <marker date="1469734527310" expanded="true" signature="4022:4048" placeholder="SELECT * FRO..." />
-                <marker date="1469734527310" expanded="true" signature="4116:4142" placeholder="SELECT * FRO..." />
+                <marker date="1470231212930" expanded="true" signature="1429:1587" placeholder="CREATE TABLE... missing_value" />
+                <marker date="1470231212930" expanded="true" signature="2578:2738" placeholder="INSERT INTO missing_value... " />
+                <marker date="1470231212930" expanded="true" signature="3146:3158" placeholder="DELETE FROM " />
+                <marker date="1470231212930" expanded="true" signature="3511:3563" placeholder="UPDATE missi... " />
+                <marker date="1470231212930" expanded="true" signature="3883:3897" placeholder="SELECT * FRO... missing_value" />
+                <marker date="1470231212930" expanded="true" signature="4228:4242" placeholder="SELECT * FRO... missing_value" />
+                <marker date="1470231212930" expanded="true" signature="4322:4336" placeholder="SELECT * FRO... missing_value" />
               </folding>
             </state>
           </provider>
@@ -61,11 +253,9 @@
       <file leaf-file-name="tagreader.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tagreader/tagreader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state relative-caret-position="6494">
               <caret line="390" column="0" selection-start-line="390" selection-start-column="0" selection-end-line="390" selection-end-column="0" />
-              <folding>
-                <marker date="1469831868026" expanded="true" signature="5922:5950" placeholder="SELECT * FRO..reader_setting..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -73,7 +263,7 @@
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tagreader/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -83,7 +273,7 @@
       <file leaf-file-name="start_node.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/start_node.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state relative-caret-position="204">
               <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
               <folding />
             </state>
@@ -93,7 +283,7 @@
       <file leaf-file-name="settings.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/settings.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state relative-caret-position="2091">
               <caret line="123" column="4" selection-start-line="123" selection-start-column="4" selection-end-line="123" selection-end-column="4" />
               <folding />
             </state>
@@ -103,7 +293,7 @@
       <file leaf-file-name="todo-widget.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/public/css/includes/elements/todo-widget.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.064516">
+            <state relative-caret-position="289">
               <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
               <folding />
             </state>
@@ -113,17 +303,17 @@
       <file leaf-file-name="live_data.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/live_data.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state relative-caret-position="4369">
               <caret line="257" column="19" selection-start-line="257" selection-start-column="19" selection-end-line="257" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47421384">
+            <state relative-caret-position="269">
               <caret line="353" column="7" selection-start-line="353" selection-start-column="7" selection-end-line="353" selection-end-column="7" />
               <folding />
             </state>
@@ -132,11 +322,8 @@
       </file>
       <file leaf-file-name="readme.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/readme.md">
-          <provider editor-type-id="MarkdownPreviewEditor">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state relative-caret-position="646">
               <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
               <folding />
             </state>
@@ -195,8 +382,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
-    <option name="width" value="1698" />
-    <option name="height" value="1020" />
+    <option name="width" value="1298" />
+    <option name="height" value="994" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -238,7 +425,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="RFID" />
+              <option name="myItemId" value="RFID_phase2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -248,7 +435,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="RFID" />
+              <option name="myItemId" value="RFID_phase2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -262,7 +449,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="RFID" />
+              <option name="myItemId" value="RFID_phase2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -389,17 +576,6 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="INTERPRETER_PATH" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -470,6 +646,7 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
       <tasks />
@@ -480,6 +657,7 @@
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run-script" />
       <scripts />
+      <node-interpreter value="project" />
       <envs />
       <method />
     </configuration>
@@ -610,7 +788,9 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -619,299 +799,349 @@
       <changelist id="a5d3ce0e-5cfb-47fb-afb3-80f3906e189b" name="Default" comment="" />
       <created>1468123022189</created>
       <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
       <updated>1468123022189</updated>
     </task>
     <task id="LOCAL-00056" summary="version 1.1">
       <created>1468620283498</created>
       <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
       <option name="project" value="LOCAL" />
       <updated>1468620283498</updated>
     </task>
     <task id="LOCAL-00057" summary="version 1.1">
       <created>1468620348554</created>
       <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
       <option name="project" value="LOCAL" />
       <updated>1468620348554</updated>
     </task>
     <task id="LOCAL-00058" summary="version 1.1">
       <created>1468667794070</created>
       <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
       <option name="project" value="LOCAL" />
       <updated>1468667794070</updated>
     </task>
     <task id="LOCAL-00059" summary="version 1.1">
       <created>1468696049804</created>
       <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
       <option name="project" value="LOCAL" />
       <updated>1468696049804</updated>
     </task>
     <task id="LOCAL-00060" summary="version 1.1">
       <created>1468726435059</created>
       <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
       <option name="project" value="LOCAL" />
       <updated>1468726435059</updated>
     </task>
     <task id="LOCAL-00061" summary="version 1.1">
       <created>1468742422861</created>
       <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
       <option name="project" value="LOCAL" />
       <updated>1468742422861</updated>
     </task>
     <task id="LOCAL-00062" summary="version 1.1">
       <created>1469007315671</created>
       <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
       <option name="project" value="LOCAL" />
       <updated>1469007315672</updated>
     </task>
     <task id="LOCAL-00063" summary="version 1.1">
       <created>1469007341311</created>
       <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
       <option name="project" value="LOCAL" />
       <updated>1469007341311</updated>
     </task>
     <task id="LOCAL-00064" summary="version 1.1">
       <created>1469013123610</created>
       <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
       <option name="project" value="LOCAL" />
       <updated>1469013123610</updated>
     </task>
     <task id="LOCAL-00065" summary="version 1.1">
       <created>1469013327531</created>
       <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
       <option name="project" value="LOCAL" />
       <updated>1469013327531</updated>
     </task>
     <task id="LOCAL-00066" summary="version 1.1">
       <created>1469018451234</created>
       <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
       <option name="project" value="LOCAL" />
       <updated>1469018451234</updated>
     </task>
     <task id="LOCAL-00067" summary="version 1.1">
       <created>1469018525709</created>
       <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
       <option name="project" value="LOCAL" />
       <updated>1469018525709</updated>
     </task>
     <task id="LOCAL-00068" summary="version 1.1">
       <created>1469037645213</created>
       <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
       <option name="project" value="LOCAL" />
       <updated>1469037645213</updated>
     </task>
     <task id="LOCAL-00069" summary="version 1.1">
       <created>1469049621945</created>
       <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
       <option name="project" value="LOCAL" />
       <updated>1469049621945</updated>
     </task>
     <task id="LOCAL-00070" summary="version 1.2">
       <created>1469049813941</created>
       <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
       <option name="project" value="LOCAL" />
       <updated>1469049813941</updated>
     </task>
     <task id="LOCAL-00071" summary="version 1.2">
       <created>1469053349086</created>
       <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
       <option name="project" value="LOCAL" />
       <updated>1469053349086</updated>
     </task>
     <task id="LOCAL-00072" summary="version 1.2">
       <created>1469054335665</created>
       <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
       <option name="project" value="LOCAL" />
       <updated>1469054335665</updated>
     </task>
     <task id="LOCAL-00073" summary="version 1.2">
       <created>1469187203968</created>
       <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
       <option name="project" value="LOCAL" />
       <updated>1469187203968</updated>
     </task>
     <task id="LOCAL-00074" summary="version 1.2">
       <created>1469195160260</created>
       <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
       <option name="project" value="LOCAL" />
       <updated>1469195160261</updated>
     </task>
     <task id="LOCAL-00075" summary="version 1.2">
       <created>1469198665868</created>
       <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
       <option name="project" value="LOCAL" />
       <updated>1469198665868</updated>
     </task>
     <task id="LOCAL-00076" summary="version 1.2">
       <created>1469200039728</created>
       <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
       <option name="project" value="LOCAL" />
       <updated>1469200039728</updated>
     </task>
     <task id="LOCAL-00077" summary="version 1.2">
       <created>1469205212127</created>
       <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
       <option name="project" value="LOCAL" />
       <updated>1469205212127</updated>
     </task>
     <task id="LOCAL-00078" summary="version 1.2">
       <created>1469205286147</created>
       <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
       <option name="project" value="LOCAL" />
       <updated>1469205286147</updated>
     </task>
     <task id="LOCAL-00079" summary="version 1.2">
       <created>1469209538539</created>
       <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
       <option name="project" value="LOCAL" />
       <updated>1469209538539</updated>
     </task>
     <task id="LOCAL-00080" summary="version 1.2">
       <created>1469216272019</created>
       <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
       <option name="project" value="LOCAL" />
       <updated>1469216272019</updated>
     </task>
     <task id="LOCAL-00081" summary="version 1.2">
       <created>1469218783132</created>
       <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
       <option name="project" value="LOCAL" />
       <updated>1469218783132</updated>
     </task>
     <task id="LOCAL-00082" summary="version 1.2">
       <created>1469218808490</created>
       <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
       <option name="project" value="LOCAL" />
       <updated>1469218808490</updated>
     </task>
     <task id="LOCAL-00083" summary="version 1.2">
       <created>1469262571613</created>
       <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
       <option name="project" value="LOCAL" />
       <updated>1469262571613</updated>
     </task>
     <task id="LOCAL-00084" summary="version 1.2">
       <created>1469262590246</created>
       <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
       <option name="project" value="LOCAL" />
       <updated>1469262590246</updated>
     </task>
     <task id="LOCAL-00085" summary="version 1.2">
       <created>1469262612383</created>
       <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
       <option name="project" value="LOCAL" />
       <updated>1469262612383</updated>
     </task>
     <task id="LOCAL-00086" summary="version 1.2">
       <created>1469471246998</created>
       <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
       <option name="project" value="LOCAL" />
       <updated>1469471246998</updated>
     </task>
     <task id="LOCAL-00087" summary="version 1.2">
       <created>1469471263498</created>
       <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
       <option name="project" value="LOCAL" />
       <updated>1469471263498</updated>
     </task>
     <task id="LOCAL-00088" summary="version 1.2">
       <created>1469475147145</created>
       <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
       <option name="project" value="LOCAL" />
       <updated>1469475147145</updated>
     </task>
     <task id="LOCAL-00089" summary="version 1.2">
       <created>1469475718606</created>
       <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
       <option name="project" value="LOCAL" />
       <updated>1469475718606</updated>
     </task>
     <task id="LOCAL-00090" summary="version 1.2">
       <created>1469475994315</created>
       <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
       <option name="project" value="LOCAL" />
       <updated>1469475994315</updated>
     </task>
     <task id="LOCAL-00091" summary="version 1.2">
       <created>1469478866100</created>
       <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
       <option name="project" value="LOCAL" />
       <updated>1469478866100</updated>
     </task>
     <task id="LOCAL-00092" summary="version 1.2">
       <created>1469479090469</created>
       <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
       <option name="project" value="LOCAL" />
       <updated>1469479090469</updated>
     </task>
     <task id="LOCAL-00093" summary="version 1.2">
       <created>1469479215546</created>
       <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
       <option name="project" value="LOCAL" />
       <updated>1469479215546</updated>
     </task>
     <task id="LOCAL-00094" summary="version 1.2">
       <created>1469481527160</created>
       <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
       <option name="project" value="LOCAL" />
       <updated>1469481527160</updated>
     </task>
     <task id="LOCAL-00095" summary="version 1.2">
       <created>1469485708781</created>
       <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
       <option name="project" value="LOCAL" />
       <updated>1469485708781</updated>
     </task>
     <task id="LOCAL-00096" summary="version 1.2">
       <created>1469566111145</created>
       <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
       <option name="project" value="LOCAL" />
       <updated>1469566111146</updated>
     </task>
     <task id="LOCAL-00097" summary="version 1.2">
       <created>1469567431477</created>
       <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
       <option name="project" value="LOCAL" />
       <updated>1469567431477</updated>
     </task>
     <task id="LOCAL-00098" summary="version 1.2">
       <created>1469568714118</created>
       <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
       <option name="project" value="LOCAL" />
       <updated>1469568714119</updated>
     </task>
     <task id="LOCAL-00099" summary="version 1.2">
       <created>1469692141683</created>
       <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
       <option name="project" value="LOCAL" />
       <updated>1469692141684</updated>
     </task>
     <task id="LOCAL-00100" summary="Fixing the code when transfer file to ftp server.">
       <created>1469729421625</created>
       <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
       <option name="project" value="LOCAL" />
       <updated>1469729421625</updated>
     </task>
     <task id="LOCAL-00101" summary="Fixing the code on database design.">
       <created>1469735271974</created>
       <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
       <option name="project" value="LOCAL" />
       <updated>1469735271974</updated>
     </task>
     <task id="LOCAL-00102" summary="Fixing the code on database design.">
       <created>1469736963749</created>
       <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
       <option name="project" value="LOCAL" />
       <updated>1469736963749</updated>
     </task>
     <task id="LOCAL-00103" summary="Fixing the code on database design.">
       <created>1469738635428</created>
       <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
       <option name="project" value="LOCAL" />
       <updated>1469738635428</updated>
     </task>
     <task id="LOCAL-00104" summary="Fixing the code on database design.">
       <created>1469739044569</created>
       <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
       <option name="project" value="LOCAL" />
       <updated>1469739044569</updated>
     </task>
@@ -928,10 +1158,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
+    <frame x="-9" y="-9" width="1298" height="994" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23062731" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2301092" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945284" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2945285" sideWeight="0.51230013" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -981,59 +1211,56 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/tagreader/rfidservice.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="66" column="39" selection-start-line="66" selection-start-column="39" selection-end-line="66" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="310" column="47" selection-start-line="310" selection-start-column="47" selection-end-line="310" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="90" column="21" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/startup.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/live_data.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="261" column="35" selection-start-line="261" selection-start-column="35" selection-end-line="261" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/tagreader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="226" column="33" selection-start-line="226" selection-start-column="33" selection-end-line="226" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/readme.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
           <folding />
         </state>
@@ -1041,14 +1268,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/protocol.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="60" column="61" selection-start-line="60" selection-start-column="61" selection-end-line="60" selection-end-column="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="324" column="0" selection-start-line="324" selection-start-column="0" selection-end-line="324" selection-end-column="0" />
           <folding />
         </state>
@@ -1056,130 +1283,100 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/rfidservice.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="66" column="39" selection-start-line="66" selection-start-column="39" selection-end-line="66" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="310" column="47" selection-start-line="310" selection-start-column="47" selection-end-line="310" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/startup.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/live_data.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="261" column="35" selection-start-line="261" selection-start-column="35" selection-end-line="261" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/.idea/webServers.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/public/js/cleanzone.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.3055553">
+        <state relative-caret-position="0">
           <caret line="58" column="15" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/public/lib/jquery/jquery.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="6952" column="4" selection-start-line="6952" selection-start-column="4" selection-end-line="6952" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/public/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="8.354838">
+        <state relative-caret-position="0">
           <caret line="5056" column="1" selection-start-line="5056" selection-start-column="1" selection-end-line="5056" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharm50/system/remote_sources/60277108/-125940560/pigpio.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/django/contrib/gis/templates/gis/openlayers.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm50/system/remote_sources/60277108/-1227933812/websocket/_core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="485" column="50" selection-start-line="485" selection-start-column="50" selection-end-line="485" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm50/system/remote_sources/60277108/-125940560/pigpio.py" />
+    <entry file="file://C:/Python27/Lib/site-packages/django/contrib/gis/templates/gis/openlayers.html" />
+    <entry file="file://$USER_HOME$/.PyCharm50/system/remote_sources/60277108/-1227933812/websocket/_core.py" />
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="865" column="0" selection-start-line="865" selection-start-column="0" selection-end-line="865" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="2487" column="0" selection-start-line="2487" selection-start-column="0" selection-end-line="2487" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharm50/system/remote_sources/60277108/-1227933812/websocket/_handshake.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/win32/test/test_win32trace.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="253" column="8" selection-start-line="253" selection-start-column="8" selection-end-line="253" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm50/system/remote_sources/60277108/-1227933812/websocket/_handshake.py" />
+    <entry file="file://C:/Python27/Lib/site-packages/win32/test/test_win32trace.py" />
     <entry file="file://$PROJECT_DIR$/Code/public/icons/logo_white.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1197,91 +1394,79 @@
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/E4X.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="261" column="0" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/const.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/crc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/protocol.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="60" column="61" selection-start-line="60" selection-start-column="61" selection-end-line="60" selection-end-column="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="310" column="47" selection-start-line="310" selection-start-column="47" selection-end-line="310" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/rfidservice.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="66" column="39" selection-start-line="66" selection-start-column="39" selection-end-line="66" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../11-ClientServer PROJECT/Client/schema.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23970944">
-          <caret line="9" column="40" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../../11-ClientServer PROJECT/Client/schema.sql" />
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41666666">
+        <state relative-caret-position="0">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/startup.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39951575">
+        <state relative-caret-position="0">
           <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/live_data.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="4369">
           <caret line="257" column="19" selection-start-line="257" selection-start-column="19" selection-end-line="257" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/readme.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="646">
           <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
           <folding />
         </state>
@@ -1289,39 +1474,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="4590">
           <caret line="270" column="5" selection-start-line="270" selection-start-column="5" selection-end-line="270" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tagreader/db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="21" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
-          <folding>
-            <marker date="1469734527310" expanded="true" signature="2432:2578" placeholder="INSERT INTO ..." />
-            <marker date="1469734527310" expanded="true" signature="2966:2990" placeholder="DELETE FROM ..." />
-            <marker date="1469734527310" expanded="true" signature="3677:3703" placeholder="SELECT * FRO..." />
-            <marker date="1469734527310" expanded="true" signature="4022:4048" placeholder="SELECT * FRO..." />
-            <marker date="1469734527310" expanded="true" signature="4116:4142" placeholder="SELECT * FRO..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/tagreader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="6494">
           <caret line="390" column="0" selection-start-line="390" selection-start-column="0" selection-end-line="390" selection-end-column="0" />
-          <folding>
-            <marker date="1469831868026" expanded="true" signature="5922:5950" placeholder="SELECT * FRO..reader_setting..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -1329,7 +1498,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/start_node.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="204">
           <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
           <folding />
         </state>
@@ -1337,7 +1506,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/settings.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="2091">
           <caret line="123" column="4" selection-start-line="123" selection-start-column="4" selection-end-line="123" selection-end-column="4" />
           <folding />
         </state>
@@ -1345,7 +1514,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/public/css/includes/elements/todo-widget.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.064516">
+        <state relative-caret-position="289">
           <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
           <folding />
         </state>
@@ -1353,9 +1522,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47421384">
+        <state relative-caret-position="269">
           <caret line="353" column="7" selection-start-line="353" selection-start-column="7" selection-end-line="353" selection-end-column="7" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tagreader/db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="100" column="16" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
+          <folding>
+            <marker date="1470231212930" expanded="true" signature="1429:1587" placeholder="CREATE TABLE... missing_value" />
+            <marker date="1470231212930" expanded="true" signature="2578:2738" placeholder="INSERT INTO missing_value... " />
+            <marker date="1470231212930" expanded="true" signature="3146:3158" placeholder="DELETE FROM " />
+            <marker date="1470231212930" expanded="true" signature="3511:3563" placeholder="UPDATE missi... " />
+            <marker date="1470231212930" expanded="true" signature="3883:3897" placeholder="SELECT * FRO... missing_value" />
+            <marker date="1470231212930" expanded="true" signature="4228:4242" placeholder="SELECT * FRO... missing_value" />
+            <marker date="1470231212930" expanded="true" signature="4322:4336" placeholder="SELECT * FRO... missing_value" />
+          </folding>
         </state>
       </provider>
     </entry>
