@@ -73,6 +73,7 @@ class reader_db():
         :param pro_time:
         :return:
         """
+
         self.exist_db()
         data = self.get_setting()
         sql = 'INSERT INTO {table_name}(show_key, client_key, reader_name, mac_address, card_data, ' \

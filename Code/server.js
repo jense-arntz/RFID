@@ -101,6 +101,7 @@ app.post('/api/id/', function (req, res) {
 // Create/Edit client_key
 app.post('/api/key/', function (req, res) {
     var db_id = new sqlite3.Database(file);
+    
     if (eshow_flag == '') {
         db_id.run("INSERT into eshow (client_key) VALUES (?)",
             [req.body.client_key]);
