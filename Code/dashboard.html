@@ -41,8 +41,6 @@
                         class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/settings.html">Settings</a></li>
-                        <!--<li class="divider"></li>-->
-                        <!--<li><a href="/login/">Sign Out</a></li>-->
                     </ul>
                 </li>
             </ul>
@@ -74,12 +72,16 @@
             </div>
         </div>
     </div>
+    <!--End Sub menu-->
+
+
     <div id="pcont" class="container-fluid">
         <div class="page-head">
             <h2>Dashboard</h2>
         </div>
         <div class="cl-mcont">
             <div class="row">
+                <!--Setting block-->
                 <div class="block-flat">
                     <div class="header">
                         <h3>Setting</h3>
@@ -91,129 +93,228 @@
 
                                 <p>Change ESHOW KEY as you want.</p>
                             </div>
-                            <form id="edit_id" method="post">
-                                <div class="col-sm-3 col-md-6">
+                            <div class="col-sm-3 col-md-6">
+                                <form id="edit_id" method="post">
                                     <input type="text" name='eshow_id' id='eshow_id' class="form-control">
-                                </div>
-                                <div class="col-sm-3 col-md-3">
-                                    <button type="button" class="btn btn-primary" id="create_id">Create/EDIT
-                                        Show_key&Client_key
-                                    </button>
-                                </div>
+                                </form>
+                            </div>
+                            <div class="col-sm-3 col-md-3">
+                                <button type="button" class="btn btn-primary" id="create_id">Create ID/EDIT</button>
+                            </div>
+                        </div>
 
-                                <div class="col-sm-3 col-md-12">
-                                    <label class="control-label">Client KEY</label>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-12">
+                                <label class="control-label">Client KEY</label>
 
-                                    <p>Change Client KEY as you want.</p>
-                                </div>
-                                <div class="col-sm-3 col-md-6">
-
+                                <p>Change Client KEY as you want.</p>
+                            </div>
+                            <div class="col-sm-3 col-md-6">
+                                <form id="client_form" method="post">
                                     <input type="text" name='client_key' id='client_key' class="form-control">
-                                </div>
-
-                            </form>
+                                </form>
+                            </div>
+                            <div class="col-sm-3 col-md-3">
+                                <button type="button" class="btn btn-primary" id="create_key">Create key/EDIT</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!--End Setting Page-->
+
+            <!--Devices Overview-->
             <div class="row">
-                <div class="col-md-12">
-                    <div class="block-flat">
-                        <div class="header">
-                            <h3 style="font-size: medium">Devices Overview</h3>
+                <div class="block-flat">
+                    <div class="header">
+                        <h3>Devices Overview</h3>
+                        <button data-modal="form-primary" class="btn btn-primary btn-flat btn-sm md-trigger"><i
+                                class="fa fa-plus"></i> Add Device
+                        </button>
+                    </div>
+                    <div class="content">
+                        <!-------------------- Start Add Device Nifty Modal--------------------------->
+                        <div class="table-responsive">
+                            <table id="dev_table" class="table no-border hover">
+                                <thead class="no-border">
+                                <tr>
+                                    <th style="width:15%;" class="text-center"><strong>Name</strong></th>
+                                    <th style="width:15%;" class="text-center"><strong>MAC Address</strong></th>
+                                    <th style="width:15%;" class="text-center"><strong>IP Address</strong></th>
+                                    <th style="width:15%;" class="text-center"><strong>Power Level</strong></th>
+                                    <th style="width:40%;" class="text-center"><strong>Action</strong></th>
+                                </tr>
+                                </thead>
+                                <tbody id="dev_tbody" class="no-border-y"></tbody>
+                            </table>
                         </div>
-                        <div class="content">
-                            <!-------------------- Start Add Device Nifty Modal--------------------------->
-                            <div class="table-responsive">
-                                <table id="dev_table" class="table no-border hover">
-                                    <thead class="no-border">
-                                    <tr>
-                                        <th style="width:15%;" class="text-center"><strong>Name</strong></th>
-                                        <th style="width:15%;" class="text-center"><strong>MAC Address</strong></th>
-                                        <th style="width:15%;" class="text-center"><strong>IP Address</strong></th>
-                                        <th style="width:15%;" class="text-center"><strong>Power Level</strong></th>
-                                        <th style="width:40%;" class="text-center"><strong>Action</strong></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="dev_tbody" class="no-border-y"></tbody>
-                                </table>
-                            </div>
-                            <!---------------------Start Edit Modal----------------------------------->
-                            <div id="form-edit" class="md-modal colored-header primary md-effect-9">
-                                <div class="md-content">
-                                    <div class="modal-header">
-                                        <h3 id="enable-h3">Edit Device</h3>
-                                        <button type="button" data-dismiss="modal" aria-hidden="true"
-                                                class="close md-close">×
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form id="edit_device" method="post">
-                                            <div class="modal-body form">
-                                                <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" name='name' class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>MAC ADDRESS</label>
-                                                    <input type="text" name='mac_address' class="form-control"
-                                                           readonly="readonly">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>IP Address</label>
-                                                    <input type="text" name='ip_address' class="form-control"
-                                                           readonly="readonly">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Power Level (0 ~ 255)</label>
-                                                    <input type="text" name='power_level' class="form-control">
-                                                </div>
+                        <!---------------------Start Edit Modal----------------------------------->
+                        <div id="form-edit" class="md-modal colored-header primary md-effect-9">
+                            <div class="md-content">
+                                <div class="modal-header">
+                                    <h3 id="enable-h3">Edit Device</h3>
+                                    <button type="button" data-dismiss="modal" aria-hidden="true"
+                                            class="close md-close">×
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="edit_device" method="post">
+                                        <div class="modal-body form">
+                                            <div class="form-group">
+                                                <label>Name</label>
+                                                <input type="text" name='name' class="form-control">
                                             </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" data-dismiss="modal"
-                                                class="btn btn-default btn-flat md-close">Cancel
-                                        </button>
-                                        <button id="proceed_edit" type="submit" data-dismiss="modal"
-                                                class="btn btn-primary btn-flat md-close">Proceed
-                                        </button>
-                                    </div>
+                                            <div class="form-group">
+                                                <label>MAC ADDRESS</label>
+                                                <input type="text" name='mac_address' class="form-control"
+                                                       readonly="readonly">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>IP Address</label>
+                                                <input type="text" name='ip_address' class="form-control"
+                                                       readonly="readonly">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Power Level (0 ~ 255)</label>
+                                                <input type="text" name='power_level' class="form-control">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" data-dismiss="modal"
+                                            class="btn btn-default btn-flat md-close">Cancel
+                                    </button>
+                                    <button id="proceed_edit" type="submit" data-dismiss="modal"
+                                            class="btn btn-primary btn-flat md-close">Proceed
+                                    </button>
                                 </div>
                             </div>
-                            <!---------------------------End Edit Nifty Modal-------------------------------->
+                        </div>
+                        <!---------------------------End Edit Nifty Modal-------------------------------->
 
-                            <!---------------------------Start Remove Nifty Modal------------------------------>
-                            <div id="form-remove" class="md-modal colored-header danger md-effect-9">
-                                <div class="md-content">
-                                    <div class="modal-header">
-                                        <h3 id="remove-h3">Delete Device</h3>
-                                        <button type="button" data-dismiss="modal" aria-hidden="true"
-                                                class="close md-close">×
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="text-center">
-                                            <div class="i-circle danger"></div>
-                                            <h4 id="remove-h4">Are you sure you want to remove this device?</h4>
+                        <!-------------------- Start Add Device Nifty Modal--------------------------->
+                        <div id="form-primary" class="md-modal colored-header custom-width md-effect-9">
+                            <div class="md-content">
+                                <div class="modal-header">
+                                    <h3>Add Device</h3>
+                                    <button type="button" data-dismiss="modal" aria-hidden="true"
+                                            class="close md-close">×
+                                    </button>
+                                </div>
+                                <form id="add_device" method="post">
+                                    <div class="modal-body form">
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" name='name' class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>MAC ADDRESS</label>
+                                            <input type="text" name='mac_address' class="form-control">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>IP Address</label>
+                                            <input type="text" name='ip_address' class="form-control">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Power Level (0 ~ 255)</label>
+                                            <input type="text" name='power_level' class="form-control">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" data-dismiss="modal"
                                                 class="btn btn-default btn-flat md-close">Cancel
                                         </button>
-                                        <button type="button" id="proceed_remove" data-dismiss="modal"
-                                                class="btn btn-primary btn-flat md-close">Proceed
-                                        </button>
+                                        <a href="javascript:proceedToDeviceSetting();"
+                                           class="btn btn-primary btn-flat md-close"
+                                           role="button">Proceed</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!---------------------------Start Remove Nifty Modal------------------------------>
+                        <div id="form-remove" class="md-modal colored-header danger md-effect-9">
+                            <div class="md-content">
+                                <div class="modal-header">
+                                    <h3 id="remove-h3">Delete Device</h3>
+                                    <button type="button" data-dismiss="modal" aria-hidden="true"
+                                            class="close md-close">×
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="text-center">
+                                        <div class="i-circle danger"></div>
+                                        <h4 id="remove-h4">Are you sure you want to remove this device?</h4>
                                     </div>
                                 </div>
+                                <div class="modal-footer">
+                                    <button type="button" data-dismiss="modal"
+                                            class="btn btn-default btn-flat md-close">Cancel
+                                    </button>
+                                    <button type="button" id="proceed_remove" data-dismiss="modal"
+                                            class="btn btn-primary btn-flat md-close">Proceed
+                                    </button>
+                                </div>
                             </div>
-                            <!------------------------------End Remove Nifty Modal------------------------------>
-                            <div class="md-overlay"></div>
                         </div>
+                        <!------------------------------End Remove Nifty Modal------------------------------>
+                        <div class="md-overlay"></div>
                     </div>
                 </div>
             </div>
+            <!--End Devices Overview-->
+            <div class="row">
+                <div class="col-sm-3 col-md-4">
+                    <label class="control-label">Select Readers</label>
+
+                    <p>Change Readers as you want.</p>
+                </div>
+                <div class="col-sm-3 col-md-8">
+                    <label class="control-label">Select Time Rate (s)</label>
+
+                    <p>Change Timer as you want.</p>
+                </div>
+
+                <div class="col-sm-3 col-md-4">
+                    <select class="select2" style="width: 40%" id="devices">
+                    </select>
+                </div>
+                <div class="col-sm-3 col-md-4">
+                    <select class="select2" style="width: 40%" id="timer">
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+                <div class="col-sm-3 col-md-4">
+                    <div class="spacer spacer-bottom">
+                        <button type="button" class="btn btn-primary" id="start">Start</button>
+                        <button type="button" class="btn btn-success" id="stop" disabled>Stop</button>
+                        <button type="button" class="btn btn-warning btn" id="transfer">Transfer</button>
+                        <button type="button" class="btn btn-danger btn" id="endshow">End Show</button>
+                    </div>
+                </div>
+
+                <div class="col-sm-3 col-md-4">
+                    <button type="button" class="btn btn-primary" id="sync_on">Sync On</button>
+                    <button type="button" class="btn btn-flickr" id="sync_off" disabled>Sync Off</button>
+                </div>
+                <div class="col-sm-3 col-md-4">
+                    <button type="button" class="btn btn-success btn" id="sync_manual">Sync Manual</button>
+                </div>
+            </div>
+            <!--Streaming Data Page-->
             <div class="row">
                 <div class="block-flat">
                     <div class="header">
@@ -236,12 +337,9 @@
                     </div>
                 </div>
             </div>
+            <!--End Streaming Data-->
         </div>
-
-        <!-- Streaming Data-->
-
     </div>
-</div>
 </div>
 <script type="text/javascript" src="public/lib/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="public/lib/jquery.nanoscroller/javascripts/jquery.nanoscroller.js"></script>
@@ -256,15 +354,39 @@
         //initialize the javascript
         App.init();
         $('.md-trigger').modalEffects();
-        pageloads();
-        dataload();
-        settingloads();
+        device_overview_loads();
+        data_streaming_load();
+        setting_loads();
     });
 
     // Device List
     var dev_list = [];
     var remove_address;
-    function pageloads() {
+
+    // ============= Add Device=====================//
+    function proceedToDeviceSetting() {
+        name = $('#add_device').find('input[name="name"]').val();
+        mac_addres = $('#add_device').find('input[name="mac_address"]').val();
+        ip_addres = $('#add_device').find('input[name="ip_address"]').val();
+        power_level = $('#add_device').find('input[name="power_level"]').val();
+        $.ajax({
+            url: "/api/add/",
+            type: 'POST',
+            data: {name: name, mac_address: mac_addres, address: ip_addres, power: power_level}
+        }).success(function (data) {
+            alert(data);
+            $('#add_device')
+                    .find('input[name="name"]').val('').end()
+                    .find('input[name="mac_address"]').val('').end()
+                    .find('input[name="ip_address"]').val('').end()
+                    .find('input[name="power_level"]').val('').end();
+            device_overview_loads();
+        }).error(function (data) {
+            alert(data);
+        });
+    }
+
+    function device_overview_loads() {
 
         $.getJSON('/api/device/list/', function (data) {
             dev_list = [];
@@ -312,7 +434,7 @@
             data: {name: name, mac_address: mac_address, address: ip_address, power: power_level}
         }).success(function (data) {
             alert(data);
-            pageloads();
+            device_overview_loads();
         }).error(function (data) {
             alert(data);
         });
@@ -328,30 +450,30 @@
         }).success(function (data) {
             alert(data);
             $('#dev_tbody').empty();
-            pageloads();
+            device_overview_loads();
         }).error(function (data) {
             alert(data);
         });
     });
 
 
-    function load_data(address, data, data_modal) {
-        var j = 0;
-        if (data_modal == "form-edit") {
-            $('#edit_device')
-                    .find('[name="name"]').val(data.name).end()
-                    .find('[name="mac_address"]').val(data.mac_address).end()
-                    .find('[name="ip_address"]').val(data.address).end()
-                    .find('[name="power_level"]').val(data.power).end();
-        }
-
-        else if (data_modal == "form-remove") {
-            remove_address = address;
-        }
-    }
+    //    function load_data(address, data, data_modal) {
+    //        var j = 0;
+    //        if (data_modal == "form-edit") {
+    //            $('#edit_device')
+    //                    .find('[name="name"]').val(data.name).end()
+    //                    .find('[name="mac_address"]').val(data.mac_address).end()
+    //                    .find('[name="ip_address"]').val(data.address).end()
+    //                    .find('[name="power_level"]').val(data.power).end();
+    //
+    //        }
+    //        else if (data_modal == "form-remove") {
+    //            remove_address = address;
+    //        }
+    //    }
 
     // Display the streaming Data.
-    function dataload() {
+    function data_streaming_load() {
         $.getJSON('/api/stream/', function (data) {
             $('#data_stream_body').empty();
             $.each(data, function (key, item) {
@@ -371,11 +493,12 @@
     }
 
     // Loading the eshow id.
-    function settingloads() {
+    function setting_loads() {
         $.getJSON('/api/id/', function (data) {
             $.each(data, function (key, item) {
                 $('#edit_id')
-                        .find('[name="eshow_id"]').val(item.eshow_id).end()
+                        .find('[name="eshow_id"]').val(item.eshow_id).end();
+                $('#client_form')
                         .find('[name="client_key"]').val(item.client_key).end();
             });
         });
@@ -384,26 +507,167 @@
     // Create and Edit the eshow id.
     $("#create_id").click(function () {
         var eshow_id = $('#edit_id').find('input[name="eshow_id"]').val();
-        var client_key = $('#edit_id').find('input[name="client_key"]').val();
-        if (eshow_id == '' && client_key == '') {
-            alert('Please input data!!!');
-        }
-        else {
+        $.ajax({
+            url: "/api/id/",
+            type: 'POST',
+            data: {eshow_id: eshow_id}
+        }).success(function (data) {
+            alert(data);
+            $('#edit_id')
+                    .find('[name="eshow_id"]').val(eshow_id).end();
+        }).error(function (data) {
+            alert(data);
+        });
+    });
+
+    // Create and Edit the eshow id.
+    $("#create_key").click(function () {
+        var client_key = $('#client_form').find('input[name="client_key"]').val();
+
+        $.ajax({
+            url: "/api/key/",
+            type: 'POST',
+            data: {client_key: client_key}
+        }).success(function (data) {
+            alert(data);
+            $('#client_form')
+                    .find('[name="client_key"]').val(client_key).end();
+        }).error(function (data) {
+            alert(data);
+        });
+    });
+
+    // -----------------------------Add the data to Option.------------------------------
+    $.getJSON('/api/device/list/', function (data) {
+
+        $.each(data, function (key, item) {
+            $('#devices').append($("<option></option>")
+                    .attr("value", key)
+                    .text(item.address));
+        });
+    });
+
+
+    // bind the connect button and stop button.
+    $('#start').click(function () {
+        $('#start').prop("disabled", true);
+        $('#stop').prop("disabled", false);
+        $('#devices').prop("disabled", true);
+        $('#timer').prop("disabled", true);
+//      $('#antenna').prop("disabled", true);
+        $('#status').removeClass('label-danger');
+        $('#status').addClass('label-success').text('Start Reading');
+
+        var e = document.getElementById("timer");
+        var timer = e.options[e.selectedIndex].text;
+//      var ant = document.getElementById("antenna");
+//      var antenna = ant.options[ant.selectedIndex].text;
+        $.ajax({
+//         url: "/api/start/" + timer + "/" + antenna + "/",
+            url: "/api/start/" + timer + "/",
+            type: 'GET'
+        }).success(function (data) {
+            alert(data);
+            start_stop = window.setInterval(dataload, 1000);
+        }).error(function (data) {
+            alert(data);
+        });
+
+    });
+
+    // stop command
+    $('#stop').click(function () {
+        $('#start').prop("disabled", false);
+        $('#stop').prop("disabled", true);
+        $('#status').removeClass('label-success');
+        $('#status').addClass('label-danger').text('Stop Reading');
+        $('#devices').prop("disabled", false);
+        $('#timer').prop("disabled", false);
+//      $('#antenna').prop("disabled", false);
+
+        $.ajax({
+            url: "/api/stop/",
+            type: 'GET'
+        }).success(function (data) {
+            alert(data);
+            clearInterval(start_stop);
+        }).error(function (data) {
+            alert(data);
+            clearInterval(start_stop);
+        });
+
+    });
+
+    $('#transfer').click(function () {
+        if ($('#stop').prop("disabled") == true) {
             $.ajax({
-                url: "/api/id/",
-                type: 'POST',
-                data: {eshow_id: eshow_id, client_key: client_key}
+                url: "/api/transfer/",
+                type: 'GET'
             }).success(function (data) {
                 alert(data);
-                $('#edit_id')
-                        .find('[name="eshow_id"]').val(eshow_id).end()
-                        .find('[name="client_key"]').val(item.client_key).end();
+                dataload();
             }).error(function (data) {
                 alert(data);
             });
         }
+        else {
+            alert('Before transfer, please press the "stop" button.');
+        }
     });
 
+    $('#endshow').click(function () {
+        if ($('#stop').prop("disabled") == true) {
+            $.ajax({
+                url: "/api/endshow/",
+                type: 'GET'
+            }).success(function (data) {
+                alert(data);
+                dataload();
+            }).error(function (data) {
+                alert(data);
+            });
+        }
+        else {
+            alert('Before End Show, please press the "stop" button.');
+        }
+    });
+
+    $('#sync_on').click(function () {
+        $('#sync_on').prop("disabled", true);
+        $('#sync_off').prop("disabled", false);
+        $.ajax({
+            url: "/api/sync_on/",
+            type: 'GET'
+        }).success(function (data) {
+            alert(data);
+        }).error(function (data) {
+            alert(data);
+        });
+    });
+
+    $('#sync_off').click(function () {
+        $('#sync_on').prop("disabled", false);
+        $('#sync_off').prop("disabled", true);
+        $.ajax({
+            url: "/api/sync_off/",
+            type: 'GET'
+        }).success(function (data) {
+            alert(data);
+        }).error(function (data) {
+            alert(data);
+        });
+    });
+
+    $('#sync_manual').click(function () {
+        $.ajax({
+            url: "/api/sync_manual/",
+            type: 'GET'
+        }).success(function (data) {
+            alert(data);
+        }).error(function (data) {
+            alert(data);
+        });
+    });
 </script>
 </body>
 </html>
