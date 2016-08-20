@@ -5,8 +5,10 @@
 // Require express framework.
 var express = require('express');
 var http = require('http');
+var request = require('request');
 var bodyParser = require('body-parser');
-var JSFtp = require("jsftp");
+var multiparty = require('multiparty');
+var formdata = require('form-data');
 
 var app = express();
 
@@ -30,7 +32,11 @@ var sqlite3 = require("sqlite3").verbose();
 
 var eshow_flag = '';
 var eshow_key = '';
-
+var client_key = '';
+var file_path = '';
+var mac_addr = '';
+var interval;
+var time_interval = 10000;
 // ========================= Pages ========================//
 
 // index.html
@@ -60,7 +66,7 @@ app.get('/settings.html', function (req, res) {
 
 // ======================= API(List, Add, Delete, Update) ================================//
 
-// Load the eshow id
+// ========================= Load the eshow id ============================
 app.get('/api/id/', function (req, res) {
     var db_id = new sqlite3.Database(file);
 
@@ -80,28 +86,29 @@ app.get('/api/id/', function (req, res) {
 });
 
 
-// Create/Edit eshow id
+// ========================= Create/Edit eshow id===========================
 app.post('/api/id/', function (req, res) {
     var db_id = new sqlite3.Database(file);
-    if (eshow_flag == '') {
+    if (eshow_flag == '' && client_key == '') {
         db_id.run("INSERT into eshow (show_key) VALUES (?)",
             [req.body.eshow_id]);
+        eshow_flag = req.body.eshow_id;
         console.log('Insert Eshow ID Success!');
-        data = 'Insert Eshow ID Success!';
+        data = 'Insert Eshow key Success!';
     }
     else {
         db_id.run("UPDATE eshow set show_key=? where id=1",
             [req.body.eshow_id]);
         console.log('Edit Eshow ID Success!');
-        data = 'Update Eshow ID Success!';
+        data = 'Update Eshow key Success!';
     }
     res.send(data);
 });
 
-// Create/Edit client_key
+// ========================== Create/Edit client_key =======================
 app.post('/api/key/', function (req, res) {
     var db_id = new sqlite3.Database(file);
-    if (eshow_flag == '') {
+    if (eshow_flag == '' && client_key == '') {
         db_id.run("INSERT into eshow (client_key) VALUES (?)",
             [req.body.client_key]);
         console.log('Insert Client Key Success!');
@@ -110,13 +117,14 @@ app.post('/api/key/', function (req, res) {
     else {
         db_id.run("UPDATE eshow set client_key=? where id=1",
             [req.body.client_key]);
+        console.log(req.body.client_key);
         console.log('Edit Client Key Success!');
         data = 'Update Client Key Success!';
     }
     res.send(data);
 });
 
-// Load the device list
+// ==================== Load the device list===================================
 app.get('/api/device/list/', function (req, res) {
     var db = new sqlite3.Database(file);
 
@@ -130,6 +138,7 @@ app.get('/api/device/list/', function (req, res) {
                 power: row.power_level
             });
             console.log(row.reader_name, row.mac_address, row.ip_address, row.power_level);
+            mac_addr = row.mac_address;
         }, function () {
             // All done fetching records, render response
             res.set('Content-Type', 'application/json');
@@ -138,11 +147,13 @@ app.get('/api/device/list/', function (req, res) {
     });
 });
 
-// Add the device to db.
+// ====================Add the device to db.==================================
 app.post('/api/add/', function (req, res) {
     console.log("Got a Add request for the homepage");
+
     try {
         console.log(req.body.name, req.body.mac_address, req.body.address, req.body.power);
+        mac_addr = req.body.mac_address;
         if (req.body.power > 255) {
             res.send('Power level value must be lower than 255.');
         }
@@ -163,7 +174,7 @@ app.post('/api/add/', function (req, res) {
     }
 });
 
-// Update the device settings to db.
+// ====================Update the device settings to db.======================
 app.post('/api/update/', function (req, res) {
     console.log("Got a Update request for the homepage");
     try {
@@ -187,7 +198,7 @@ app.post('/api/update/', function (req, res) {
 });
 
 
-// Delete the device from db.
+// ==============Delete the device from db.=========================
 app.post('/api/delete/', function (req, res) {
     console.log("Got a Delete request for the homepage");
     try {
@@ -237,6 +248,7 @@ function get_show_key(callback) {
     });
 }
 
+
 // Delete the db and transfer the db file to main server.
 app.get('/api/transfer/', function (req, res) {
     console.log("Got a transfer request from the homepage");
@@ -258,40 +270,27 @@ app.get('/api/transfer/', function (req, res) {
             var folder_path = '/home/pi/' + eshow_flag;
 
             // make eshow dir.
-            checkDirectory(folder_path, function (error) {
-                if (error) {
-                    console.log("oh no!!!", error);
-                    res.send('no created directory');
-                }
-            });
+            if (!fs.existsSync(folder_path)) {
+                fs.mkdirSync(folder_path);
+            }
 
             // Filename
-            var timeStamp = (new Date).toISOString().replace(/z|t/gi, '-').trim();
+            var timeStamp = (new Date).toISOString().replace(/z/gi, '').trim();
             console.log(timeStamp);
-            var filename = 'reader' + eshow_flag + ':' + timeStamp + '.db';
+            var filename = eshow_flag + ':' + timeStamp + '.db';
             console.log(filename);
-
+            var file_path = folder_path + '/' + filename;
             // Copy the file to given path.
-            fs.createReadStream(file_streaming).pipe(fs.createWriteStream(folder_path + '/' + filename));
+            fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
 
-            // var Ftp = new JSFtp({
-            //     host: "192.168.1.37",
-            //     port: 21, // defaults to 21
-            //     user: "FTP-user", // defaults to "anonymous"
-            //     pass: "Jense" // defaults to "@anonymous"
-            // });
-            //
-            // Ftp.put(file_streaming, filename, function (hadError) {
-            //     if (!hadError)
-            //         console.log("File transferred successfully!");
-            // });
-            
             db_streaming.run("DELETE FROM reader", function (error) {
                 if (error)
                     console.log(error);
             });
-            res.send('Transfer File Successful.');
+            send_file_aws(file_path, filename);
+
         }
+        res.send('Transfer File Successful.');
 
     }
     catch (e) {
@@ -300,58 +299,35 @@ app.get('/api/transfer/', function (req, res) {
     }
 });
 
-app.get('/api/transfer/', function (req, res) {
-    console.log("Got a transfer request from the homepage");
-    var db_streaming = new sqlite3.Database(file_streaming);
-    get_show_key(function handleResult(err, result) {
+function send_file_aws(file_path, filename) {
+    var aws_api = 'http://54.167.227.250/api/file/' + mac_addr + '/';
+    console.log('send_file_aws: ' + aws_api);
+    console.log('mac_address: ' + mac_addr);
+    console.log('filename: ' + filename);
+
+    var formData = {
+        // Pass a simple key-value pair
+        filename: filename,
+        // Pass eshow key
+        eshow_key: eshow_flag,
+        // Pass data via Streams
+        file: fs.createReadStream(file_path)
+    };
+    request.post({
+        url: aws_api,
+        formData: formData
+    }, function optionalCallback(err, httpResponse, body) {
         if (err) {
-            console.log('Get the show key error.');
-            res.send('No show key error');
+            return console.error('upload failed:', err);
         }
-        eshow_flag = result;
+        console.log('Upload successful!  Server responded with:', body);
     });
-    try {
-        if (!exists_streaming_db) {
-            console.log('no streaming.db file exists.');
-            res.send('No DB File to transfer.');
-        }
-        else {
-            console.log("table exists. cleaning existing records");
-            var folder_path = '/home/pi/' + eshow_flag;
 
-            // make eshow dir.
-            checkDirectory(folder_path, function (error) {
-                if (error) {
-                    console.log("oh no!!!", error);
-                    res.send('no created directory');
-                }
-            });
-
-            // Filename
-            var timeStamp = (new Date).toISOString().replace(/z|t/gi, '-').trim();
-            console.log(timeStamp);
-            var filename = 'reader' + eshow_flag + ':' + timeStamp + '.db';
-            console.log(filename);
-
-            // Copy the file to given path.
-            fs.createReadStream(file_streaming).pipe(fs.createWriteStream(folder_path + '/' + filename));
-
-            db_streaming.run("DELETE FROM reader", function (error) {
-                if (error)
-                    console.log(error);
-            });
-            res.send('Transfer File Successful.');
-        }
-
-    }
-    catch (e) {
-        console.log('\r\n', e);
-        res.send(e);
-    }
-});
+    console.log('sending file to AWS app.');
+}
 
 
-// Streaming Data from db.
+// ====================== Streaming Data from db. ======================
 app.get('/api/stream/', function (req, res) {
     console.log("Got a Stream request for the homepage");
     var db_streaming = new sqlite3.Database(file_streaming);
@@ -375,24 +351,122 @@ app.get('/api/stream/', function (req, res) {
     });
 });
 
+// =================== Sync On ===================================
 app.get('/api/sync_on/', function (req, res) {
-   console.log('sync on');
-   res.send('start sync on');
+    console.log('sync on');
+    interval = setInterval(function (req, res) {
+        console.log("Got a transfer request from the homepage");
+        var db_streaming = new sqlite3.Database(file_streaming);
+        get_show_key(function handleResult(err, result) {
+            if (err) {
+                console.log('Get the show key error.');
+                res.send('No show key error');
+            }
+            eshow_flag = result;
+        });
+        try {
+            if (!exists_streaming_db) {
+                console.log('no streaming.db file exists.');
+                res.send('No DB File to transfer.');
+            }
+            else {
+                console.log("table exists. cleaning existing records");
+                var folder_path = '/home/pi/' + eshow_flag;
+
+                // make eshow dir.
+                if (!fs.existsSync(folder_path)) {
+                    fs.mkdirSync(folder_path);
+                }
+
+                // Filename
+                var timeStamp = (new Date).toISOString().replace(/z/gi, '').trim();
+                console.log(timeStamp);
+                var filename = eshow_flag + ':' + timeStamp + '.db';
+                console.log(filename);
+                var file_path = folder_path + '/' + filename;
+                // Copy the file to given path.
+                fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
+
+                db_streaming.run("DELETE FROM reader", function (error) {
+                    if (error)
+                        console.log(error);
+                });
+                send_file_aws(file_path, filename);
+
+            }
+        }
+        catch (e) {
+            console.log('\r\n', e);
+        }
+    }, time_interval);
+    res.send('start sync on');
 });
 
+
+// =================== Sync Off ==================================
 app.get('/api/sync_off/', function (req, res) {
-   console.log('sync off');
-   res.send('start sync off');
+    console.log('sync off');
+    clearInterval(interval);
+    res.send('start sync off');
 });
 
+// =================== Sync Manual ================================
 app.get('/api/sync_manual/', function (req, res) {
-   console.log('sync off');
-   res.send('start sync off');
+    console.log('sync manual');
+
+    console.log("Got a transfer request from the homepage");
+    var db_streaming = new sqlite3.Database(file_streaming);
+    get_show_key(function handleResult(err, result) {
+        if (err) {
+            console.log('Get the show key error.');
+            res.send('No show key error');
+        }
+        eshow_flag = result;
+    });
+    try {
+        if (!exists_streaming_db) {
+            console.log('no streaming.db file exists.');
+            res.send('No DB File to transfer.');
+        }
+        else {
+            console.log("table exists. cleaning existing records");
+            var folder_path = '/home/pi/' + eshow_flag;
+
+            // make eshow dir.
+            if (!fs.existsSync(folder_path)) {
+                fs.mkdirSync(folder_path);
+            }
+
+            // Filename
+            var timeStamp = (new Date).toISOString().replace(/z/gi, '').trim();
+            console.log(timeStamp);
+            var filename = eshow_flag + ':' + timeStamp + '.db';
+            console.log(filename);
+            var file_path = folder_path + '/' + filename;
+            // Copy the file to given path.
+            fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
+
+            db_streaming.run("DELETE FROM reader", function (error) {
+                if (error)
+                    console.log(error);
+            });
+            send_file_aws(file_path, filename);
+
+        }
+        res.send('Transfer File Successful.');
+
+    }
+    catch (e) {
+        console.log('\r\n', e);
+        res.send(e);
+    }
 });
-// Start server from AWID.
+
+// ================ Start server from AWID.=========================
 app.get('/api/start/:timer(\\d+)', function (req, res) {
     console.log("Got a Start request");
     timer = req.params.timer;
+
     //antenna = req.params.antenna;
     console.log(timer);
     //console.log(antenna);
@@ -427,7 +501,7 @@ app.get('/api/start/:timer(\\d+)', function (req, res) {
     http.request(options, on_callback).end();
 });
 
-// Stop server from AWID.
+// ================= Stop server from AWID.=======================
 app.get('/api/stop/', function (req, res) {
     console.log("Got a Stop request");
     var options = {

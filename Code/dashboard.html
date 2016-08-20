@@ -349,6 +349,7 @@
 <script src="public/lib/jquery.niftymodals/js/jquery.modalEffects.js" type="text/javascript"></script>
 <script type="text/javascript">
     $('#dashboard').addClass("active");
+    var device_flag = false;
     //<-------------------------ajax setup with crsfkey---------------------------->
     $(document).ready(function () {
         //initialize the javascript
@@ -357,6 +358,7 @@
         device_overview_loads();
         data_streaming_load();
         setting_loads();
+        add_options();
     });
 
     // Device List
@@ -369,29 +371,36 @@
         mac_addres = $('#add_device').find('input[name="mac_address"]').val();
         ip_addres = $('#add_device').find('input[name="ip_address"]').val();
         power_level = $('#add_device').find('input[name="power_level"]').val();
-        $.ajax({
-            url: "/api/add/",
-            type: 'POST',
-            data: {name: name, mac_address: mac_addres, address: ip_addres, power: power_level}
-        }).success(function (data) {
-            alert(data);
-            $('#add_device')
-                    .find('input[name="name"]').val('').end()
-                    .find('input[name="mac_address"]').val('').end()
-                    .find('input[name="ip_address"]').val('').end()
-                    .find('input[name="power_level"]').val('').end();
-            device_overview_loads();
-        }).error(function (data) {
-            alert(data);
-        });
+        if (name == '' || mac_addres == '' || ip_addres == '' || power_level == '') {
+            alert('Please insert data on form.');
+        }
+        else {
+            $.ajax({
+                url: "/api/add/",
+                type: 'POST',
+                data: {name: name, mac_address: mac_addres, address: ip_addres, power: power_level}
+            }).success(function (data) {
+                alert(data);
+                $('#add_device')
+                        .find('input[name="name"]').val('').end()
+                        .find('input[name="mac_address"]').val('').end()
+                        .find('input[name="ip_address"]').val('').end()
+                        .find('input[name="power_level"]').val('').end();
+                device_flag = true;
+                device_overview_loads();
+                add_options();
+            }).error(function (data) {
+                alert(data);
+            });
+        }
     }
-
     function device_overview_loads() {
 
         $.getJSON('/api/device/list/', function (data) {
             dev_list = [];
             dev_list = data;
             $('#dev_tbody').empty();
+            if (data != '') device_flag = true;
             $.each(data, function (key, item) {
                 var tr = $("<tr>");
                 tr.append("<td class=\"text-center\">" + item.name + "</td>");
@@ -507,10 +516,11 @@
     // Create and Edit the eshow id.
     $("#create_id").click(function () {
         var eshow_id = $('#edit_id').find('input[name="eshow_id"]').val();
+        alert(eshow_id);
         $.ajax({
             url: "/api/id/",
             type: 'POST',
-            data: {eshow_id: eshow_id}
+            data: {'eshow_id': eshow_id}
         }).success(function (data) {
             alert(data);
             $('#edit_id')
@@ -520,59 +530,78 @@
         });
     });
 
-    // Create and Edit the eshow id.
+    // Create and Edit the client key.
     $("#create_key").click(function () {
         var client_key = $('#client_form').find('input[name="client_key"]').val();
-
+        alert(client_key);
         $.ajax({
             url: "/api/key/",
             type: 'POST',
-            data: {client_key: client_key}
+            data: {'client_key': client_key}
         }).success(function (data) {
             alert(data);
             $('#client_form')
-                    .find('[name="client_key"]').val(client_key).end();
+                    .find('input[name="client_key"]').val(client_key).end();
         }).error(function (data) {
             alert(data);
         });
     });
 
     // -----------------------------Add the data to Option.------------------------------
-    $.getJSON('/api/device/list/', function (data) {
+    function add_options() {
+        $.getJSON('/api/device/list/', function (data) {
 
-        $.each(data, function (key, item) {
-            $('#devices').append($("<option></option>")
-                    .attr("value", key)
-                    .text(item.address));
+            $.each(data, function (key, item) {
+                $('#devices').append($("<option></option>")
+                        .attr("value", key)
+                        .text(item.address));
+            });
         });
-    });
+    }
+
+    // Check if client key and eshow key is not empty.
+    function check_keys() {
+        var client_key = $('#client_form').find('input[name="client_key"]').val();
+        var eshow_key = $('#edit_id').find('input[name="eshow_id"]').val();
+
+        if (client_key == '' || eshow_key == '') {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 
 
     // bind the connect button and stop button.
     $('#start').click(function () {
-        $('#start').prop("disabled", true);
-        $('#stop').prop("disabled", false);
-        $('#devices').prop("disabled", true);
-        $('#timer').prop("disabled", true);
+        if (device_flag) {
+            $('#start').prop("disabled", true);
+            $('#stop').prop("disabled", false);
+            $('#devices').prop("disabled", true);
+            $('#timer').prop("disabled", true);
 //      $('#antenna').prop("disabled", true);
-        $('#status').removeClass('label-danger');
-        $('#status').addClass('label-success').text('Start Reading');
+            $('#status').removeClass('label-danger');
+            $('#status').addClass('label-success').text('Start Reading');
 
-        var e = document.getElementById("timer");
-        var timer = e.options[e.selectedIndex].text;
+            var e = document.getElementById("timer");
+            var timer = e.options[e.selectedIndex].text;
 //      var ant = document.getElementById("antenna");
 //      var antenna = ant.options[ant.selectedIndex].text;
-        $.ajax({
+            $.ajax({
 //         url: "/api/start/" + timer + "/" + antenna + "/",
-            url: "/api/start/" + timer + "/",
-            type: 'GET'
-        }).success(function (data) {
-            alert(data);
-            start_stop = window.setInterval(dataload, 1000);
-        }).error(function (data) {
-            alert(data);
-        });
-
+                url: "/api/start/" + timer + "/",
+                type: 'GET'
+            }).success(function (data) {
+                alert(data);
+                start_stop = window.setInterval(dataload, 1000);
+            }).error(function (data) {
+                alert(data);
+            });
+        }
+        else {
+            alert('please add a device!!!');
+        }
     });
 
     // stop command
@@ -599,7 +628,7 @@
     });
 
     $('#transfer').click(function () {
-        if ($('#stop').prop("disabled") == true) {
+        if ($('#stop').prop("disabled") == true && check_keys() == true && device_flag == true) {
             $.ajax({
                 url: "/api/transfer/",
                 type: 'GET'
@@ -611,12 +640,12 @@
             });
         }
         else {
-            alert('Before transfer, please press the "stop" button.');
+            alert('Before transfer, please press the "stop" button or input client key/Show key.');
         }
     });
 
     $('#endshow').click(function () {
-        if ($('#stop').prop("disabled") == true) {
+        if ($('#stop').prop("disabled") == true && check_keys() && device_flag == true) {
             $.ajax({
                 url: "/api/endshow/",
                 type: 'GET'
@@ -633,16 +662,21 @@
     });
 
     $('#sync_on').click(function () {
-        $('#sync_on').prop("disabled", true);
-        $('#sync_off').prop("disabled", false);
-        $.ajax({
-            url: "/api/sync_on/",
-            type: 'GET'
-        }).success(function (data) {
-            alert(data);
-        }).error(function (data) {
-            alert(data);
-        });
+        if (check_keys() && device_flag == true) {
+            $('#sync_on').prop("disabled", true);
+            $('#sync_off').prop("disabled", false);
+            $.ajax({
+                url: "/api/sync_on/",
+                type: 'GET'
+            }).success(function (data) {
+                alert(data);
+            }).error(function (data) {
+                alert(data);
+            });
+        }
+        else {
+            alert('Please input client key or Show key');
+        }
     });
 
     $('#sync_off').click(function () {
@@ -659,14 +693,19 @@
     });
 
     $('#sync_manual').click(function () {
-        $.ajax({
-            url: "/api/sync_manual/",
-            type: 'GET'
-        }).success(function (data) {
-            alert(data);
-        }).error(function (data) {
-            alert(data);
-        });
+        if (check_keys() && device_flag == true) {
+            $.ajax({
+                url: "/api/sync_manual/",
+                type: 'GET'
+            }).success(function (data) {
+                alert(data);
+            }).error(function (data) {
+                alert(data);
+            });
+        }
+        else {
+            alert('Please input client key or Show key');
+        }
     });
 </script>
 </body>

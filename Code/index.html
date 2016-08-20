@@ -263,21 +263,26 @@
         mac_addres = $('#add_device').find('input[name="mac_address"]').val();
         ip_addres = $('#add_device').find('input[name="ip_address"]').val();
         power_level = $('#add_device').find('input[name="power_level"]').val();
-        $.ajax({
-            url: "/api/add/",
-            type: 'POST',
-            data: {name: name, mac_address: mac_addres, address: ip_addres, power: power_level}
-        }).success(function (data) {
-            alert(data);
-            $('#add_device')
-                    .find('input[name="name"]').val('').end()
-                    .find('input[name="mac_address"]').val('').end()
-                    .find('input[name="ip_address"]').val('').end()
-                    .find('input[name="power_level"]').val('').end();
-            pageloads();
-        }).error(function (data) {
-            alert(data);
-        });
+        if (name == '' || mac_addres == '' || ip_addres == '' || power_level == '') {
+            alert('Please insert data on form.');
+        }
+        else {
+            $.ajax({
+                url: "/api/add/",
+                type: 'POST',
+                data: {name: name, mac_address: mac_addres, address: ip_addres, power: power_level}
+            }).success(function (data) {
+                alert(data);
+                $('#add_device')
+                        .find('input[name="name"]').val('').end()
+                        .find('input[name="mac_address"]').val('').end()
+                        .find('input[name="ip_address"]').val('').end()
+                        .find('input[name="power_level"]').val('').end();
+                pageloads();
+            }).error(function (data) {
+                alert(data);
+            });
+        }
     }
 
     // Device List
