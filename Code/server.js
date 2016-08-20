@@ -299,6 +299,7 @@ app.get('/api/transfer/', function (req, res) {
     }
 });
 
+// send file to aws app.
 function send_file_aws(file_path, filename) {
     var aws_api = 'http://54.167.227.250/api/file/' + mac_addr + '/';
     console.log('send_file_aws: ' + aws_api);
