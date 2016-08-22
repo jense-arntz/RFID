@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5d3ce0e-5cfb-47fb-afb3-80f3906e189b" name="Default" comment="Fixing the code on database design.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/server.js" afterPath="$PROJECT_DIR$/Code/server.js" />
     </list>
     <list id="01bde2cc-1132-4afb-a724-ad6325737a77" name="Rejected commit: Default" comment="Fixing the code on database design." />
@@ -37,8 +38,8 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Code/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="393" column="19" selection-start-line="393" selection-start-column="19" selection-end-line="393" selection-end-column="19" />
+            <state relative-caret-position="581">
+              <caret line="455" column="39" selection-start-line="455" selection-start-column="39" selection-end-line="455" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -1394,8 +1395,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="393" column="19" selection-start-line="393" selection-start-column="19" selection-end-line="393" selection-end-column="19" />
+        <state relative-caret-position="581">
+          <caret line="455" column="39" selection-start-line="455" selection-start-column="39" selection-end-line="455" selection-end-column="39" />
           <folding />
         </state>
       </provider>
