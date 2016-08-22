@@ -282,7 +282,7 @@ app.get('/api/transfer/', function (req, res) {
             var file_path = folder_path + '/' + filename;
             // Copy the file to given path.
             fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
-            send_file_aws(file_path, filename);
+            send_file_aws(file_path, filename, db_streaming);
         }
 
 
@@ -294,7 +294,7 @@ app.get('/api/transfer/', function (req, res) {
 });
 
 // send file to aws app.
-function send_file_aws(file_path, filename) {
+function send_file_aws(file_path, filename, db_streaming) {
     var aws_api = 'http://54.167.227.250/api/file/' + mac_addr + '/';
     console.log('send_file_aws: ' + aws_api);
     console.log('mac_address: ' + mac_addr);
@@ -387,7 +387,7 @@ app.get('/api/sync_on/', function (req, res) {
                 // Copy the file to given path.
                 fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
 
-                send_file_aws(file_path, filename);
+                send_file_aws(file_path, filename, db_streaming);
             }
         }
         catch (e) {
@@ -440,7 +440,7 @@ app.get('/api/sync_manual/', function (req, res) {
             // Copy the file to given path.
             fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
 
-            send_file_aws(file_path, filename);
+            send_file_aws(file_path, filename, db_streaming);
         }
     }
     catch (e) {
