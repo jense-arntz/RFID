@@ -595,7 +595,7 @@
                 type: 'GET'
             }).success(function (data) {
                 alert(data);
-                start_stop = window.setInterval(dataload, 1000);
+                start_stop = window.setInterval(data_streaming_load, 1000);
             }).error(function (data) {
                 alert(data);
             });
