@@ -283,12 +283,6 @@ app.get('/api/transfer/', function (req, res) {
             // Copy the file to given path.
             fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
             send_file_aws(file_path, filename);
-            db_streaming.run("DELETE FROM reader", function (error) {
-                if (error)
-                    console.log(error);
-            });
-
-            res.send('Transfer File Successful.');
         }
 
 
@@ -322,6 +316,11 @@ function send_file_aws(file_path, filename) {
             return console.error('upload failed:', err);
         }
         console.log('Upload successful!  Server responded with:', body);
+        db_streaming.run("DELETE FROM reader", function (error) {
+                if (error)
+                    console.log(error);
+            });
+        res.send('Transfer File Successful.');
     });
 
     console.log('sending file to AWS app.');
@@ -388,19 +387,13 @@ app.get('/api/sync_on/', function (req, res) {
                 // Copy the file to given path.
                 fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
 
-                db_streaming.run("DELETE FROM reader", function (error) {
-                    if (error)
-                        console.log(error);
-                });
                 send_file_aws(file_path, filename);
-
             }
         }
         catch (e) {
             console.log('\r\n', e);
         }
     }, time_interval);
-    res.send('start sync on');
 });
 
 
@@ -447,15 +440,8 @@ app.get('/api/sync_manual/', function (req, res) {
             // Copy the file to given path.
             fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
 
-            db_streaming.run("DELETE FROM reader", function (error) {
-                if (error)
-                    console.log(error);
-            });
             send_file_aws(file_path, filename);
-
         }
-        res.send('Transfer File Successful.');
-
     }
     catch (e) {
         console.log('\r\n', e);
