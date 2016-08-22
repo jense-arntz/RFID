@@ -280,12 +280,12 @@ app.get('/api/transfer/', function (req, res) {
             var filename = eshow_flag + ':' + timeStamp + '.db';
             console.log(filename);
             var file_path = folder_path + '/' + filename;
+
             // Copy the file to given path.
             fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
             send_file_aws(file_path, filename, db_streaming);
+            res.send('Transfer File Successful.');
         }
-
-
     }
     catch (e) {
         console.log('\r\n', e);
@@ -317,10 +317,10 @@ function send_file_aws(file_path, filename, db_streaming) {
         }
         console.log('Upload successful!  Server responded with:', body);
         db_streaming.run("DELETE FROM reader", function (error) {
-                if (error)
-                    console.log(error);
-            });
-        res.send('Transfer File Successful.');
+            if (error)
+                console.log(error);
+        });
+
     });
 
     console.log('sending file to AWS app.');
@@ -388,6 +388,7 @@ app.get('/api/sync_on/', function (req, res) {
                 fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
 
                 send_file_aws(file_path, filename, db_streaming);
+                res.send('Sync on Successful.');
             }
         }
         catch (e) {
@@ -441,6 +442,7 @@ app.get('/api/sync_manual/', function (req, res) {
             fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
 
             send_file_aws(file_path, filename, db_streaming);
+            res.send('Sync Manual Successful.');
         }
     }
     catch (e) {
