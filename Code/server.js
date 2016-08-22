@@ -282,15 +282,15 @@ app.get('/api/transfer/', function (req, res) {
             var file_path = folder_path + '/' + filename;
             // Copy the file to given path.
             fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
-
+            send_file_aws(file_path, filename);
             db_streaming.run("DELETE FROM reader", function (error) {
                 if (error)
                     console.log(error);
             });
-            send_file_aws(file_path, filename);
 
+            res.send('Transfer File Successful.');
         }
-        res.send('Transfer File Successful.');
+
 
     }
     catch (e) {
