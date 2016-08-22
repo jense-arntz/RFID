@@ -9,6 +9,7 @@ var request = require('request');
 var bodyParser = require('body-parser');
 var multiparty = require('multiparty');
 var formdata = require('form-data');
+var sleep = require('sleep');
 
 var app = express();
 
@@ -248,6 +249,24 @@ function get_show_key(callback) {
     });
 }
 
+// Copy file
+function copyFile(source, target, filename, db_streaming) {
+
+    var rd = fs.createReadStream(source);
+    rd.on("error", function (err) {
+        console.log("reading error");
+    });
+    var wr = fs.createWriteStream(target);
+    wr.on("error", function (err) {
+        console.log("writing error");
+    });
+    wr.on("close", function (ex) {
+        console.log('Closed');
+        send_file_aws(target, filename, db_streaming);
+    });
+    rd.pipe(wr);
+}
+
 
 // Delete the db and transfer the db file to main server.
 app.get('/api/transfer/', function (req, res) {
@@ -282,8 +301,10 @@ app.get('/api/transfer/', function (req, res) {
             var file_path = folder_path + '/' + filename;
 
             // Copy the file to given path.
-            fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
-            send_file_aws(file_streaming, filename, db_streaming);
+            copyFile(file_streaming, file_path, filename, db_streaming);
+            // var stream = fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
+            sleep.sleep(3);
+
             res.send('Transfer File Successful.');
         }
     }
@@ -294,7 +315,7 @@ app.get('/api/transfer/', function (req, res) {
 });
 
 // send file to aws app.
-function send_file_aws(file_streaming, filename, db_streaming) {
+function send_file_aws(file_path, filename, db_streaming) {
     var aws_api = 'http://54.167.227.250/api/file/' + mac_addr + '/';
     console.log('send_file_aws: ' + aws_api);
     console.log('mac_address: ' + mac_addr);
@@ -306,7 +327,7 @@ function send_file_aws(file_streaming, filename, db_streaming) {
         // Pass eshow key
         eshow_key: eshow_flag,
         // Pass data via Streams
-        file: fs.createReadStream(file_streaming)
+        file: fs.createReadStream(file_path)
     };
     request.post({
         url: aws_api,
@@ -384,10 +405,9 @@ app.get('/api/sync_on/', function (req, res) {
                 var filename = eshow_flag + ':' + timeStamp + '.db';
                 console.log(filename);
                 var file_path = folder_path + '/' + filename;
-                // Copy the file to given path.
-                fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
 
-                send_file_aws(file_streaming, filename, db_streaming);
+                // Copy the file to given path.
+                copyFile(file_streaming, file_path, filename, db_streaming);
                 res.send('Sync on Successful.');
             }
         }
@@ -439,9 +459,7 @@ app.get('/api/sync_manual/', function (req, res) {
             console.log(filename);
             var file_path = folder_path + '/' + filename;
             // Copy the file to given path.
-            fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
-
-            send_file_aws(file_streaming, filename, db_streaming);
+            copyFile(file_streaming, file_path, filename, db_streaming);
             res.send('Sync Manual Successful.');
         }
     }

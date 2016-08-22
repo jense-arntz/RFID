@@ -467,20 +467,20 @@
     });
 
 
-    //    function load_data(address, data, data_modal) {
-    //        var j = 0;
-    //        if (data_modal == "form-edit") {
-    //            $('#edit_device')
-    //                    .find('[name="name"]').val(data.name).end()
-    //                    .find('[name="mac_address"]').val(data.mac_address).end()
-    //                    .find('[name="ip_address"]').val(data.address).end()
-    //                    .find('[name="power_level"]').val(data.power).end();
-    //
-    //        }
-    //        else if (data_modal == "form-remove") {
-    //            remove_address = address;
-    //        }
-    //    }
+    function load_data(address, data, data_modal) {
+        var j = 0;
+        if (data_modal == "form-edit") {
+            $('#edit_device')
+                    .find('[name="name"]').val(data.name).end()
+                    .find('[name="mac_address"]').val(data.mac_address).end()
+                    .find('[name="ip_address"]').val(data.address).end()
+                    .find('[name="power_level"]').val(data.power).end();
+
+        }
+        else if (data_modal == "form-remove") {
+            remove_address = address;
+        }
+    }
 
     // Display the streaming Data.
     function data_streaming_load() {
@@ -651,7 +651,7 @@
                 type: 'GET'
             }).success(function (data) {
                 alert(data);
-               data_streaming_load();
+                data_streaming_load();
             }).error(function (data) {
                 alert(data);
             });
