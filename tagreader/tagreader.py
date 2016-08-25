@@ -214,7 +214,7 @@ def read_power_level(s, power_level=0x0f):
 
 def get_power_level():
     try:
-        db_setting = sqlite.connect('../reader_setting.db')
+        db_setting = sqlite.connect('/home/RFID/reader_setting.db')
         cur = db_setting.cursor()
         sql = 'SELECT * FROM reader_setting'
         result = cur.execute(sql)

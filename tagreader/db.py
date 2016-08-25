@@ -9,20 +9,20 @@ class reader_db():
         Initiate the Database.
         :return:
         """
-        self.setting_file = '../reader_setting.db'
+        self.setting_file = '/home/RFID/reader_setting.db'
         self.key_table = 'eshow'
         self.setting_table = 'reader_setting'
         self.exist_db()
 
     def exist_db(self):
-        if os.path.isfile('../reader.db'):
-            self.db_file = '../reader.db'
+        if os.path.isfile('/home/RFID/reader.db'):
+            self.db_file = '/home/RFID/reader.db'
             self.con = sqlite.connect(self.db_file)
             self.table_name = 'reader'
             self.cur = self.con.cursor()
         else:
             self.create_db()
-            self.db_file = '../reader.db'
+            self.db_file = '/home/RFID/reader.db'
             self.con = sqlite.connect(self.db_file)
             self.table_name = 'reader'
             self.cur = self.con.cursor()
@@ -32,7 +32,7 @@ class reader_db():
         If no database exists, then create database.
         :return:
         """
-        db_file = '../reader.db'
+        db_file = '/home/RFID/reader.db'
         table_name = 'reader'
         fn_1 = 'show_key'
         ft_1 = 'TEXT'
