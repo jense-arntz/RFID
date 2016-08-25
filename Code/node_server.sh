@@ -18,7 +18,7 @@ case "$1" in
     echo "Starting node server"
     # run application you want to start
     #node /home/pi/test.js > /home/pi/test.log
-    /usr/local/lib/node_modules /home/RFID/Code/server.js >> /home/RFID/Code/test.log
+    /usr/local/bin/node /home/RFID/Code/server.js >> /home/RFID/Code/test.log
    ;;
    stop)
     echo "Stopping node server"
