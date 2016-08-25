@@ -25,8 +25,8 @@ app.use(bodyParser.json());
 
 // =============== Create database if no exists. ==================//
 var fs = require("fs");
-var file = "../reader_setting.db";
-var file_streaming = "../reader.db";
+var file = "/home/RFID/reader_setting.db";
+var file_streaming = "/home/RFID/reader.db";
 var exists = fs.existsSync(file);
 var exists_streaming_db = fs.existsSync(file_streaming);
 var sqlite3 = require("sqlite3").verbose();
