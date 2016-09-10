@@ -36,13 +36,10 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right user-nav">
-                <li class="dropdown profile_menu"><a href="#" data-toggle="dropdown"
-                                                     class="dropdown-toggle"><span></span><b
+                <li class="dropdown profile_menu"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><span></span><b
                         class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/settings.html">Settings</a></li>
-                        <!--<li class="divider"></li>-->
-                        <!--<li><a href="/login/">Sign Out</a></li>-->
                     </ul>
                 </li>
             </ul>
@@ -214,7 +211,7 @@
         $('#timer').prop("disabled", true);
 //      $('#antenna').prop("disabled", true);
         $('#status').removeClass('label-danger');
-        $('#status').addClass('label-success').text('Start Reading');
+        $('#status').addClass('label-success').text('READER SCANNING');
 
         var e = document.getElementById("timer");
         var timer = e.options[e.selectedIndex].text;
