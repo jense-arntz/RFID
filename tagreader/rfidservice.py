@@ -184,24 +184,14 @@ def install_signal_handlers():
 
 def main():
     install_signal_handlers()
-
-    logging.basicConfig(filename='/var/log/rfid_service.log', level=logging.DEBUG)
-    child_pid = fork()
-    if child_pid == 0:
-        try:
-            pid = Popen(["forever", "start", "/home/RFID/Code/server.js"]).pid
-            logging.info('server.js started with PID {}'.format(pid))
-        except Exception as e:
-            logging.info('{}'.format(e))
-    else:
-        try:
-            with HttpServer(HOST_NAME, PORT_NUMBER) as http:
-                print('Starting server, use <Ctrl-C> to stop')
-                http.serve_forever()
-        except KeyboardInterrupt as e:
-            print("terminated by CTRL-C")
-        except Exception as e:
-            print(e)
+    try:
+        with HttpServer(HOST_NAME, PORT_NUMBER) as http:
+            print('Starting server, use <Ctrl-C> to stop')
+            http.serve_forever()
+    except KeyboardInterrupt as e:
+        print("terminated by CTRL-C")
+    except Exception as e:
+        print(e)
 
 
 if __name__ == "__main__":
