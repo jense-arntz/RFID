@@ -371,20 +371,17 @@ def start_loop(s, time_interval=5):
         print('protocol code: {}'.format(response[0].encode('hex'), response[1].encode('hex')))
         print('ePC number: {}'.format(response[2:-4].encode('hex')))
         print('antenna number: {}'.format(response[-3].encode('hex')))
+
         # save EPC number and time into db.
         # if not save_db(response[2:-4].encode('hex')):
         #     print('Already exists EPC Number in db. Updating time...')
         #     time.sleep(time_interval)
         #     continue
+
         save_db(response[2:-4].encode('hex'), response[-3].encode('hex'))
-        # read_count += 1
-        # if read_count < read_limit:
-        #     continue
-        # s.send(bytearray([STOP_COMMAND]))
-        print 'time_interval_before'
+
         time.sleep(int(time_interval))
-        print 'time_interval_after: {}'.format(time_interval)
-        print "skip from while!!!"
+
     print "exit socket."
     s.send(bytearray([STOP_COMMAND]))
 
@@ -450,12 +447,6 @@ def main(timer):
         print('failed to read the reader\'s status.')
         s.close()
         return
-
-    # # select antenna level
-    # if not reader_antenna_select(s, antenna):
-    #     print('failed to read the reader\'s status.')
-    #     s.close()
-    #     return
 
     # ready to start
     start_loop(s, time_interval=timer)
