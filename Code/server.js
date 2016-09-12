@@ -10,12 +10,14 @@ var bodyParser = require('body-parser');
 var multiparty = require('multiparty');
 var formdata = require('form-data');
 var sleep = require('sleep');
-
+var archiver = require('archiver');
+var zipArchive = archiver('zip');
 var app = express();
 
 
 // ============== Define the static directives.===================//
-app.use('/public', express.static('public'));
+// app.use('/public', express.static('/home/RFID/Code/public'));
+app.use('/public', express.static('/home/pi/rfid/Code/public'));
 
 // =============== parse application/json ========================//
 app.use(bodyParser.urlencoded({extended: false}));
@@ -25,8 +27,10 @@ app.use(bodyParser.json());
 
 // =============== Create database if no exists. ==================//
 var fs = require("fs");
-var file = "/home/RFID/reader_setting.db";
-var file_streaming = "/home/RFID/reader.db";
+// var file = "/home/RFID/reader_setting.db";
+// var file_streaming = "/home/RFID/reader.db";
+var file = "/home/pi/rfid/reader_setting.db";
+var file_streaming = "/home/pi/rfid/reader.db";
 var exists = fs.existsSync(file);
 var exists_streaming_db = fs.existsSync(file_streaming);
 var sqlite3 = require("sqlite3").verbose();
@@ -38,6 +42,9 @@ var file_path = '';
 var mac_addr = '';
 var interval;
 var time_interval = 10000;
+var srcDirectory = '/home/pi/';
+var reader_name = '';
+
 // ========================= Pages ========================//
 
 // index.html
@@ -64,6 +71,12 @@ app.get('/live_data.html', function (req, res) {
 app.get('/settings.html', function (req, res) {
     res.sendFile(__dirname + "/" + "settings.html");
 });
+
+//list.html
+app.get('/list.html', function (req, res) {
+    res.sendFile(__dirname + "/" + "list.html");
+});
+
 
 // ======================= API(List, Add, Delete, Update) ================================//
 
@@ -140,6 +153,7 @@ app.get('/api/device/list/', function (req, res) {
             });
             console.log(row.reader_name, row.mac_address, row.ip_address, row.power_level);
             mac_addr = row.mac_address;
+            reader_name = row.reader_name;
         }, function () {
             // All done fetching records, render response
             res.set('Content-Type', 'application/json');
@@ -147,6 +161,29 @@ app.get('/api/device/list/', function (req, res) {
         });
     });
 });
+
+// ==================== Load the File list===================================
+app.get('/api/device/files/', function (req, res) {
+    var db = new sqlite3.Database(file);
+
+    var posts = [];
+    db.serialize(function () {
+        db.each("SELECT * FROM file", function (err, row) {
+            posts.push({
+                file_name: row.file_name,
+                file_size: row.file_size,
+                date: row.date
+            });
+            console.log(row.file_name, row.file_size, row.date);
+
+        }, function () {
+
+            res.set('Content-Type', 'application/json');
+            res.send(posts);
+        });
+    });
+});
+
 
 // ====================Add the device to db.==================================
 app.post('/api/add/', function (req, res) {
@@ -188,6 +225,7 @@ app.post('/api/update/', function (req, res) {
 
             db.run("UPDATE reader_setting set reader_name=?, ip_address=?, power_level=? where mac_address=?",
                 [req.body.name, req.body.address, req.body.power, req.body.mac_address]);
+            reader_name = req.body.name;
             console.log('Update data Success!');
             res.send('Updated the Device Setting.');
         }
@@ -209,6 +247,8 @@ app.post('/api/delete/', function (req, res) {
 
         db.run("Delete from reader_setting where mac_address=?",
             [req.body.address]);
+        reader_name = '';
+        mac_addr = '';
 
         console.log('Delete data Success!');
         res.send('Deleted the Devices From List.');
@@ -219,19 +259,92 @@ app.post('/api/delete/', function (req, res) {
     }
 });
 
-//function will check if a directory exists, and create it if it doesn't
-function checkDirectory(directory, callback) {
-    fs.stat(directory, function (err, stats) {
-        //Check if error defined and the error code is "not exists"
-        if (err && err.errno === 34) {
-            //Create the directory, call the callback.
-            fs.mkdir(directory, callback);
-        } else {
-            //just in case there was a different error:
-            callback(err)
+// ========================== Create/Edit client_key =======================
+app.get('/api/endshow/', function (req, res) {
+    get_show_key(function handleResult(err, result) {
+        if (err) {
+            console.log('Get the show key error.');
+            res.send('No show key error');
         }
+        eshow_flag = result;
     });
+
+    var data = '';
+    if (eshow_flag == '') {
+        console.log('Show Key Empty!');
+        data = 'Please Insert Show Key';
+    }
+    else {
+        var folderpath = "/home/pi/" + eshow_flag;
+        // make eshow dir.
+        if (!fs.existsSync(folderpath)) {
+            data = 'No Files exist!!!'
+        }
+        else {
+            var string = 'Name: ' + reader_name + '\n' + 'Mac address: ' + mac_addr;
+
+            fs.writeFile(folderpath + '/info.txt', string, function (err) {
+                if (err) console.log(err);
+                console.log('successful.');
+            });
+
+            var output = fs.createWriteStream(folderpath);
+
+            output.on('close', function () {
+                console.log('done with the zip', folderpath);
+            });
+
+            zipArchive.pipe(output);
+
+            zipArchive.bulk([
+                {src: ['**/*'], cwd: srcDirectory + eshow_flag, expand: true}
+            ]);
+
+            zipArchive.finalize(function (err, bytes) {
+
+                if (err) {
+                    throw err;
+                }
+
+                console.log('done:', base, bytes);
+
+            });
+
+            send_zip_aws(folderpath);
+
+            data = 'zip archive is sent to AWS successfully.'
+        }
+
+    }
+    res.send(data);
+});
+
+
+// send zip file to aws app.
+function send_zip_aws(file_path) {
+    var aws_api = 'http://54.167.227.250/api/file/' + mac_addr + '/';
+
+    var formData = {
+        // Pass a simple key-value pair
+        filename: eshow_flag,
+        // Pass eshow key
+        eshow_key: eshow_flag,
+        // Pass data via Streams
+        file: fs.createReadStream(file_path)
+    };
+    request.post({
+        url: aws_api,
+        formData: formData
+    }, function optionalCallback(err, httpResponse, body) {
+        if (err) {
+            return console.error('upload failed:', err);
+        }
+        console.log('Upload successful!  Server responded with:', body);
+    });
+
+    console.log('sending zip file to AWS app.');
 }
+
 
 // Get the show_key from db.
 function get_show_key(callback) {
@@ -267,6 +380,32 @@ function copyFile(source, target, filename, db_streaming) {
     rd.pipe(wr);
 }
 
+// ====================Add the file name to file.db.==================================
+function insert_file_to_db(filename, size, date) {
+    console.log("Insert file name to file db");
+
+    try {
+        var db = new sqlite3.Database(file);
+
+        db.run("INSERT into file (file_name, file_size, date) VALUES (?, ?, ?)",
+            [filename, size, date]);
+
+        console.log('Insert data Success!');
+    }
+
+    catch (e) {
+        console.log('\r\n', e);
+    }
+}
+
+// ==================== Get the file size==================================
+function getFilesizeInBytes(filepath) {
+
+    var stats = fs.statSync(filepath);
+    var fileSizeInBytes = stats["size"] / 1000;
+    return fileSizeInBytes;
+
+}
 
 // Delete the db and transfer the db file to main server.
 app.get('/api/transfer/', function (req, res) {
@@ -281,7 +420,7 @@ app.get('/api/transfer/', function (req, res) {
     });
     try {
         if (!exists_streaming_db) {
-            console.log('no streaming.db file exists.');
+            console.log('no reader.db file exists.');
             res.send('No DB File to transfer.');
         }
         else {
@@ -302,8 +441,13 @@ app.get('/api/transfer/', function (req, res) {
 
             // Copy the file to given path.
             copyFile(file_streaming, file_path, filename, db_streaming);
-            // var stream = fs.createReadStream(file_streaming).pipe(fs.createWriteStream(file_path));
+
             sleep.sleep(3);
+            var size = getFilesizeInBytes(file_path);
+            console.log('size', size);
+
+            insert_file_to_db(filename, size, timeStamp);
+            console.log('insert_file_to_db');
 
             res.send('Transfer File Successful.');
         }
@@ -475,15 +619,13 @@ app.get('/api/start/:timer(\\d+)', function (req, res) {
     console.log("Got a Start request");
     timer = req.params.timer;
 
-    //antenna = req.params.antenna;
     console.log(timer);
-    //console.log(antenna);
 
     //The url we want is: 'http://127.0.0.1:8080'
     var options = {
         host: '127.0.0.1',
         port: 8080,
-        //path: '/start?timer=' + timer + '&antenna=' + antenna
+
         path: '/start?timer=' + timer
     };
 
@@ -554,13 +696,14 @@ function create_db() {
             console.log("Creating table.");
             db.run("CREATE TABLE reader_setting (id INTEGER PRIMARY KEY AUTOINCREMENT, reader_name TEXT, mac_address TEXT, ip_address TEXT, power_level Text)");
             db.run("CREATE TABLE eshow(id INTEGER PRIMARY KEY AUTOINCREMENT, show_key TEXT, client_key TEXT)");
+            db.run("CREATE TABLE file(id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT, file_size INTEGER, date TEXT)");
         }
     });
     db.close();
 }
 
 // ==================== Start node.js server.======================//
-var server = app.listen(8081, function () {
+var server = app.listen(10000, function () {
     create_db();
     var host = server.address().address;
     var port = server.address().port;
