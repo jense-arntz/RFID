@@ -27,10 +27,10 @@ app.use(bodyParser.json());
 
 // =============== Create database if no exists. ==================//
 var fs = require("fs");
-// var file = "/home/RFID/reader_setting.db";
-// var file_streaming = "/home/RFID/reader.db";
-var file = "/home/pi/rfid/reader_setting.db";
-var file_streaming = "/home/pi/rfid/reader.db";
+var file = "/home/RFID/reader_setting.db";
+var file_streaming = "/home/RFID/reader.db";
+// var file = "/home/pi/rfid/reader_setting.db";
+// var file_streaming = "/home/pi/rfid/reader.db";
 var exists = fs.existsSync(file);
 var exists_streaming_db = fs.existsSync(file_streaming);
 var sqlite3 = require("sqlite3").verbose();
@@ -42,7 +42,7 @@ var file_path = '';
 var mac_addr = '';
 var interval;
 var time_interval = 10000;
-var srcDirectory = '/home/pi/';
+var srcDirectory = '/home/RFID/';
 var reader_name = '';
 
 // ========================= Pages ========================//
@@ -275,7 +275,7 @@ app.get('/api/endshow/', function (req, res) {
         data = 'Please Insert Show Key';
     }
     else {
-        var folderpath = "/home/pi/" + eshow_flag;
+        var folderpath = srcDirectory + eshow_flag;
         // make eshow dir.
         if (!fs.existsSync(folderpath)) {
             data = 'No Files exist!!!'
@@ -297,7 +297,7 @@ app.get('/api/endshow/', function (req, res) {
             zipArchive.pipe(output);
 
             zipArchive.bulk([
-                {src: ['**/*'], cwd: srcDirectory + eshow_flag, expand: true}
+                {src: ['**/*'], cwd: folderpath, expand: true}
             ]);
 
             zipArchive.finalize(function (err, bytes) {
@@ -425,7 +425,7 @@ app.get('/api/transfer/', function (req, res) {
         }
         else {
             console.log("table exists. cleaning existing records");
-            var folder_path = '/home/pi/' + eshow_flag;
+            var folder_path = srcDirectory + eshow_flag;
 
             // make eshow dir.
             if (!fs.existsSync(folder_path)) {
@@ -699,6 +699,7 @@ function create_db() {
             db.run("CREATE TABLE file(id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT, file_size INTEGER, date TEXT)");
         }
     });
+    db.run("CREATE TABLE file(id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT, file_size INTEGER, date TEXT)");
     db.close();
 }
 
