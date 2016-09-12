@@ -8,10 +8,13 @@ import BaseHTTPServer
 import signal
 from SocketServer import ThreadingMixIn
 from urlparse import urlparse, parse_qs
+import logging
+from os import fork
 
 # from test import *
 from tagreader import *
 from db import *
+from subprocess import Popen
 
 HOST_NAME = '127.0.0.1'
 PORT_NUMBER = 8080
@@ -69,18 +72,10 @@ class HttpHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         print('do_start')
         print postvars
         timer = postvars['timer'][0]
-        # antenna = postvars['antenna'][0]
         print 'timer: {}'.format(timer)
-        # print 'antenna: {}'.format(antenna)
-        # antenna_level = 0
-        # if antenna == 'Antenna_1':
-        #     antenna_level = 1
-        # elif antenna == 'Antenna_2':
-        #     antenna_level = 2
-        # Update the information in db which match with the car register number.
         try:
-            # test()
-            start_tag_reader_thread(timer)
+            militimer = float(timer)/1000
+            start_tag_reader_thread(militimer)
             self._send_json(json.dumps({'result': 0, 'message': 'ok'}))
         # Something else happened.
         except Exception, e:
@@ -190,14 +185,23 @@ def install_signal_handlers():
 def main():
     install_signal_handlers()
 
-    try:
-        with HttpServer(HOST_NAME, PORT_NUMBER) as http:
-            print('Starting server, use <Ctrl-C> to stop')
-            http.serve_forever()
-    except KeyboardInterrupt as e:
-        print("terminated by CTRL-C")
-    except Exception as e:
-        print(e)
+    logging.basicConfig(filename='/var/log/rfid_service.log', level=logging.DEBUG)
+    child_pid = fork()
+    if child_pid == 0:
+        try:
+            pid = Popen(["forever", "start", "/home/RFID/Code/server.js"]).pid
+            logging.info('server.js started with PID {}'.format(pid))
+        except Exception as e:
+            logging.info('{}'.format(e))
+    else:
+        try:
+            with HttpServer(HOST_NAME, PORT_NUMBER) as http:
+                print('Starting server, use <Ctrl-C> to stop')
+                http.serve_forever()
+        except KeyboardInterrupt as e:
+            print("terminated by CTRL-C")
+        except Exception as e:
+            print(e)
 
 
 if __name__ == "__main__":

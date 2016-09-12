@@ -65,6 +65,8 @@
                                 </li>
                                 <li id="live_data_page"><a href="/live_data.html">Syncing Data</a>
                                 </li>
+                                <li id="list_page"><a href="/list.html">File List</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -267,37 +269,18 @@
             </div>
             <!--End Devices Overview-->
             <div class="row">
-                <div class="col-sm-3 col-md-4">
-                    <label class="control-label">Select Readers</label>
-
-                    <p>Change Readers as you want.</p>
-                </div>
-                <div class="col-sm-3 col-md-8">
-                    <label class="control-label">Select Time Rate (s)</label>
+                <div class="col-sm-3 col-md-12">
+                    <label class="control-label">Select Time Rate (miliseconds)</label>
 
                     <p>Change Timer as you want.</p>
                 </div>
 
                 <div class="col-sm-3 col-md-4">
-                    <select class="select2" style="width: 40%" id="devices">
-                    </select>
-                </div>
-                <div class="col-sm-3 col-md-4">
                     <select class="select2" style="width: 40%" id="timer">
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
+
                     </select>
                 </div>
-                <div class="col-sm-3 col-md-4">
+                <div class="col-sm-3 col-md-8">
                     <div class="spacer spacer-bottom">
                         <button type="button" class="btn btn-primary" id="start">Start</button>
                         <button type="button" class="btn btn-success" id="stop" disabled>Stop</button>
@@ -358,8 +341,17 @@
         device_overview_loads();
         data_streaming_load();
         setting_loads();
-        add_options();
+        select_data();
     });
+
+    // load miliseconds option
+   function select_data() {
+    for (var i=0; i<=10000; i++) {
+        var name = i;
+        var sel = document.getElementById("timer");
+        sel.options[sel.options.length] = new Option(name,i);
+    }
+}
 
     // Device List
     var dev_list = [];
@@ -467,7 +459,7 @@
         });
     });
 
-
+    // Reload Device Overview.
     function load_data(address, data, data_modal) {
         var j = 0;
         if (data_modal == "form-edit") {
@@ -549,19 +541,7 @@
         });
     });
 
-    // -----------------------------Add the data to Option.------------------------------
-    function add_options() {
-        $.getJSON('/api/device/list/', function (data) {
-
-            $.each(data, function (key, item) {
-                $('#devices').append($("<option></option>")
-                        .attr("value", key)
-                        .text(item.address));
-            });
-        });
-    }
-
-    // Check if client key and eshow key is not empty.
+     // Check if client key and eshow key is not empty.
     function check_keys() {
         var client_key = $('#client_form').find('input[name="client_key"]').val();
         var eshow_key = $('#edit_id').find('input[name="eshow_id"]').val();
@@ -581,16 +561,13 @@
             $('#stop').prop("disabled", false);
             $('#devices').prop("disabled", true);
             $('#timer').prop("disabled", true);
-//      $('#antenna').prop("disabled", true);
+
             $('#status').removeClass('label-danger');
             $('#status').addClass('label-success').text('Start Reading');
 
             var e = document.getElementById("timer");
             var timer = e.options[e.selectedIndex].text;
-//      var ant = document.getElementById("antenna");
-//      var antenna = ant.options[ant.selectedIndex].text;
             $.ajax({
-//         url: "/api/start/" + timer + "/" + antenna + "/",
                 url: "/api/start/" + timer + "/",
                 type: 'GET'
             }).success(function (data) {
@@ -647,12 +624,13 @@
 
     $('#endshow').click(function () {
         if ($('#stop').prop("disabled") == true && check_keys() && device_flag == true) {
+            var eshow_id = $('#edit_id').find('input[name="eshow_id"]').val();
             $.ajax({
                 url: "/api/endshow/",
                 type: 'GET'
             }).success(function (data) {
                 alert(data);
-                data_streaming_load();
+
             }).error(function (data) {
                 alert(data);
             });

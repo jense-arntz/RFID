@@ -14,10 +14,9 @@ var archiver = require('archiver');
 var zipArchive = archiver('zip');
 var app = express();
 
-
 // ============== Define the static directives.===================//
-// app.use('/public', express.static('/home/RFID/Code/public'));
-app.use('/public', express.static('/home/pi/rfid/Code/public'));
+app.use('/public', express.static('/home/RFID/Code/public'));
+// app.use('/public', express.static('/home/pi/rfid/Code/public'));
 
 // =============== parse application/json ========================//
 app.use(bodyParser.urlencoded({extended: false}));
