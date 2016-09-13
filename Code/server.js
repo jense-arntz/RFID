@@ -15,8 +15,8 @@ var zipArchive = archiver('zip');
 var app = express();
 
 // ============== Define the static directives.===================//
-// app.use('/public', express.static('/home/RFID/Code/public'));
-app.use('/public', express.static('/home/pi/rfid/Code/public'));
+app.use('/public', express.static('/home/RFID/Code/public'));
+// app.use('/public', express.static('/home/pi/rfid/Code/public'));
 
 // =============== parse application/json ========================//
 app.use(bodyParser.urlencoded({extended: false}));
@@ -278,7 +278,7 @@ app.get('/api/endshow/', function (req, res) {
     else {
         var timeStamp = (new Date).toISOString().replace(/z/gi, '').trim();
         var folderpath = srcDirectory + eshow_flag;
-        outputpath = srcDirectory + eshow_flag + timeStamp + '.zip';
+        outputpath = srcDirectory + eshow_flag + ':' + timeStamp + '.zip';
         // make eshow dir.
         if (!fs.existsSync(folderpath)) {
             data = 'No Files exist!!!'
@@ -312,10 +312,11 @@ app.get('/api/endshow/', function (req, res) {
                 }
 
                 console.log('done:', base, bytes);
+                send_zip_aws(outputpath);
 
             });
 
-            send_zip_aws(outputpath);
+
 
             data = 'zip archive is sent to AWS successfully.'
         }
@@ -327,7 +328,7 @@ app.get('/api/endshow/', function (req, res) {
 
 // send zip file to aws app.
 function send_zip_aws(file_path) {
-    var aws_api = 'http://54.167.227.250/api/file/' + mac_addr + '/';
+    var aws_api = 'http://54.167.227.250/api/zip/' + mac_addr + '/';
 
     var formData = {
         // Pass a simple key-value pair
