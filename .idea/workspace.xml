@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5d3ce0e-5cfb-47fb-afb3-80f3906e189b" name="Default" comment="Fixing the code on database design.">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/readme.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Code/start_node.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tagreader/test.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/.idea/workspace.xml" afterPath="$PROJECT_DIR$/Code/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/dashboard.html" afterPath="$PROJECT_DIR$/Code/dashboard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/index.html" afterPath="$PROJECT_DIR$/Code/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/live_data.html" afterPath="$PROJECT_DIR$/Code/live_data.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/server.js" afterPath="$PROJECT_DIR$/Code/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/settings.html" afterPath="$PROJECT_DIR$/Code/settings.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tagreader/rfidservice.py" afterPath="$PROJECT_DIR$/tagreader/rfidservice.py" />
     </list>
     <list id="01bde2cc-1132-4afb-a724-ad6325737a77" name="Rejected commit: Default" comment="Fixing the code on database design." />
     <ignored path="rfid.iws" />
@@ -88,23 +79,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jquery.dataTables.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Code/public/lib/jquery.datatables/js/jquery.dataTables.js">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Code/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90338">
-              <caret line="5316" column="35" selection-start-line="5316" selection-start-column="35" selection-end-line="5316" selection-end-column="35" />
-              <folding>
-                <marker date="1432133912000" expanded="true" signature="112923:112948" placeholder="..." />
-              </folding>
+            <state relative-caret-position="473">
+              <caret line="720" column="0" selection-start-line="720" selection-start-column="0" selection-end-line="720" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Code/server.js">
+      <file leaf-file-name="live_data.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Code/live_data.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="68" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
+            <state relative-caret-position="-2341">
+              <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -113,8 +102,8 @@
       <file leaf-file-name="node_server.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/node_server.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="157" column="87" selection-start-line="157" selection-start-column="87" selection-end-line="157" selection-end-column="87" />
+            <state relative-caret-position="663">
+              <caret line="69" column="29" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -123,8 +112,8 @@
       <file leaf-file-name="rfidservice.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tagreader/rfidservice.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1190">
-              <caret line="79" column="26" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="26" />
+            <state relative-caret-position="575">
+              <caret line="194" column="16" selection-start-line="194" selection-start-column="16" selection-end-line="194" selection-end-column="16" />
               <folding>
                 <element signature="e#19#30#0" expanded="true" />
               </folding>
@@ -135,9 +124,10 @@
       <file leaf-file-name="tagreader.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tagreader/tagreader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6392">
-              <caret line="384" column="24" selection-start-line="384" selection-start-column="24" selection-end-line="384" selection-end-column="24" />
+            <state relative-caret-position="1037">
+              <caret line="187" column="0" selection-start-line="186" selection-start-column="35" selection-end-line="187" selection-end-column="0" />
               <folding>
+                <element signature="e#0#22#0" expanded="true" />
                 <marker date="1473583971131" expanded="true" signature="5930:5958" placeholder="SELECT * FRO... reader_setting" />
               </folding>
             </state>
@@ -197,7 +187,6 @@
         <option value="$PROJECT_DIR$/Code/readme.md" />
         <option value="$PROJECT_DIR$/tagreader/tagreader.py" />
         <option value="$PROJECT_DIR$/tagreader/test.py" />
-        <option value="$PROJECT_DIR$/tagreader/rfidservice.py" />
         <option value="$PROJECT_DIR$/bender.py" />
         <option value="$PROJECT_DIR$/Code/live_data.html" />
         <option value="$PROJECT_DIR$/Code/settings.html" />
@@ -205,6 +194,7 @@
         <option value="$PROJECT_DIR$/Code/list.html" />
         <option value="$PROJECT_DIR$/Code/public/js/page-data-tables.js" />
         <option value="$PROJECT_DIR$/Code/dashboard.html" />
+        <option value="$PROJECT_DIR$/tagreader/rfidservice.py" />
         <option value="$PROJECT_DIR$/Code/server.js" />
       </list>
     </option>
@@ -662,20 +652,6 @@
       <option name="presentableId" value="Default" />
       <updated>1468123022189</updated>
     </task>
-    <task id="LOCAL-00066" summary="version 1.1">
-      <created>1469018451234</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1469018451234</updated>
-    </task>
-    <task id="LOCAL-00067" summary="version 1.1">
-      <created>1469018525709</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1469018525709</updated>
-    </task>
     <task id="LOCAL-00068" summary="version 1.1">
       <created>1469037645213</created>
       <option name="number" value="00068" />
@@ -1005,7 +981,21 @@
       <option name="project" value="LOCAL" />
       <updated>1473692073448</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="Fixing the code on database design.">
+      <created>1473718055369</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1473718055369</updated>
+    </task>
+    <task id="LOCAL-00116" summary="Fixing the code on database design.">
+      <created>1473718068423</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1473718068423</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1267,13 +1257,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Code/live_data.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-816">
-          <caret line="67" column="37" selection-start-line="67" selection-start-column="37" selection-end-line="67" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1281,6 +1265,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="5" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1349,39 +1334,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tagreader/test.py" />
+    <entry file="file://$PROJECT_DIR$/Code/live_data.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2341">
+          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/node_server.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="69" column="29" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/rfidservice.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="79" column="26" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="26" />
+        <state relative-caret-position="575">
+          <caret line="194" column="16" selection-start-line="194" selection-start-column="16" selection-end-line="194" selection-end-column="16" />
           <folding>
             <element signature="e#19#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tagreader/test.py" />
     <entry file="file://$PROJECT_DIR$/tagreader/tagreader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6392">
-          <caret line="384" column="24" selection-start-line="384" selection-start-column="24" selection-end-line="384" selection-end-column="24" />
+        <state relative-caret-position="1037">
+          <caret line="187" column="0" selection-start-line="186" selection-start-column="35" selection-end-line="187" selection-end-column="0" />
           <folding>
+            <element signature="e#0#22#0" expanded="true" />
             <marker date="1473583971131" expanded="true" signature="5930:5958" placeholder="SELECT * FRO... reader_setting" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Code/node_server.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="157" column="87" selection-start-line="157" selection-start-column="87" selection-end-line="157" selection-end-column="87" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Code/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="68" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
+        <state relative-caret-position="473">
+          <caret line="720" column="0" selection-start-line="720" selection-start-column="0" selection-end-line="720" selection-end-column="0" />
           <folding />
         </state>
       </provider>

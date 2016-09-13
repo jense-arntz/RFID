@@ -15,8 +15,8 @@ var zipArchive = archiver('zip');
 var app = express();
 
 // ============== Define the static directives.===================//
-app.use('/public', express.static('/home/RFID/Code/public'));
-// app.use('/public', express.static('/home/pi/rfid/Code/public'));
+// app.use('/public', express.static('/home/RFID/Code/public'));
+app.use('/public', express.static('/home/pi/rfid/Code/public'));
 
 // =============== parse application/json ========================//
 app.use(bodyParser.urlencoded({extended: false}));
@@ -43,6 +43,7 @@ var interval;
 var time_interval = 10000;
 var srcDirectory = '/home/RFID/';
 var reader_name = '';
+var outputpath = '';
 
 // ========================= Pages ========================//
 
@@ -266,6 +267,7 @@ app.get('/api/endshow/', function (req, res) {
             res.send('No show key error');
         }
         eshow_flag = result;
+    console.log(eshow_flag);
     });
 
     var data = '';
@@ -274,31 +276,35 @@ app.get('/api/endshow/', function (req, res) {
         data = 'Please Insert Show Key';
     }
     else {
+        var timeStamp = (new Date).toISOString().replace(/z/gi, '').trim();
         var folderpath = srcDirectory + eshow_flag;
+        outputpath = srcDirectory + eshow_flag + timeStamp + '.zip';
         // make eshow dir.
         if (!fs.existsSync(folderpath)) {
             data = 'No Files exist!!!'
         }
         else {
             var string = 'Name: ' + reader_name + '\n' + 'Mac address: ' + mac_addr;
+            console.log(string);
 
             fs.writeFile(folderpath + '/info.txt', string, function (err) {
                 if (err) console.log(err);
                 console.log('successful.');
             });
+            console.log(folderpath);
 
-            var output = fs.createWriteStream(folderpath);
+            var output = fs.createWriteStream(outputpath);
 
             output.on('close', function () {
-                console.log('done with the zip', folderpath);
+                console.log('done with the zip', outputpath);
             });
-
+            console.log('1');
             zipArchive.pipe(output);
-
+            console.log('2');
             zipArchive.bulk([
                 {src: ['**/*'], cwd: folderpath, expand: true}
             ]);
-
+            console.log('3');
             zipArchive.finalize(function (err, bytes) {
 
                 if (err) {
@@ -309,7 +315,7 @@ app.get('/api/endshow/', function (req, res) {
 
             });
 
-            send_zip_aws(folderpath);
+            send_zip_aws(outputpath);
 
             data = 'zip archive is sent to AWS successfully.'
         }
@@ -551,6 +557,13 @@ app.get('/api/sync_on/', function (req, res) {
 
                 // Copy the file to given path.
                 copyFile(file_streaming, file_path, filename, db_streaming);
+
+                sleep.sleep(3);
+                var size = getFilesizeInBytes(file_path);
+                console.log('size', size);
+
+                insert_file_to_db(filename, size, timeStamp);
+                console.log('insert_file_to_db');
                 res.send('Sync on Successful.');
             }
         }
@@ -603,6 +616,13 @@ app.get('/api/sync_manual/', function (req, res) {
             var file_path = folder_path + '/' + filename;
             // Copy the file to given path.
             copyFile(file_streaming, file_path, filename, db_streaming);
+
+            sleep.sleep(3);
+            var size = getFilesizeInBytes(file_path);
+            console.log('size', size);
+
+            insert_file_to_db(filename, size, timeStamp);
+            console.log('insert_file_to_db');
             res.send('Sync Manual Successful.');
         }
     }
@@ -698,7 +718,7 @@ function create_db() {
             db.run("CREATE TABLE file(id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT, file_size INTEGER, date TEXT)");
         }
     });
-    db.run("CREATE TABLE file(id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT, file_size INTEGER, date TEXT)");
+
     db.close();
 }
 
