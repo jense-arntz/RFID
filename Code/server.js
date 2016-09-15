@@ -367,7 +367,7 @@ function get_show_key(callback) {
 }
 
 // Copy file
-function copyFile(source, target, filename, db_streaming) {
+function copyFile(source, target, filename, db_streaming, timeStamp) {
 
     var rd = fs.createReadStream(source);
     rd.on("error", function (err) {
@@ -450,7 +450,7 @@ app.get('/api/transfer/', function (req, res) {
             var file_path = folder_path + '/' + filename;
 
             // Copy the file to given path.
-            copyFile(file_streaming, file_path, filename, db_streaming);
+            copyFile(file_streaming, file_path, filename, db_streaming, timeStamp);
 
             sleep.sleep(3);
 
@@ -556,7 +556,7 @@ app.get('/api/sync_on/', function (req, res) {
                 var file_path = folder_path + '/' + filename;
 
                 // Copy the file to given path.
-                copyFile(file_streaming, file_path, filename, db_streaming);
+                copyFile(file_streaming, file_path, filename, db_streaming,timeStamp);
 
                 sleep.sleep(3);
                 res.send('Sync on Successful.');
@@ -610,7 +610,7 @@ app.get('/api/sync_manual/', function (req, res) {
             console.log(filename);
             var file_path = folder_path + '/' + filename;
             // Copy the file to given path.
-            copyFile(file_streaming, file_path, filename, db_streaming);
+            copyFile(file_streaming, file_path, filename, db_streaming, timeStamp);
 
             sleep.sleep(3);
             res.send('Sync Manual Successful.');
