@@ -82,14 +82,12 @@
         <div class="cl-mcont">
             <div class="row">
                 <div class="col-sm-3 col-md-12">
-                    <label class="control-label">Select Time Rate (s)</label>
+                    <label class="control-label">Select Time Rate (miliseconds)</label>
 
-                    <p>Change Timer as you want.</p>
+                    <p>Change Timer as you want. (1 ~ 10000)</p>
                 </div>
                 <div class="col-sm-3 col-md-4">
-                    <select class="select2" style="width: 40%" id="timer">
-
-                    </select>
+                    <input type="text" name='timer' id='timer' class="form-control" style="width: 40%">
                 </div>
                 <div class="col-sm-3 col-md-8">
                     <div class="spacer spacer-bottom">
@@ -184,8 +182,7 @@
         $('#status').removeClass('label-danger');
         $('#status').addClass('label-success').text('READER SCANNING');
 
-        var e = document.getElementById("timer");
-        var timer = e.options[e.selectedIndex].text;
+        var timer = document.getElementById("timer").value;
         $.ajax({
             url: "/api/start/" + timer + "/",
             type: 'GET'
