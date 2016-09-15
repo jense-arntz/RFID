@@ -316,8 +316,6 @@ app.get('/api/endshow/', function (req, res) {
 
             });
 
-
-
             data = 'zip archive is sent to AWS successfully.'
         }
 
@@ -381,6 +379,12 @@ function copyFile(source, target, filename, db_streaming) {
     });
     wr.on("close", function (ex) {
         console.log('Closed');
+         var size = getFilesizeInBytes(target);
+        console.log('size', size);
+
+        insert_file_to_db(filename, size, timeStamp);
+        console.log('insert_file_to_db');
+
         send_file_aws(target, filename, db_streaming);
     });
     rd.pipe(wr);
@@ -449,11 +453,6 @@ app.get('/api/transfer/', function (req, res) {
             copyFile(file_streaming, file_path, filename, db_streaming);
 
             sleep.sleep(3);
-            var size = getFilesizeInBytes(file_path);
-            console.log('size', size);
-
-            insert_file_to_db(filename, size, timeStamp);
-            console.log('insert_file_to_db');
 
             res.send('Transfer File Successful.');
         }
@@ -560,11 +559,6 @@ app.get('/api/sync_on/', function (req, res) {
                 copyFile(file_streaming, file_path, filename, db_streaming);
 
                 sleep.sleep(3);
-                var size = getFilesizeInBytes(file_path);
-                console.log('size', size);
-
-                insert_file_to_db(filename, size, timeStamp);
-                console.log('insert_file_to_db');
                 res.send('Sync on Successful.');
             }
         }
@@ -619,11 +613,6 @@ app.get('/api/sync_manual/', function (req, res) {
             copyFile(file_streaming, file_path, filename, db_streaming);
 
             sleep.sleep(3);
-            var size = getFilesizeInBytes(file_path);
-            console.log('size', size);
-
-            insert_file_to_db(filename, size, timeStamp);
-            console.log('insert_file_to_db');
             res.send('Sync Manual Successful.');
         }
     }
