@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5d3ce0e-5cfb-47fb-afb3-80f3906e189b" name="Default" comment="Fixing the code on database design.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/server.js" afterPath="$PROJECT_DIR$/Code/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/dashboard.html" afterPath="$PROJECT_DIR$/Code/dashboard.html" />
     </list>
     <list id="01bde2cc-1132-4afb-a724-ad6325737a77" name="Rejected commit: Default" comment="Fixing the code on database design." />
     <ignored path="rfid.iws" />
@@ -34,11 +34,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Code/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="650" column="28" selection-start-line="650" selection-start-column="28" selection-end-line="650" selection-end-column="28" />
+            <state relative-caret-position="400">
+              <caret line="586" column="34" selection-start-line="586" selection-start-column="34" selection-end-line="586" selection-end-column="34" />
               <folding>
                 <element signature="n#style#0;n#select#0;n#div#1;n#div#2;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -66,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="607" column="35" selection-start-line="607" selection-start-column="35" selection-end-line="607" selection-end-column="35" />
+            <state relative-caret-position="477">
+              <caret line="510" column="32" selection-start-line="510" selection-start-column="32" selection-end-line="510" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -79,8 +79,8 @@
       <file leaf-file-name="live_data.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/live_data.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1445">
-              <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+            <state relative-caret-position="612">
+              <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="184" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -190,9 +190,9 @@
         <option value="$PROJECT_DIR$/Code/index.html" />
         <option value="$PROJECT_DIR$/Code/list.html" />
         <option value="$PROJECT_DIR$/Code/public/js/page-data-tables.js" />
-        <option value="$PROJECT_DIR$/Code/dashboard.html" />
         <option value="$PROJECT_DIR$/tagreader/rfidservice.py" />
         <option value="$PROJECT_DIR$/Code/server.js" />
+        <option value="$PROJECT_DIR$/Code/dashboard.html" />
       </list>
     </option>
   </component>
@@ -1309,14 +1309,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/test.py" />
-    <entry file="file://$PROJECT_DIR$/Code/live_data.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/rfidservice.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3145">
@@ -1354,21 +1346,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Code/dashboard.html">
+    <entry file="file://$PROJECT_DIR$/Code/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="650" column="28" selection-start-line="650" selection-start-column="28" selection-end-line="650" selection-end-column="28" />
-          <folding>
-            <element signature="n#style#0;n#select#0;n#div#1;n#div#2;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="477">
+          <caret line="510" column="32" selection-start-line="510" selection-start-column="32" selection-end-line="510" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Code/server.js">
+    <entry file="file://$PROJECT_DIR$/Code/live_data.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="607" column="35" selection-start-line="607" selection-start-column="35" selection-end-line="607" selection-end-column="35" />
+        <state relative-caret-position="612">
+          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="184" selection-end-column="71" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="586" column="34" selection-start-line="586" selection-start-column="34" selection-end-line="586" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#div#1;n#div#2;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

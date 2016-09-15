@@ -302,6 +302,7 @@
                 <div class="block-flat">
                     <div class="header">
                         <h3>Syncing Data</h3>
+                        <span id='status' class="label label-danger pull-right">Stop Reading</span>
                     </div>
                     <div class="content">
                         <table class="no-border" id="data_stream_table"
@@ -345,13 +346,13 @@
     });
 
     // load miliseconds option
-   function select_data() {
-    for (var i=0; i<=10000; i++) {
-        var name = i;
-        var sel = document.getElementById("timer");
-        sel.options[sel.options.length] = new Option(name,i);
+    function select_data() {
+        for (var i = 0; i <= 10000; i++) {
+            var name = i;
+            var sel = document.getElementById("timer");
+            sel.options[sel.options.length] = new Option(name, i);
+        }
     }
-}
 
     // Device List
     var dev_list = [];
@@ -541,7 +542,7 @@
         });
     });
 
-     // Check if client key and eshow key is not empty.
+    // Check if client key and eshow key is not empty.
     function check_keys() {
         var client_key = $('#client_form').find('input[name="client_key"]').val();
         var eshow_key = $('#edit_id').find('input[name="eshow_id"]').val();
