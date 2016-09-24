@@ -33,7 +33,7 @@ class reader_db():
         :return:
         """
         db_file = '/home/RFID/reader.db'
-        table_name = 'reader'
+        table_name_1 = 'reader'
         fn_1 = 'show_key'
         ft_1 = 'TEXT'
         fn_2 = 'client_key'
@@ -54,7 +54,7 @@ class reader_db():
         con = sqlite.connect(db_file)
         c = con.cursor()
         c.execute('CREATE TABLE {tn}({nf_1} {ft_1}, {nf_2} {ft_2}, {nf_3} {ft_3}, {nf_4} {ft_4}, {nf_5} {ft_5}'
-                  ', {nf_6} {ft_6}, {nf_7} {ft_7}, {nf_8} {ft_8})'.format(tn=table_name,
+                  ', {nf_6} {ft_6}, {nf_7} {ft_7}, {nf_8} {ft_8})'.format(tn=table_name_1,
                                                            nf_1=fn_1, ft_1=ft_1,
                                                            nf_2=fn_2, ft_2=ft_2,
                                                            nf_3=fn_3, ft_3=ft_3,
@@ -63,6 +63,7 @@ class reader_db():
                                                            nf_6=fn_6, ft_6=ft_6,
                                                            nf_7=fn_7, ft_7=ft_7,
                                                            nf_8=fn_8, ft_8=ft_8))
+
         con.commit()
         con.close()
 

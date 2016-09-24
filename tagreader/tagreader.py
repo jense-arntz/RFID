@@ -389,12 +389,6 @@ def start_loop(s, time_interval=5):
 def save_db(card_data, antenna_number):
     # timestamp = time.strftime('%l:%M%p %Z on %b %d, %Y')
     timestamp = str(datetime.now())
-    # Tags = db.sel_db()
-    # for Tag in Tags:
-    #     print 'Tag from db: {}'.format(Tag[1])
-    #     if str(EPC) == Tag[1]:
-    #         db.update_db(EPC, epc_time)
-    #         return False
 
     # Save the epc and time to db.
     db1 = reader_db()

@@ -28,12 +28,14 @@ app.use(bodyParser.json());
 var fs = require("fs");
 var file = "/home/RFID/reader_setting.db";
 var file_streaming = "/home/RFID/reader.db";
+
 // var file = "/home/pi/rfid/reader_setting.db";
 // var file_streaming = "/home/pi/rfid/reader.db";
 var exists = fs.existsSync(file);
 var exists_streaming_db = fs.existsSync(file_streaming);
 var sqlite3 = require("sqlite3").verbose();
 
+var connection_flag = true;
 var eshow_flag = '';
 var eshow_key = '';
 var client_key = '';
@@ -267,7 +269,7 @@ app.get('/api/endshow/', function (req, res) {
             res.send('No show key error');
         }
         eshow_flag = result;
-    console.log(eshow_flag);
+        console.log(eshow_flag);
     });
 
     var data = '';
@@ -326,7 +328,7 @@ app.get('/api/endshow/', function (req, res) {
 
 // send zip file to aws app.
 function send_zip_aws(file_path) {
-    var aws_api = 'http://54.167.227.250/api/zip/' + mac_addr + '/';
+    var aws_api = 'http://54.175.198.243/api/zip/' + mac_addr + '/';
 
     var formData = {
         // Pass a simple key-value pair
@@ -370,6 +372,8 @@ function get_show_key(callback) {
 function copyFile(source, target, filename, db_streaming, timeStamp) {
 
     var rd = fs.createReadStream(source);
+    var data = [];
+    var db = new sqlite3.Database(file);
     rd.on("error", function (err) {
         console.log("reading error");
     });
@@ -379,13 +383,23 @@ function copyFile(source, target, filename, db_streaming, timeStamp) {
     });
     wr.on("close", function (ex) {
         console.log('Closed');
-         var size = getFilesizeInBytes(target);
+        var size = getFilesizeInBytes(target);
         console.log('size', size);
 
         insert_file_to_db(filename, size, timeStamp);
         console.log('insert_file_to_db');
 
-        send_file_aws(target, filename, db_streaming);
+        send_file_aws(target, db_streaming);
+        if (connection_flag == true){
+            data = check_backup();
+            console.log('data: ' + data);
+            if (data.length != 0){
+                for (var i=0; i<data.length; i++){
+                    send_file_aws(data[i], db)
+                }
+                
+            }
+        }
     });
     rd.pipe(wr);
 }
@@ -464,17 +478,17 @@ app.get('/api/transfer/', function (req, res) {
 });
 
 // send file to aws app.
-function send_file_aws(file_path, filename, db_streaming) {
-    var aws_api = 'http://54.167.227.250/api/file/' + mac_addr + '/';
+function send_file_aws(file_path, db_streaming) {
+    var aws_api = 'http://54.175.198.243/api/file/' + mac_addr + '/';
     console.log('send_file_aws: ' + aws_api);
     console.log('mac_address: ' + mac_addr);
-    console.log('filename: ' + filename);
+    // console.log('filename: ' + filename);
 
     var formData = {
         // Pass a simple key-value pair
-        filename: filename,
-        // Pass eshow key
-        eshow_key: eshow_flag,
+        // filename: filename,
+        // // Pass eshow key
+        // eshow_key: eshow_flag,
         // Pass data via Streams
         file: fs.createReadStream(file_path)
     };
@@ -483,19 +497,44 @@ function send_file_aws(file_path, filename, db_streaming) {
         formData: formData
     }, function optionalCallback(err, httpResponse, body) {
         if (err) {
+            connection_flag = false;
+            save_backup(file_path);
             return console.error('upload failed:', err);
         }
+
         console.log('Upload successful!  Server responded with:', body);
         db_streaming.run("DELETE FROM reader", function (error) {
             if (error)
                 console.log(error);
         });
+        console.log('Clear Table reader data');
 
     });
-
     console.log('sending file to AWS app.');
 }
 
+function check_backup() {
+    var db_backup = new sqlite3.Database(file);
+    posts = [];
+    db_backup.serialize(function () {
+        db_backup.each("SELECT * FROM backup", function (err, row) {
+            posts.push(row.filepath);
+            console.log(row.filepath);
+        }, function () {
+            console.log(posts.length);
+            return posts;
+        });
+    });
+}
+
+
+function save_backup(filepath) {
+    var db_backup = new sqlite3.Database(file);
+
+    db_backup.run("INSERT into backup (filepath) VALUES (?)", filepath);
+
+    console.log('save backup : ' + filepath);
+}
 
 // ====================== Streaming Data from db. ======================
 app.get('/api/stream/', function (req, res) {
@@ -556,7 +595,7 @@ app.get('/api/sync_on/', function (req, res) {
                 var file_path = folder_path + '/' + filename;
 
                 // Copy the file to given path.
-                copyFile(file_streaming, file_path, filename, db_streaming,timeStamp);
+                copyFile(file_streaming, file_path, filename, db_streaming, timeStamp);
 
                 sleep.sleep(3);
                 res.send('Sync on Successful.');
@@ -706,6 +745,7 @@ function create_db() {
             db.run("CREATE TABLE reader_setting (id INTEGER PRIMARY KEY AUTOINCREMENT, reader_name TEXT, mac_address TEXT, ip_address TEXT, power_level Text)");
             db.run("CREATE TABLE eshow(id INTEGER PRIMARY KEY AUTOINCREMENT, show_key TEXT, client_key TEXT)");
             db.run("CREATE TABLE file(id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT, file_size INTEGER, date TEXT)");
+            db.run("CREATE TABLE backup(id INTEGER PRIMARY KEY AUTOINCREMENT, filepath TEXT)");
         }
     });
 
