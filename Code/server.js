@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 var fs = require("fs");
 var file = "/home/RFID/reader_setting.db";
 var file_streaming = "/home/RFID/reader.db";
-
+var clock_file = "/home/RFID/clock.txt";
 // var file = "/home/pi/rfid/reader_setting.db";
 // var file_streaming = "/home/pi/rfid/reader.db";
 var exists = fs.existsSync(file);
@@ -42,7 +42,9 @@ var client_key = '';
 var file_path = '';
 var mac_addr = '';
 var interval;
+var clock;
 var time_interval = 10000;
+var clock_interval = 5000;
 var srcDirectory = '/home/RFID/';
 var reader_name = '';
 var outputpath = '';
@@ -390,14 +392,14 @@ function copyFile(source, target, filename, db_streaming, timeStamp) {
         console.log('insert_file_to_db');
 
         send_file_aws(target, db_streaming);
-        if (connection_flag == true){
+        if (connection_flag == true) {
             data = check_backup();
             console.log('data: ' + data);
-            if (data.length != 0){
-                for (var i=0; i<data.length; i++){
+            if (data.length != 0) {
+                for (var i = 0; i < data.length; i++) {
                     send_file_aws(data[i], db)
                 }
-                
+
             }
         }
     });
@@ -507,6 +509,10 @@ function send_file_aws(file_path, db_streaming) {
             if (error)
                 console.log(error);
         });
+        db_streaming.run("VACUUM", function (error) {
+            if (error)
+                console.log(error);
+        });
         console.log('Clear Table reader data');
 
     });
@@ -520,11 +526,11 @@ function check_backup() {
         db_backup.each("SELECT * FROM backup", function (err, row) {
             posts.push(row.filepath);
             console.log(row.filepath);
-        }, function () {
-            console.log(posts.length);
-            return posts;
         });
+
     });
+    console.log(posts.length);
+    return posts;
 }
 
 
@@ -665,6 +671,7 @@ app.get('/api/sync_manual/', function (req, res) {
 // ================ Start server from AWID.=========================
 app.get('/api/start/:timer(\\d+)', function (req, res) {
     console.log("Got a Start request");
+    calculate_alive_time();
     timer = req.params.timer;
 
     console.log(timer);
@@ -701,6 +708,7 @@ app.get('/api/start/:timer(\\d+)', function (req, res) {
 
 // ================= Stop server from AWID.=======================
 app.get('/api/stop/', function (req, res) {
+    clearInterval(clock_interval);
     console.log("Got a Stop request");
     var options = {
         host: '127.0.0.1',
@@ -729,6 +737,50 @@ app.get('/api/stop/', function (req, res) {
     http.request(options, callback).end();
 });
 
+
+// =============== Calculate alive time ==========================//
+function calculate_alive_time() {
+    console.log('sync on');
+    clock = setInterval(function (req, res) {
+
+        fs.readFile(clock_file, 'utf8', function (err, data) {
+            if (err) {
+                return console.log(err);
+            }
+            console.log(data);
+
+            data += 5;
+            fs.writeFile(clock_file, data, function (err) {
+                if (err) return console.log(err);
+                console.log(clock_file + ' -> ' + data);
+            });
+        });
+        send_data_aws(data);
+
+    }, clock_interval);
+
+}
+
+// ======================== send data to aws =========================//
+function send_data_aws(data) {
+    var aws_data_api = 'http://54.175.198.243/api/update/status/' + mac_addr + '/';
+    console.log('send_file_aws: ' + aws_api);
+    console.log('mac_address: ' + mac_addr);
+    request({
+        url: aws_data_api,
+        method: 'POST',
+        //Lets post the following key/values as form
+        json: {
+            alive_time: data
+        }
+    }, function (error, response, body) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log(response.statusCode, body);
+        }
+    });
+}
 
 // ========================== Create db when no exists.===================//
 function create_db() {
