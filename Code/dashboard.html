@@ -349,14 +349,14 @@
 
         $.getJSON('/api/status/', function (data) {
             $.each(data, function (key, item) {
-                if (item.start_status == true) {
+                if (item.startstatus == true) {
                     $('#start').prop("disabled", true);
                     $('#stop').prop("disabled", false);
                     $('#devices').prop("disabled", true);
                     $('#timer').prop("disabled", true);
                     $('#status').removeClass('label-danger');
                     $('#status').addClass('label-success').text('Start Reading');
-                    document.getElementById("timer").value(item.timerate_status);
+                    document.getElementById("timer").value = item.timerate;
                 }
                 else {
                     $('#start').prop("disabled", false);
@@ -367,7 +367,7 @@
                     $('#timer').prop("disabled", false);
 
                 }
-                if (item.syncon_status == true) {
+                if (item.syncon == true) {
                     $('#sync_on').prop("disabled", true);
                     $('#sync_off').prop("disabled", false);
 

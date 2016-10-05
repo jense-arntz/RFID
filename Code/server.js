@@ -87,7 +87,8 @@ app.get('/list.html', function (req, res) {
 
 // ======================= API(List, Add, Delete, Update) ================================ //
 app.get('/api/status/', function (req, res) {
-   var data = {startstatus: start_status, timerate: timerate_status, syncon: syncon_status}; 
+   var data = [];
+    data.push({startstatus: start_status, timerate: timerate_status, syncon: syncon_status});
     res.set('Content-Type', 'application/json');
     res.send(data);
 });
