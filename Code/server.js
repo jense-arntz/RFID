@@ -48,6 +48,9 @@ var clock_interval = 5000;
 var srcDirectory = '/home/RFID/';
 var reader_name = '';
 var outputpath = '';
+var timerate_status = false;
+var start_status = false;
+var syncon_status = false;
 
 // ========================= Pages ========================//
 
@@ -82,8 +85,13 @@ app.get('/list.html', function (req, res) {
 });
 
 
-// ======================= API(List, Add, Delete, Update) ================================//
-
+// ======================= API(List, Add, Delete, Update) ================================ //
+app.get('/api/status/', function (req, res) {
+   var data = {startstatus: start_status, timerate: timerate_status, syncon: syncon_status}; 
+    res.set('Content-Type', 'application/json');
+    res.send(data);
+});
+// ======================= Check status =================================== //
 // ========================= Load the eshow id ============================
 app.get('/api/id/', function (req, res) {
     var db_id = new sqlite3.Database(file);
@@ -569,6 +577,7 @@ app.get('/api/stream/', function (req, res) {
 // =================== Sync On ===================================
 app.get('/api/sync_on/', function (req, res) {
     console.log('sync on');
+    syncon_status = true;
     interval = setInterval(function (req, res) {
         console.log("Got a transfer request from the homepage");
         var db_streaming = new sqlite3.Database(file_streaming);
@@ -617,6 +626,7 @@ app.get('/api/sync_on/', function (req, res) {
 // =================== Sync Off ==================================
 app.get('/api/sync_off/', function (req, res) {
     console.log('sync off');
+    syncon_status = false;
     clearInterval(interval);
     res.send('start sync off');
 });
@@ -671,9 +681,10 @@ app.get('/api/sync_manual/', function (req, res) {
 // ================ Start server from AWID.=========================
 app.get('/api/start/:timer(\\d+)', function (req, res) {
     console.log("Got a Start request");
+    start_status = true;
     calculate_alive_time();
     timer = req.params.timer;
-
+    timerate_status = timer;
     console.log(timer);
 
     //The url we want is: 'http://127.0.0.1:8080'
@@ -708,7 +719,9 @@ app.get('/api/start/:timer(\\d+)', function (req, res) {
 
 // ================= Stop server from AWID.=======================
 app.get('/api/stop/', function (req, res) {
-    clearInterval(clock_interval);
+    start_status = false;
+    timerate_status = false;
+    clearInterval(clock);
     console.log("Got a Stop request");
     var options = {
         host: '127.0.0.1',
@@ -742,20 +755,22 @@ app.get('/api/stop/', function (req, res) {
 function calculate_alive_time() {
     console.log('sync on');
     clock = setInterval(function (req, res) {
-
-        fs.readFile(clock_file, 'utf8', function (err, data) {
+        var read_data = 0;
+        var data = 0;
+        fs.readFile(clock_file, 'utf8', function (err, readdata) {
             if (err) {
                 return console.log(err);
             }
-            console.log(data);
+            console.log(readdata);
 
-            data += 5;
+            data =parseInt(readdata, 10) + 5;
             fs.writeFile(clock_file, data, function (err) {
                 if (err) return console.log(err);
                 console.log(clock_file + ' -> ' + data);
             });
+            send_data_aws(data);
         });
-        send_data_aws(data);
+
 
     }, clock_interval);
 
@@ -764,15 +779,14 @@ function calculate_alive_time() {
 // ======================== send data to aws =========================//
 function send_data_aws(data) {
     var aws_data_api = 'http://54.175.198.243/api/update/status/' + mac_addr + '/';
-    console.log('send_file_aws: ' + aws_api);
+    console.log('send_file_aws: ' + aws_data_api);
     console.log('mac_address: ' + mac_addr);
     request({
         url: aws_data_api,
         method: 'POST',
         //Lets post the following key/values as form
-        json: {
-            alive_time: data
-        }
+        json: true,
+        body: {alive_time: data}
     }, function (error, response, body) {
         if (error) {
             console.log(error);
@@ -807,6 +821,7 @@ function create_db() {
 // ==================== Start node.js server.======================//
 var server = app.listen(10000, function () {
     create_db();
+
     var host = server.address().address;
     var port = server.address().port;
     console.log("Node Server listening at http://%s:%s", host, port)

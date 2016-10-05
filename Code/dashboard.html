@@ -338,11 +338,47 @@
         App.init();
         $('.md-trigger').modalEffects();
         device_overview_loads();
+        check_status();
         data_streaming_load();
         setting_loads();
         select_data();
+
     });
 
+    function check_status() {
+
+        $.getJSON('/api/status/', function (data) {
+            $.each(data, function (key, item) {
+                if (item.start_status == true) {
+                    $('#start').prop("disabled", true);
+                    $('#stop').prop("disabled", false);
+                    $('#devices').prop("disabled", true);
+                    $('#timer').prop("disabled", true);
+                    $('#status').removeClass('label-danger');
+                    $('#status').addClass('label-success').text('Start Reading');
+                    document.getElementById("timer").value(item.timerate_status);
+                }
+                else {
+                    $('#start').prop("disabled", false);
+                    $('#stop').prop("disabled", true);
+                    $('#status').removeClass('label-success');
+                    $('#status').addClass('label-danger').text('Stop Reading');
+                    $('#devices').prop("disabled", false);
+                    $('#timer').prop("disabled", false);
+
+                }
+                if (item.syncon_status == true) {
+                    $('#sync_on').prop("disabled", true);
+                    $('#sync_off').prop("disabled", false);
+
+                }
+                else {
+                    $('#sync_on').prop("disabled", false);
+                    $('#sync_off').prop("disabled", true);
+                }
+            });
+        });
+    }
     // load miliseconds option
     function select_data() {
         for (var i = 0; i <= 10000; i++) {
