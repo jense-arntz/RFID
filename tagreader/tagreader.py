@@ -275,6 +275,20 @@ def enable_antenna_switch(s):
     print('antenna switch: {}'.format(antenna_switch.encode('hex')))
 
     return True
+
+
+def antenna_switch_rate(s):
+    s.send(bytearray(sys_antenna_rate([0x05, 0x05])))
+    time.sleep(.1)
+
+    ack = s.recv(1).encode('hex')
+    # sleep ?
+    if ack == ACK_FAIL:
+        print('ACK FAIL')
+        return False
+
+    return True
+
 # def reader_antenna_select(s, antenna):
 #     # Get the reader setting from reader_setting.db.
 #
@@ -439,6 +453,11 @@ def main(timer):
     # set antenna source
     if not read_antenna_source(s):
         print('failed to read the reader\'s status.')
+        s.close()
+        return
+
+    if not antenna_switch_rate(s):
+        print('failed to set reader switch \'s status.')
         s.close()
         return
 

@@ -42,8 +42,13 @@ def sys_rf_power_level(power_level):
 
 
 # System Command (0x00) /// Antenna Select(0x0D)
-def sys_antenna_select(antenna):
-    return protocol_packet(TYPE_SYSTEM_COMMAMD, 0x0D, antenna)
+def sys_antenna_select():
+    return protocol_packet(TYPE_SYSTEM_COMMAMD, 0x0D)
+
+
+# System Command (0x00) /// Antenna Select(0x1D)
+def sys_antenna_rate(antenna_rate):
+    return protocol_packet(TYPE_SYSTEM_COMMAMD, 0x1D, antenna_rate)
 
 
 # System Command (0x00) /// Antenna status(0x0E)
