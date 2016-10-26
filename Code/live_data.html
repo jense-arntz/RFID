@@ -56,7 +56,7 @@
             <div class="menu-space">
                 <div class="content">
                     <ul class="cl-vnavigation">
-                        <li><a href="/dashboard.html"><i class="fa fa-file"></i><span>Admin</span></a>
+                        <li><a href="/dashboard.html"><i class="fa fa-file"></i><span>Admin - eTRACK</span></a>
                             <ul class="sub-menu">
                                 <li id="dashboard"><a href="/dashboard.html">Dashboard</a>
                                 </li>
@@ -140,6 +140,7 @@
     $(document).ready(function () {
         //initialize the javascript
         App.init();
+        check_status();
 //      $('.md-trigger').modalEffects();
         select_data();
     });
@@ -151,6 +152,33 @@
         sel.options[sel.options.length] = new Option(name,i);
     }
 }
+
+    function check_status() {
+
+        $.getJSON('/api/status/', function (data) {
+            $.each(data, function (key, item) {
+                if (item.startstatus == true) {
+                    $('#start').prop("disabled", true);
+                    $('#stop').prop("disabled", false);
+                    $('#devices').prop("disabled", true);
+                    $('#timer').prop("disabled", true);
+                    $('#status').removeClass('label-danger');
+                    $('#status').addClass('label-success').text('Reading');
+                    document.getElementById("timer").value = item.timerate;
+                }
+                else {
+                    $('#start').prop("disabled", false);
+                    $('#stop').prop("disabled", true);
+                    $('#status').removeClass('label-success');
+                    $('#status').addClass('label-danger').text('Stop Reading');
+                    $('#devices').prop("disabled", false);
+                    $('#timer').prop("disabled", false);
+
+                }
+
+            });
+        });
+    }
 
     // Loading the streaming data.
     function dataload() {

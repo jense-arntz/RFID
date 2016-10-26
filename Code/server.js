@@ -12,6 +12,7 @@ var formdata = require('form-data');
 var sleep = require('sleep');
 var archiver = require('archiver');
 var zipArchive = archiver('zip');
+var dns = require('dns');
 var app = express();
 
 // ============== Define the static directives.===================//
@@ -43,7 +44,7 @@ var file_path = '';
 var mac_addr = '';
 var interval;
 var clock;
-var time_interval = 10000;
+var time_interval = 20000;
 var clock_interval = 5000;
 var srcDirectory = '/home/RFID/';
 var reader_name = '';
@@ -488,6 +489,19 @@ app.get('/api/transfer/', function (req, res) {
     }
 });
 
+function check_internet() {
+    dns.resolve('www.google.com', function(err) {
+  if (err) {
+     console.log("No connection");
+      return false;
+  } else {
+     console.log("Connected");
+      return true;
+  }
+});
+
+}
+
 // send file to aws app.
 function send_file_aws(file_path, db_streaming) {
     var aws_api = 'http://54.175.198.243/api/file/' + mac_addr + '/';
@@ -560,7 +574,7 @@ app.get('/api/stream/', function (req, res) {
     db_streaming.serialize(function () {
         db_streaming.each("SELECT * FROM reader", function (err, row) {
             if (err) {
-                posts.push({EPC: 'No Card', time: 'No Card'});
+                posts.push({EPC: 'No Card', time: 'None'});
                 res.set('Content-Type', 'application/json');
                 res.send(posts);
 
@@ -776,6 +790,7 @@ function calculate_alive_time() {
     }, clock_interval);
 
 }
+
 
 // ======================== send data to aws =========================//
 function send_data_aws(data) {
