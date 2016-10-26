@@ -582,9 +582,16 @@ app.get('/api/stream/', function (req, res) {
             posts.push({antenna: row.antenna, EPC: row.card_data, Custom: row.custom_field, time: row.timestamp});
             console.log(row.antenna, row.card_data, row.custom_field, row.timestamp)
         }, function () {
+            var send_data = [];
+            if (posts.length > 10){
+                count = posts.length - 1;
+                for (i=count; i>count-10; i--){
+                    send_data.push(posts[i]);
+                }
+            }
             // All done fetching records, render response
             res.set('Content-Type', 'application/json');
-            res.send(posts);
+            res.send(send_data);
         });
     });
 });
