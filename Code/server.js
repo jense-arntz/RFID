@@ -524,6 +524,14 @@ function send_file_aws(file_path, db_streaming) {
         if (err) {
             connection_flag = false;
             save_backup(file_path);
+            db_streaming.run("DELETE FROM reader", function (error) {
+            if (error)
+                console.log(error);
+        });
+        db_streaming.run("VACUUM", function (error) {
+            if (error)
+                console.log(error);
+        });
             return console.error('upload failed:', err);
         }
 
