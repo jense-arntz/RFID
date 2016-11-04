@@ -511,9 +511,9 @@ function send_file_aws(file_path, db_streaming) {
 
     var formData = {
         // Pass a simple key-value pair
-        // filename: filename,
-        // // Pass eshow key
-        // eshow_key: eshow_flag,
+        filename: filename,
+        // Pass eshow key
+        eshow_key: eshow_flag,
         // Pass data via Streams
         file: fs.createReadStream(file_path)
     };
@@ -581,12 +581,17 @@ app.get('/api/stream/', function (req, res) {
             }
             posts.push({antenna: row.antenna, EPC: row.card_data, Custom: row.custom_field, time: row.timestamp});
             console.log(row.antenna, row.card_data, row.custom_field, row.timestamp)
-        }, function () {
+        }, function (err) {
             var send_data = [];
-            if (posts.length > 10){
-                count = posts.length - 1;
-                for (i=count; i>count-10; i--){
-                    send_data.push(posts[i]);
+            if (err){
+                send_data = []
+            }
+            else {
+                if (posts.length > 10) {
+                    count = posts.length - 1;
+                    for (var i = count; i > count - 10; i--) {
+                        send_data.push(posts[i]);
+                    }
                 }
             }
             // All done fetching records, render response
