@@ -166,9 +166,11 @@ app.get('/api/device/list/', function (req, res) {
                 power: row.power_level
             });
             console.log(row.reader_name, row.mac_address, row.ip_address, row.power_level);
-            mac_addr = row.mac_address;
-            reader_name = row.reader_name;
         }, function () {
+            mac_addr = posts[0].mac_address;
+            reader_name = posts[0].reader_name;
+            console.log(mac_addr, reader_name);
+
             // All done fetching records, render response
             res.set('Content-Type', 'application/json');
             res.send(posts);
@@ -363,6 +365,32 @@ function send_zip_aws(file_path) {
     console.log('sending zip file to AWS app.');
 }
 
+function get_mac_addr() {
+    // ==================== Load the device list===================================
+    var db = new sqlite3.Database(file);
+    var posts = [];
+    db.serialize(function () {
+        db.each("SELECT * FROM reader_setting", function (err, row) {
+            posts.push({
+                name: row.reader_name,
+                mac_address: row.mac_address,
+                address: row.ip_address,
+                power: row.power_level
+            });
+            console.log(row.reader_name, row.mac_address, row.ip_address, row.power_level);
+            mac_addr = row.mac_address;
+            reader_name = row.reader_name;
+        }, function () {
+            mac_addr = posts[0].mac_address;
+            reader_name = posts[0].reader_name;
+            console.log(mac_addr, reader_name);
+            // All done fetching records, render response
+            res.set('Content-Type', 'application/json');
+            res.send(posts);
+        });
+    });
+}
+
 
 // Get the show_key from db.
 function get_show_key(callback) {
@@ -511,9 +539,9 @@ function send_file_aws(file_path, db_streaming) {
 
     var formData = {
         // Pass a simple key-value pair
-        filename: filename,
-        // Pass eshow key
-        eshow_key: eshow_flag,
+        // filename: filename,
+        // // Pass eshow key
+        // eshow_key: eshow_flag,
         // Pass data via Streams
         file: fs.createReadStream(file_path)
     };
