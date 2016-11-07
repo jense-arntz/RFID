@@ -34,7 +34,10 @@ var clock_file = "/home/RFID/clock.txt";
 // var file_streaming = "/home/pi/rfid/reader.db";
 var exists = fs.existsSync(file);
 var exists_streaming_db = fs.existsSync(file_streaming);
-var sqlite3 = require("sqlite3").verbose();
+var sqlite3 = require("sqlite3").verbose(),
+    TransactionDatabase = require("sqlite3-transactions").TransactionDatabase;
+;
+var db_streaming = new TransactionDatabase(new sqlite3.Database(file_streaming, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
 
 var connection_flag = true;
 var eshow_flag = '';
@@ -88,7 +91,7 @@ app.get('/list.html', function (req, res) {
 
 // ======================= API(List, Add, Delete, Update) ================================ //
 app.get('/api/status/', function (req, res) {
-   var data = [];
+    var data = [];
     data.push({startstatus: start_status, timerate: timerate_status, syncon: syncon_status});
     res.set('Content-Type', 'application/json');
     res.send(data);
@@ -383,7 +386,7 @@ function get_show_key(callback) {
 }
 
 // Copy file
-function copyFile(source, target, filename, db_streaming, timeStamp) {
+function copyFile(source, target, filename, timeStamp) {
 
     var rd = fs.createReadStream(source);
     var data = [];
@@ -403,7 +406,7 @@ function copyFile(source, target, filename, db_streaming, timeStamp) {
         insert_file_to_db(filename, size, timeStamp);
         console.log('insert_file_to_db');
 
-        send_file_aws(target, db_streaming);
+        send_file_aws(target);
         if (connection_flag == true) {
             data = check_backup();
             console.log('data: ' + data);
@@ -478,7 +481,7 @@ app.get('/api/transfer/', function (req, res) {
             var file_path = folder_path + '/' + filename;
 
             // Copy the file to given path.
-            copyFile(file_streaming, file_path, filename, db_streaming, timeStamp);
+            copyFile(file_streaming, file_path, filename, timeStamp);
 
             sleep.sleep(3);
 
@@ -492,20 +495,20 @@ app.get('/api/transfer/', function (req, res) {
 });
 
 function check_internet() {
-    dns.resolve('www.google.com', function(err) {
-  if (err) {
-     console.log("No connection");
-      return false;
-  } else {
-     console.log("Connected");
-      return true;
-  }
-});
+    dns.resolve('www.google.com', function (err) {
+        if (err) {
+            console.log("No connection");
+            return false;
+        } else {
+            console.log("Connected");
+            return true;
+        }
+    });
 
 }
 
 // send file to aws app.
-function send_file_aws(file_path, db_streaming) {
+function send_file_aws(file_path) {
     var aws_api = 'http://54.175.198.243/api/file/' + mac_addr + '/';
     console.log('send_file_aws: ' + aws_api);
     console.log('mac_address: ' + mac_addr);
@@ -526,28 +529,25 @@ function send_file_aws(file_path, db_streaming) {
         if (err) {
             connection_flag = false;
             save_backup(file_path);
-            db_streaming.run("DELETE FROM reader", function (error) {
-            if (error)
-                console.log(error);
-        });
-        db_streaming.run("VACUUM", function (error) {
-            if (error)
-                console.log(error);
-        });
-            return console.error('upload failed:', err);
+            db_streaming.beginTransaction(function (err, transaction) {
+                // Now we are inside a transaction.
+                // Use transaction as normal sqlite3.Database object.
+                transaction.run("DELETE FROM reader");
+                transaction.run("VACUUM");
+
+                // This will be executed after the transaction is finished.
+
+                // Feel free to do any async operations.
+
+                // Remember to .commit() or .rollback()
+                transaction.commit(function (err) {
+                    if (err) return console.log("Sad panda :-( commit() failed.", err);
+                    console.log("Happy panda :-) commit() was successful.");
+                });
+                // or transaction.rollback()
+            });
+            console.log('Clear Table reader data');
         }
-
-        console.log('Upload successful!  Server responded with:', body);
-        db_streaming.run("DELETE FROM reader", function (error) {
-            if (error)
-                console.log(error);
-        });
-        db_streaming.run("VACUUM", function (error) {
-            if (error)
-                console.log(error);
-        });
-        console.log('Clear Table reader data');
-
     });
     console.log('sending file to AWS app.');
 }
@@ -593,7 +593,7 @@ app.get('/api/stream/', function (req, res) {
             console.log(row.antenna, row.card_data, row.custom_field, row.timestamp)
         }, function (err) {
             var send_data = [];
-            if (err){
+            if (err) {
                 send_data = []
             }
             else {
@@ -617,7 +617,6 @@ app.get('/api/sync_on/', function (req, res) {
     syncon_status = true;
     interval = setInterval(function (req, res) {
         console.log("Got a transfer request from the homepage");
-        var db_streaming = new sqlite3.Database(file_streaming);
         get_show_key(function handleResult(err, result) {
             if (err) {
                 console.log('Get the show key error.');
@@ -647,7 +646,7 @@ app.get('/api/sync_on/', function (req, res) {
                 var file_path = folder_path + '/' + filename;
 
                 // Copy the file to given path.
-                copyFile(file_streaming, file_path, filename, db_streaming, timeStamp);
+                copyFile(file_streaming, file_path, filename, timeStamp);
 
                 console.log('sync on succesfull');
                 sleep.sleep(5);
@@ -804,7 +803,7 @@ function calculate_alive_time() {
             }
             console.log(readdata);
 
-            data =parseInt(readdata, 10) + 5;
+            data = parseInt(readdata, 10) + 5;
             fs.writeFile(clock_file, data, function (err) {
                 if (err) return console.log(err);
                 console.log(clock_file + ' -> ' + data);
