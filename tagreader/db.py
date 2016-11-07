@@ -74,16 +74,19 @@ class reader_db():
         :param pro_time:
         :return:
         """
-        self.exist_db()
-        data = self.get_setting()
-        sql_transaction = 'BEGIN IMMEDIATE'
-        self.cur.execute(sql_transaction)
-        sql = 'INSERT INTO {table_name}(show_key, client_key, reader_name, mac_address, card_data, ' \
-              'timestamp, antenna, custom_field) VALUES(?,?,?,?,?,?,?,?)'.format(table_name=self.table_name)
-        self.cur.execute(sql, (data['show_key'], data['client_key'], data['reader_name'], data['mac_address'],
-                               card_data, timestamp, antenna, Custom_data))
-        self.con.commit()
-
+        try:
+            self.exist_db()
+            data = self.get_setting()
+            sql_transaction = 'BEGIN IMMEDIATE'
+            self.cur.execute(sql_transaction)
+            sql = 'INSERT INTO {table_name}(show_key, client_key, reader_name, mac_address, card_data, ' \
+                  'timestamp, antenna, custom_field) VALUES(?,?,?,?,?,?,?,?)'.format(table_name=self.table_name)
+            self.cur.execute(sql, (data['show_key'], data['client_key'], data['reader_name'], data['mac_address'],
+                                   card_data, timestamp, antenna, Custom_data))
+            self.con.commit()
+        except Exception as e:
+            pass
+        
     def del_db(self):
         """
         Delete data from database.
