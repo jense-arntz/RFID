@@ -36,8 +36,8 @@ var exists = fs.existsSync(file);
 var exists_streaming_db = fs.existsSync(file_streaming);
 var sqlite3 = require("sqlite3").verbose(),
     TransactionDatabase = require("sqlite3-transactions").TransactionDatabase;
-;
-var db_streaming = new TransactionDatabase(new sqlite3.Database(file_streaming, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
+
+
 
 var connection_flag = true;
 var eshow_flag = '';
@@ -530,6 +530,7 @@ function send_file_aws(file_path) {
             connection_flag = false;
             save_backup(file_path);
         }
+        var db_streaming = new TransactionDatabase(new sqlite3.Database(file_streaming, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
         db_streaming.beginTransaction(function (err, transaction) {
             // Now we are inside a transaction.
             // Use transaction as normal sqlite3.Database object.
@@ -540,8 +541,10 @@ function send_file_aws(file_path) {
 
             // Remember to .commit() or .rollback()
             transaction.commit(function (err) {
-                if (err) return console.log("Sad panda :-( commit() failed.", err);
-                console.log("Happy panda :-) commit() was successful.");
+                if (err)
+                    console.log("Sad panda :-( commit() failed.", err);
+                else
+                    console.log("Happy panda :-) commit() was successful.");
             });
             // or transaction.rollback()
 
