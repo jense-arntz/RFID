@@ -538,13 +538,14 @@ function send_file_aws(file_path) {
                 // This will be executed after the transaction is finished.
 
                 // Feel free to do any async operations.
-
-                // Remember to .commit() or .rollback()
-                transaction.commit(function (err) {
-                    if (err) return console.log("Sad panda :-( commit() failed.", err);
-                    console.log("Happy panda :-) commit() was successful.");
+                someAsync(function () {
+                    // Remember to .commit() or .rollback()
+                    transaction.commit(function (err) {
+                        if (err) return console.log("Sad panda :-( commit() failed.", err);
+                        console.log("Happy panda :-) commit() was successful.");
+                    });
+                    // or transaction.rollback()
                 });
-                // or transaction.rollback()
             });
             console.log('Clear Table reader data');
         }
