@@ -86,6 +86,7 @@ class reader_db():
             self.con.commit()
 
         except Exception as e:
+            print 'db exception : {}'.format(e)
             pass
 
     def del_db(self):
