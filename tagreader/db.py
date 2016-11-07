@@ -84,9 +84,10 @@ class reader_db():
             self.cur.execute(sql, (data['show_key'], data['client_key'], data['reader_name'], data['mac_address'],
                                    card_data, timestamp, antenna, Custom_data))
             self.con.commit()
+
         except Exception as e:
             pass
-        
+
     def del_db(self):
         """
         Delete data from database.
