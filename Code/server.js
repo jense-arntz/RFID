@@ -163,7 +163,7 @@ app.get('/api/device/list/', function (req, res) {
     var db = new sqlite3.Database(file);
     var posts = [];
     db.serialize(function () {
-        db.each("SELECT * FROM reader_setting where id=1", function (err, row) {
+        db.each("SELECT * FROM reader_setting", function (err, row) {
             posts.push({
                 name: row.reader_name,
                 mac_address: row.mac_address,
