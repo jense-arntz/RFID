@@ -529,26 +529,30 @@ function send_file_aws(file_path) {
         if (err) {
             connection_flag = false;
             save_backup(file_path);
-            db_streaming.beginTransaction(function (err, transaction) {
-                // Now we are inside a transaction.
-                // Use transaction as normal sqlite3.Database object.
-                transaction.run("DELETE FROM reader");
-                transaction.run("VACUUM");
-
-                // This will be executed after the transaction is finished.
-
-                // Feel free to do any async operations.
-                someAsync(function () {
-                    // Remember to .commit() or .rollback()
-                    transaction.commit(function (err) {
-                        if (err) return console.log("Sad panda :-( commit() failed.", err);
-                        console.log("Happy panda :-) commit() was successful.");
-                    });
-                    // or transaction.rollback()
-                });
-            });
-            console.log('Clear Table reader data');
         }
+        db_streaming.beginTransaction(function (err, transaction) {
+            // Now we are inside a transaction.
+            // Use transaction as normal sqlite3.Database object.
+            transaction.run("DELETE FROM reader");
+            // This will be executed after the transaction is finished.
+
+            // Feel free to do any async operations.
+
+            // Remember to .commit() or .rollback()
+            transaction.commit(function (err) {
+                if (err) return console.log("Sad panda :-( commit() failed.", err);
+                console.log("Happy panda :-) commit() was successful.");
+            });
+            // or transaction.rollback()
+
+        });
+
+        var db = new sqlite3.Database(file_streaming);
+        db.run("VACUUM", function (error) {
+            if (error)
+                console.log(error);
+        });
+        console.log('Clear Table reader data');
     });
     console.log('sending file to AWS app.');
 }
@@ -558,8 +562,13 @@ function check_backup() {
     posts = [];
     db_backup.serialize(function () {
         db_backup.each("SELECT * FROM backup", function (err, row) {
-            posts.push(row.filepath);
-            console.log(row.filepath);
+            if (err) {
+                console.log('filepath' + err);
+            }
+            else {
+                posts.push(row.filepath);
+                console.log(row.filepath);
+            }
         });
 
     });
