@@ -284,6 +284,7 @@
                         <button type="button" class="btn btn-success" id="stop" disabled>Stop</button>
                         <button type="button" class="btn btn-warning btn" id="transfer">Transfer</button>
                         <button type="button" class="btn btn-danger btn" id="endshow">End Show</button>
+                        <button type="button" class="btn btn-danger btn" id="refresh">Refresh</button>
                     </div>
                 </div>
 
@@ -379,6 +380,7 @@
             });
         });
     }
+
     // load miliseconds option
     function select_data() {
         for (var i = 0; i <= 10000; i++) {
@@ -607,7 +609,7 @@
                 type: 'GET'
             }).success(function (data) {
                 alert(data);
-                start_stop = window.setInterval(data_streaming_load, 1000);
+//                start_stop = window.setInterval(data_streaming_load, 1000);
             }).error(function (data) {
                 alert(data);
             });
@@ -632,7 +634,7 @@
             type: 'GET'
         }).success(function (data) {
             alert(data);
-            clearInterval(start_stop);
+//            clearInterval(start_stop);
         }).error(function (data) {
             alert(data);
             clearInterval(start_stop);
@@ -675,8 +677,17 @@
         }
     });
 
+    $('#refresh').click(function () {
+        if (device_flag == true) {
+            data_streaming_load();
+        }
+        else {
+            alert('Before End Show, please press the "stop" button.');
+        }
+    });
+
     $('#sync_on').click(function () {
-        if (check_keys() && device_flag == true) {
+        if (check_keys() && device_flag == true && $('#start').prop("disabled") == true) {
             $('#sync_on').prop("disabled", true);
             $('#sync_off').prop("disabled", false);
             $.ajax({
@@ -690,7 +701,7 @@
             });
         }
         else {
-            alert('Please input client key or Show key');
+            alert('Please input client key or Show key or click start button');
         }
     });
 
@@ -709,7 +720,7 @@
     });
 
     $('#sync_manual').click(function () {
-        if (check_keys() && device_flag == true) {
+        if (check_keys() && device_flag == true && $('#start').prop("disabled") == true) {
             $.ajax({
                 url: "/api/sync_manual/",
                 type: 'GET'
