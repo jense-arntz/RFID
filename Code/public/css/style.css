@@ -4639,6 +4639,21 @@ a.list-group-item:hover + a.list-group-item {
 .btn-primary:active {
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
 }
+.btn-refresh,
+.btn-refresh:focus {
+  background-color: rgba(120, 0, 253, 0.99);
+  border-color: rgba(141, 16, 253, 0.99);
+}
+.btn-refresh:hover,
+.btn-refresh:active,
+.btn-refresh.active,
+.open .dropdown-toggle.btn-refresh {
+  background-color: rgba(120, 0, 253, 0.99);
+  border-color: rgba(141, 16, 253, 0.99);
+}
+.btn-refresh:active {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
 .btn-success,
 .btn-success:focus {
   background-color: #60C060;

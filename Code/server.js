@@ -618,7 +618,7 @@ app.get('/api/stream/', function (req, res) {
 app.get('/api/sync_on/', function (req, res) {
     console.log('sync on');
     syncon_status = true;
-    interval = setInterval(function (req, res) {
+    interval = setInterval(function () {
         console.log("Got a Sync on request from the homepage");
         get_show_key(function handleResult(err, result) {
             if (err) {
@@ -659,7 +659,7 @@ app.get('/api/sync_on/', function (req, res) {
         catch (e) {
             console.log('sync on error');
             console.log('\r\n', e);
-            res.send('Sync on Error.')
+            // res.send('Sync on Error.')
         }
 
     }, time_interval);
