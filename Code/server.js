@@ -164,12 +164,18 @@ app.get('/api/device/list/', function (req, res) {
     var posts = [];
     db.serialize(function () {
         db.each("SELECT * FROM reader_setting", function (err, row) {
-            posts.push({
-                name: row.reader_name,
-                mac_address: row.mac_address,
-                address: row.ip_address,
-                power: row.power_level
-            });
+             if (err) {
+                 posts.push({name: None,mac_address: None,address: None, power: None});
+                 console.log('None: ' + err);
+             }
+            else {
+                 posts.push({
+                     name: row.reader_name,
+                     mac_address: row.mac_address,
+                     address: row.ip_address,
+                     power: row.power_level
+                 });
+             }
             console.log(row.reader_name, row.mac_address, row.ip_address, row.power_level);
         }, function () {
             mac_addr = posts[0].mac_address;
