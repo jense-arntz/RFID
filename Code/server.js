@@ -179,13 +179,15 @@ app.get('/api/device/list/', function (req, res) {
                 }
                 console.log(row.reader_name, row.mac_address, row.ip_address, row.power_level);
             }, function () {
-                mac_addr = posts[0].mac_address;
-                reader_name = posts[0].name;
-                console.log(mac_addr, reader_name);
+                if (posts.length != 0) {
+                    mac_addr = posts[0].mac_address;
+                    reader_name = posts[0].name;
+                    console.log(mac_addr, reader_name);
+                }
+                    // All done fetching records, render response
+                    res.set('Content-Type', 'application/json');
+                    res.send(posts);
 
-                // All done fetching records, render response
-                res.set('Content-Type', 'application/json');
-                res.send(posts);
             });
         });
     }
