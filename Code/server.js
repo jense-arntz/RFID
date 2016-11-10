@@ -159,60 +159,73 @@ app.post('/api/key/', function (req, res) {
 
 // ==================== Load the device list===================================
 app.get('/api/device/list/', function (req, res) {
+    try {
 
-    var db = new sqlite3.Database(file);
-    var posts = [];
-    db.serialize(function () {
-        db.each("SELECT * FROM reader_setting", function (err, row) {
-             if (err) {
-                 posts.push({name: None,mac_address: None,address: None, power: None});
-                 console.log('None: ' + err);
-             }
-            else {
-                 posts.push({
-                     name: row.reader_name,
-                     mac_address: row.mac_address,
-                     address: row.ip_address,
-                     power: row.power_level
-                 });
-             }
-            console.log(row.reader_name, row.mac_address, row.ip_address, row.power_level);
-        }, function () {
-            mac_addr = posts[0].mac_address;
-            reader_name = posts[0].name;
-            console.log(mac_addr, reader_name);
+        var db = new sqlite3.Database(file);
+        var posts = [];
+        db.serialize(function () {
+            db.each("SELECT * FROM reader_setting", function (err, row) {
+                if (err) {
+                    posts.push({name: None, mac_address: None, address: None, power: None});
+                    console.log('None: ' + err);
+                }
+                else {
+                    posts.push({
+                        name: row.reader_name,
+                        mac_address: row.mac_address,
+                        address: row.ip_address,
+                        power: row.power_level
+                    });
+                }
+                console.log(row.reader_name, row.mac_address, row.ip_address, row.power_level);
+            }, function () {
+                mac_addr = posts[0].mac_address;
+                reader_name = posts[0].name;
+                console.log(mac_addr, reader_name);
 
-            // All done fetching records, render response
-            res.set('Content-Type', 'application/json');
-            res.send(posts);
+                // All done fetching records, render response
+                res.set('Content-Type', 'application/json');
+                res.send(posts);
+            });
         });
-    });
+    }
+    catch (e){
+        console.log('\r\n', e);
+        res.send(e);
+    }
 });
 
 
 // ==================== Load the File list===================================
 app.get('/api/device/files/', function (req, res) {
-    var db = new sqlite3.Database(file);
-    var posts = [];
-    db.serialize(function () {
-        db.each("SELECT * FROM file", function (err, row) {
-            if (err){
-                 posts.push({file_name: None, file_size: None, date: None});
-                 console.log('None: ' + err);
-            }
-            else {
-                posts.push({
-                    file_name: row.file_name,
-                    file_size: row.file_size,
-                    date: row.date
-                });
-            }
-        }, function () {
+    try {
+        var db = new sqlite3.Database(file);
+        var posts = [];
+        db.serialize(function () {
+            db.each("SELECT * FROM file", function (err, row) {
+                if (err) {
+                    posts.push({file_name: None, file_size: None, date: None});
+                    console.log('None: ' + err);
+                }
+                else {
+                    posts.push({
+                        file_name: row.file_name,
+                        file_size: row.file_size,
+                        date: row.date
+                    });
+                }
+            }, function () {
 
-            res.set('Content-Type', 'application/json');
-            res.send(posts);
+                res.set('Content-Type', 'application/json');
+                res.send(posts);
+            });
         });
-    });
+    }
+    catch (e){
+        console.log('\r\n', e);
+        res.send(e);
+
+    }
 });
 
 
