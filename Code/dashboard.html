@@ -603,16 +603,21 @@
             $('#status').addClass('label-success').text('Reading');
 
             var timer = document.getElementById("timer").value;
+            if (timer == '') {
+                alert('please insert time interval');
+            }
+            else {
 
-            $.ajax({
-                url: "/api/start/" + timer + "/",
-                type: 'GET'
-            }).success(function (data) {
-                alert(data);
+                $.ajax({
+                    url: "/api/start/" + timer + "/",
+                    type: 'GET'
+                }).success(function (data) {
+                    alert(data);
 //                start_stop = window.setInterval(data_streaming_load, 1000);
-            }).error(function (data) {
-                alert(data);
-            });
+                }).error(function (data) {
+                    alert(data);
+                });
+            }
         }
         else {
             alert('please add a device!!!');
