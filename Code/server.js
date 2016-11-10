@@ -196,11 +196,17 @@ app.get('/api/device/files/', function (req, res) {
     var posts = [];
     db.serialize(function () {
         db.each("SELECT * FROM file", function (err, row) {
-            posts.push({
-                file_name: row.file_name,
-                file_size: row.file_size,
-                date: row.date
-            });
+            if (err){
+                 posts.push({file_name: None, file_size: None, date: None});
+                 console.log('None: ' + err);
+            }
+            else {
+                posts.push({
+                    file_name: row.file_name,
+                    file_size: row.file_size,
+                    date: row.date
+                });
+            }
         }, function () {
 
             res.set('Content-Type', 'application/json');
@@ -223,7 +229,12 @@ app.post('/api/add/', function (req, res) {
             var db = new sqlite3.Database(file);
 
             db.run("INSERT into reader_setting (reader_name, mac_address, ip_address, power_level) VALUES (?, ?, ?, ?)",
-                [req.body.name, req.body.mac_address, req.body.address, req.body.power]);
+                [req.body.name, req.body.mac_address, req.body.address, req.body.power], function(err){
+                    if (err){
+                        console.log('add device error');
+                        res.send('error to add device');
+                    }
+                });
 
             console.log('Insert data Success!');
             res.send('Added the Device to List.');
