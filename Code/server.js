@@ -94,7 +94,7 @@ app.get('/api/status/', function (req, res) {
 
 //********* ======================= API(List, Add, Delete, Update) ================================ ************//
 
-// ========================= Load the eshow id ============================
+// ========================= Load the eshow id and client key ============================
 app.get('/api/id/', function (req, res) {
     var db_id = new sqlite3.Database(file);
     var posts = [];
@@ -108,7 +108,7 @@ app.get('/api/id/', function (req, res) {
                 posts.push({eshow_id: row.show_key, client_key: row.client_key});
                 console.log(row.show_key, row.client_key);
                 eshow_flag = row.show_key;
-                eshow_key = row.client_key;
+                client_key = row.client_key;
             }
 
         }, function () {
@@ -133,6 +133,7 @@ app.post('/api/id/', function (req, res) {
     }
     else {
         db_id.run("UPDATE eshow set show_key=? where id=1", [req.body.eshow_id]);
+        eshow_flag = req.body.eshow_id;
         data = 'Update Eshow key to ' + req.body.eshow_id;
         console.log(data);
     }
@@ -146,11 +147,13 @@ app.post('/api/key/', function (req, res) {
     var data = '';
     if (eshow_flag == '' && client_key == '') {
         db_id.run("INSERT into eshow (client_key) VALUES (?)", [req.body.client_key]);
+        client_key = req.body.client_key;
         data = 'Insert Client Key ' + req.body.client_key;
         console.log(data);
     }
     else {
         db_id.run("UPDATE eshow set client_key=? where id=1", [req.body.client_key]);
+        client_key = req.body.client_key;
         data = 'Update Client Key' + req.body.client_key;
         console.log(data);
     }
@@ -249,6 +252,10 @@ app.post('/api/add/', function (req, res) {
                         console.log('add device error');
                         res.send('error to add device');
                     }
+                    else {
+                        send_device_to_aws(req.body.name, req.body.mac_address, req.body.address)
+                        console.log('send device information to aws.')
+                    }
                 });
 
             console.log('Insert data Success!');
@@ -261,6 +268,29 @@ app.post('/api/add/', function (req, res) {
         res.send(e);
     }
 });
+
+
+
+// ======================== send data to aws =========================//
+function send_device_to_aws(name, mac_address, address) {
+    var aws_data_api = 'http://54.175.198.243/api/device/fulfill/';
+    console.log('send_file_aws: ' + aws_data_api);
+    console.log('mac_address: ' + mac_addr + 'name: ' + name + 'address: ' + address);
+    request({
+        url: aws_data_api,
+        method: 'POST',
+        //Lets post the following key/values as form
+        json: true,
+        body: {name: name, mac_addr: mac_address, client_key:client_key, show_key: eshow_flag, ip_address: address}
+    }, function (error, response, body) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log(response.statusCode, body);
+        }
+    });
+}
+
 
 // ====================Update the device settings to db.======================
 app.post('/api/update/', function (req, res) {
