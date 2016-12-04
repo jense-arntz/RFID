@@ -548,6 +548,14 @@
                         .find('[name="eshow_id"]').val(item.eshow_id).end();
                 $('#client_form')
                         .find('[name="client_key"]').val(item.client_key).end();
+                if (item.eshow_id != '' && item.client_key != ''){
+                    create_id_flag = true;
+                    create_key_flag = true;
+                }
+                else{
+                    create_id_flag = false;
+                    create_key_flag = false;
+                }
             });
         });
     }
