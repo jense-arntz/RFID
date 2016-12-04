@@ -253,8 +253,8 @@ app.post('/api/add/', function (req, res) {
                         res.send('error to add device');
                     }
                     else {
-                        send_device_to_aws(req.body.name, req.body.mac_address, req.body.address)
-                        console.log('send device information to aws.')
+                        send_device_to_aws(req.body.name, req.body.mac_address, req.body.address);
+                        console.log('send device information to aws.');
                     }
                 });
 
@@ -304,7 +304,16 @@ app.post('/api/update/', function (req, res) {
             var db = new sqlite3.Database(file);
 
             db.run("UPDATE reader_setting set reader_name=?, ip_address=?, power_level=? where mac_address=?",
-                [req.body.name, req.body.address, req.body.power, req.body.mac_address]);
+                [req.body.name, req.body.address, req.body.power, req.body.mac_address], function (err){
+                  if (err){
+                     console.log('update device error');
+                     res.send('error to update device');
+                  }
+                   else{
+                      send_device_to_aws(req.body.name, req.body.mac_address, req.body.address);
+                      console.log('send device information to aws.');
+                  }
+                });
             reader_name = req.body.name;
             console.log('Update data Success!');
             res.send('Updated the Device Setting.');
