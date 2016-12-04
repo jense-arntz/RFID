@@ -333,6 +333,8 @@
 <script type="text/javascript">
     $('#dashboard').addClass("active");
     var device_flag = false;
+    var create_key_flag = false;
+    var create_id_flag = false;
     //<-------------------------ajax setup with crsfkey---------------------------->
     $(document).ready(function () {
         //initialize the javascript
@@ -396,31 +398,37 @@
 
     // ============= Add Device=====================//
     function proceedToDeviceSetting() {
-        name = $('#add_device').find('input[name="name"]').val();
-        mac_addres = $('#add_device').find('input[name="mac_address"]').val();
-        ip_addres = $('#add_device').find('input[name="ip_address"]').val();
-        power_level = $('#add_device').find('input[name="power_level"]').val();
-        if (name == '' || mac_addres == '' || ip_addres == '' || power_level == '') {
-            alert('Please insert data on form.');
+        if (create_id_flag == false || create_key_flag == false) {
+            alert("please first insert show key and client key.");
         }
         else {
-            $.ajax({
-                url: "/api/add/",
-                type: 'POST',
-                data: {name: name, mac_address: mac_addres, address: ip_addres, power: power_level}
-            }).success(function (data) {
-                alert(data);
-                $('#add_device')
-                        .find('input[name="name"]').val('').end()
-                        .find('input[name="mac_address"]').val('').end()
-                        .find('input[name="ip_address"]').val('').end()
-                        .find('input[name="power_level"]').val('').end();
-                device_flag = true;
-                device_overview_loads();
-                add_options();
-            }).error(function (data) {
-                alert(data);
-            });
+
+            name = $('#add_device').find('input[name="name"]').val();
+            mac_addres = $('#add_device').find('input[name="mac_address"]').val();
+            ip_addres = $('#add_device').find('input[name="ip_address"]').val();
+            power_level = $('#add_device').find('input[name="power_level"]').val();
+            if (name == '' || mac_addres == '' || ip_addres == '' || power_level == '') {
+                alert('Please insert data on form.');
+            }
+            else {
+                $.ajax({
+                    url: "/api/add/",
+                    type: 'POST',
+                    data: {name: name, mac_address: mac_addres, address: ip_addres, power: power_level}
+                }).success(function (data) {
+                    alert(data);
+                    $('#add_device')
+                            .find('input[name="name"]').val('').end()
+                            .find('input[name="mac_address"]').val('').end()
+                            .find('input[name="ip_address"]').val('').end()
+                            .find('input[name="power_level"]').val('').end();
+                    device_flag = true;
+                    device_overview_loads();
+                    add_options();
+                }).error(function (data) {
+                    alert(data);
+                });
+            }
         }
     }
 
@@ -544,7 +552,7 @@
         });
     }
 
-    // Create and Edit the eshow id.
+    // Create and Edit the show key.
     $("#create_id").click(function () {
         var eshow_id = $('#edit_id').find('input[name="eshow_id"]').val();
         alert(eshow_id);
@@ -556,6 +564,8 @@
             alert(data);
             $('#edit_id')
                     .find('[name="eshow_id"]').val(eshow_id).end();
+            create_id_flag = true;
+
         }).error(function (data) {
             alert(data);
         });
@@ -573,6 +583,8 @@
             alert(data);
             $('#client_form')
                     .find('input[name="client_key"]').val(client_key).end();
+            create_key_flag = true;
+
         }).error(function (data) {
             alert(data);
         });
@@ -584,9 +596,13 @@
         var eshow_key = $('#edit_id').find('input[name="eshow_id"]').val();
 
         if (client_key == '' || eshow_key == '') {
+            create_id_flag = false;
+            create_key_flag = false;
             return false;
         }
         else {
+            create_id_flag = true;
+            create_key_flag = true;
             return true;
         }
     }
