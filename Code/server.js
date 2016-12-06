@@ -186,6 +186,8 @@ app.get('/api/device/list/', function (req, res) {
                     mac_addr = posts[0].mac_address;
                     reader_name = posts[0].name;
                     console.log(mac_addr, reader_name);
+                    send_device_to_aws(reader_name, mac_addr, posts[0].address);
+                    console.log('send device information to aws.');
                 }
                     // All done fetching records, render response
                     res.set('Content-Type', 'application/json');
