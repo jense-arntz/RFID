@@ -482,8 +482,8 @@ function get_reader_setting(callback) {
             }
 
             callbackstring.reader_name = row.reader_name;
-            callbackstring.mac_address = mac_address;
-            callbackstring.ip_address = ip_address;
+            callbackstring.mac_address = row.mac_address;
+            callbackstring.ip_address = row.ip_address;
             console.log(callbackstring);
             callback(null, callbackstring);
         });
