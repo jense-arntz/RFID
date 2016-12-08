@@ -450,9 +450,42 @@ function get_show_key(callback) {
             if (err) {
                 return callback(err);
             }
-            show_key = row.show_key;
+            eshow_flag = row.show_key;
             console.log(row.show_key);
-            callback(null, show_key);
+            callback(null, eshow_flag);
+        });
+    });
+}
+
+// Get the show_key from db.
+function get_client_key(callback) {
+    var db_id = new sqlite3.Database(file);
+    db_id.serialize(function () {
+        db_id.each("SELECT * FROM eshow WHERE id=1", function (err, row) {
+            if (err) {
+                return callback(err);
+            }
+            client_key = row.client_key;
+            console.log(row.client_key);
+            callback(null, client_key);
+        });
+    });
+}
+
+// Get the reader_setting from db.
+function get_reader_setting(callback) {
+    var db_id = new sqlite3.Database(file);
+    db_id.serialize(function () {
+        db_id.each("SELECT * FROM reader_setting WHERE id=1", function (err, row) {
+            if (err) {
+                return callback(err);
+            }
+
+            callbackstring.reader_name = row.reader_name;
+            callbackstring.mac_address = mac_address;
+            callbackstring.ip_address = ip_address;
+            console.log(callbackstring);
+            callback(null, callbackstring);
         });
     });
 }
@@ -738,6 +771,55 @@ app.get('/api/sync_on/', function (req, res) {
     }, time_interval);
 });
 
+function self_sync(){
+    console.log('sync on');
+    syncon_status = true;
+    interval = setInterval(function () {
+        console.log("Got a Sync on request from the homepage");
+        get_show_key(function handleResult(err, result) {
+            if (err) {
+                console.log('Get the show key error.');
+                res.send('No show key error');
+            }
+            eshow_flag = result;
+        });
+        try {
+            if (!exists_streaming_db) {
+                console.log('no streaming.db file exists.');
+                res.send('No DB File to transfer.');
+            }
+            else {
+                console.log("table exists");
+                var folder_path = '/home/pi/' + eshow_flag;
+
+                // make eshow dir.
+                if (!fs.existsSync(folder_path)) {
+                    fs.mkdirSync(folder_path);
+                }
+
+                // Filename
+                var timeStamp = (new Date).toISOString().replace(/z/gi, '').trim();
+                console.log(timeStamp);
+                var filename = eshow_flag + ':' + timeStamp + '.db';
+                console.log(filename);
+                var file_path = folder_path + '/' + filename;
+
+                // Copy the file to given path.
+                copyFile(file_streaming, file_path, filename, timeStamp);
+                console.log('sync on succesfull');
+
+                sleep.sleep(5);
+                res.send('Sync on Successful.');
+            }
+        }
+        catch (e) {
+            console.log('sync on error');
+            console.log('\r\n', e);
+            // res.send('Sync on Error.')
+        }
+
+    }, time_interval);
+}
 
 // =================== Sync Off ==================================
 app.get('/api/sync_off/', function (req, res) {
@@ -832,6 +914,41 @@ app.get('/api/start/:timer(\\d+)', function (req, res) {
     http.request(options, on_callback).end();
 });
 
+function self_start(){
+    start_status = true;
+    timer = 500;
+    timerate_status = timer;
+    console.log(timer);
+
+    //The url we want is: 'http://127.0.0.1:8080'
+    var options = {
+        host: '127.0.0.1',
+        port: 8080,
+        path: '/start?timer=' + timer
+    };
+
+    var on_callback = function (response) {
+
+        //another chunk of data has been recieved, so append it to `str`
+        response.on('data', function (chunk) {
+            console.log(chunk);
+            res.send('Started !!!');
+
+        });
+
+        response.on('error', function handleRequestError(error) {
+            console.log("Request error:", error);
+            res.send(error);
+        });
+
+        //the whole response has been recieved, so we just print it out here
+        response.on('end', function () {
+
+        });
+    };
+    http.request(options, on_callback).end();
+}
+
 // ================= Stop server from AWID.=======================
 app.get('/api/stop/', function (req, res) {
     start_status = false;
@@ -923,8 +1040,47 @@ function create_db() {
 // ==================== Start node.js server.======================//
 var server = app.listen(10000, function () {
     create_db();
+    var reader_name = '';
+    var mac_address = '';
+    var ip_address = '';
 
     var host = server.address().address;
     var port = server.address().port;
     console.log("Node Server listening at http://%s:%s", host, port)
+    get_show_key(function handleResult(err, result) {
+        if (err) {
+            console.log('Get the show key error.');
+        }
+        else {
+            eshow_flag = result;
+            console.log(eshow_flag);
+        }
+    });
+    get_client_key(function handleResult(err, result) {
+        if (err) {
+            console.log('Get the show key error.');
+        }
+        else {
+            client_key = result;
+            console.log(client_key);
+        }
+    });
+    get_reader_setting(function handleResult(err, result) {
+        if (err) {
+            console.log('Get the show key error.');
+        }
+        else {
+            reader_name = result.reader_name;
+            mac_address = result.mac_address;
+            ip_address = result.ip_address;
+            console.log(eshow_flag);
+        }
+    });
+
+    if (eshow_flag !='' && client_key !='' && reader_name!= '' && ip_address != '' && mac_address != ''){
+        send_device_to_aws(reader_name, mac_address, ip_address);
+        self_start();
+        self_sync();
+    }
+
 });
