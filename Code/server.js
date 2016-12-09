@@ -190,14 +190,14 @@ app.get('/api/device/list/', function (req, res) {
                     send_device_to_aws(reader_name, mac_addr, posts[0].address);
                     console.log('send device information to aws.');
                 }
-                    // All done fetching records, render response
-                    res.set('Content-Type', 'application/json');
-                    res.send(posts);
+                // All done fetching records, render response
+                res.set('Content-Type', 'application/json');
+                res.send(posts);
 
             });
         });
     }
-    catch (e){
+    catch (e) {
         console.log('\r\n', e);
         res.send(e);
     }
@@ -229,7 +229,7 @@ app.get('/api/device/files/', function (req, res) {
             });
         });
     }
-    catch (e){
+    catch (e) {
         console.log('\r\n', e);
         res.send(e);
 
@@ -250,8 +250,8 @@ app.post('/api/add/', function (req, res) {
             var db = new sqlite3.Database(file);
 
             db.run("INSERT into reader_setting (reader_name, mac_address, ip_address, power_level) VALUES (?, ?, ?, ?)",
-                [req.body.name, req.body.mac_address, req.body.address, req.body.power], function(err){
-                    if (err){
+                [req.body.name, req.body.mac_address, req.body.address, req.body.power], function (err) {
+                    if (err) {
                         console.log('add device error');
                         res.send('error to add device');
                     }
@@ -273,7 +273,6 @@ app.post('/api/add/', function (req, res) {
 });
 
 
-
 // ======================== send data to aws =========================//
 function send_device_to_aws(name, mac_address, address) {
     var aws_data_api = 'http://54.175.198.243/api/device/fulfill/';
@@ -284,7 +283,7 @@ function send_device_to_aws(name, mac_address, address) {
         method: 'POST',
         //Lets post the following key/values as form
         json: true,
-        body: {name: name, mac_addr: mac_address, client_key:client_key, show_key: eshow_flag, ip_address: address}
+        body: {name: name, mac_addr: mac_address, client_key: client_key, show_key: eshow_flag, ip_address: address}
     }, function (error, response, body) {
         if (error) {
             console.log(error);
@@ -307,15 +306,15 @@ app.post('/api/update/', function (req, res) {
             var db = new sqlite3.Database(file);
 
             db.run("UPDATE reader_setting set reader_name=?, ip_address=?, power_level=? where mac_address=?",
-                [req.body.name, req.body.address, req.body.power, req.body.mac_address], function (err){
-                  if (err){
-                     console.log('update device error');
-                     res.send('error to update device');
-                  }
-                   else{
-                      send_device_to_aws(req.body.name, req.body.mac_address, req.body.address);
-                      console.log('send device information to aws.');
-                  }
+                [req.body.name, req.body.address, req.body.power, req.body.mac_address], function (err) {
+                    if (err) {
+                        console.log('update device error');
+                        res.send('error to update device');
+                    }
+                    else {
+                        send_device_to_aws(req.body.name, req.body.mac_address, req.body.address);
+                        console.log('send device information to aws.');
+                    }
                 });
             reader_name = req.body.name;
             console.log('Update data Success!');
@@ -773,7 +772,7 @@ app.get('/api/sync_on/', function (req, res) {
     }, time_interval);
 });
 
-function self_sync(){
+function self_sync() {
     console.log('sync on');
     syncon_status = true;
     interval = setInterval(function () {
@@ -916,7 +915,7 @@ app.get('/api/start/:timer(\\d+)', function (req, res) {
     http.request(options, on_callback).end();
 });
 
-function self_start(){
+function self_start() {
     start_status = true;
     timer = 500;
     timerate_status = timer;
@@ -1050,8 +1049,6 @@ var server = app.listen(10000, function () {
     var port = server.address().port;
     console.log("Node Server listening at http://%s:%s", host, port);
     // Array to hold async tasks
-    var promises = [
-
     get_show_key(function handleResult(err, result) {
         if (err) {
             console.log('Get the show key error.');
@@ -1059,48 +1056,39 @@ var server = app.listen(10000, function () {
         else {
             eshow_flag = result;
             console.log(eshow_flag);
-        }
-    }),
-    get_client_key(function handleResult(err, result) {
-        if (err) {
-            console.log('Get the show key error.');
-        }
-        else {
-            client_key = result;
-            console.log(client_key);
-        }
-    }),
-    get_reader_setting(function handleResult(err, result) {
-        if (err) {
-            console.log('Get the show key error.');
-        }
-        else {
-            reader_name = result.reader_name;
-            mac_address = result.mac_address;
-            ip_address = result.ip_address;
-            console.log(eshow_flag);
-        }
-    })
-    ];
+            get_client_key(function handleResult(err, result) {
+                if (err) {
+                    console.log('Get the show key error.');
+                }
+                else {
+                    client_key = result;
+                    console.log(client_key);
+                    get_reader_setting(function handleResult(err, result) {
+                        if (err) {
+                            console.log('Get the show key error.');
+                        }
+                        else {
+                            reader_name = result.reader_name;
+                            mac_address = result.mac_address;
+                            ip_address = result.ip_address;
+                            console.log(eshow_flag);
+                            if (eshow_flag != '' && client_key != '' && reader_name != '' && ip_address != '' && mac_address != '') {
+                                console.log(eshow_flag + ',' + client_key + '' + reader_name + '' + ip_address + '' + mac_address);
+                                send_device_to_aws(reader_name, mac_address, ip_address);
+                                self_start();
+                                self_sync();
+                            }
 
-    Promise.all()(promises).then(function(results) {
-        console.log('results' + results);
-        if (eshow_flag !='' && client_key !='' && reader_name!= '' && ip_address != '' && mac_address != ''){
-        console.log(eshow_flag + ',' + client_key + '' + reader_name + '' + ip_address + '' + mac_address);
-        send_device_to_aws(reader_name, mac_address, ip_address);
-        self_start();
-        self_sync();
-    }
+                            else {
+                                console.log('error' + eshow_flag + ',' + client_key + '' + reader_name + '' + ip_address + '' + mac_address);
+                            }
+                            console.log(start_status + timerate_status + syncon_status);
 
-    else{
-        console.log('error' + eshow_flag + ',' + client_key + '' + reader_name + '' + ip_address + '' + mac_address);
-    }
-    console.log(start_status + timerate_status + syncon_status);
-
-    }, function (err) {
-        console.log(err);
-        
+                        }
+                    });
+                }
+            });
+        }
     });
-
 
 });
