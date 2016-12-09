@@ -14,6 +14,7 @@ var archiver = require('archiver');
 var zipArchive = archiver('zip');
 var dns = require('dns');
 var app = express();
+var Promise = require("promise");
 
 // ============== Define the static directives.===================//
 app.use('/public', express.static('/home/RFID/Code/public'));
@@ -1048,6 +1049,9 @@ var server = app.listen(10000, function () {
     var host = server.address().address;
     var port = server.address().port;
     console.log("Node Server listening at http://%s:%s", host, port);
+    // Array to hold async tasks
+    var promises = [
+
     get_show_key(function handleResult(err, result) {
         if (err) {
             console.log('Get the show key error.');
@@ -1056,7 +1060,7 @@ var server = app.listen(10000, function () {
             eshow_flag = result;
             console.log(eshow_flag);
         }
-    });
+    }),
     get_client_key(function handleResult(err, result) {
         if (err) {
             console.log('Get the show key error.');
@@ -1065,7 +1069,7 @@ var server = app.listen(10000, function () {
             client_key = result;
             console.log(client_key);
         }
-    });
+    }),
     get_reader_setting(function handleResult(err, result) {
         if (err) {
             console.log('Get the show key error.');
@@ -1076,9 +1080,12 @@ var server = app.listen(10000, function () {
             ip_address = result.ip_address;
             console.log(eshow_flag);
         }
-    });
+    })
+    ];
 
-    if (eshow_flag !='' && client_key !='' && reader_name!= '' && ip_address != '' && mac_address != ''){
+    Promise.all()(promises).then(function(results) {
+        console.log('results' + results);
+        if (eshow_flag !='' && client_key !='' && reader_name!= '' && ip_address != '' && mac_address != ''){
         console.log(eshow_flag + ',' + client_key + '' + reader_name + '' + ip_address + '' + mac_address);
         send_device_to_aws(reader_name, mac_address, ip_address);
         self_start();
@@ -1089,5 +1096,11 @@ var server = app.listen(10000, function () {
         console.log('error' + eshow_flag + ',' + client_key + '' + reader_name + '' + ip_address + '' + mac_address);
     }
     console.log(start_status + timerate_status + syncon_status);
+
+    }, function (err) {
+        console.log(err);
+        
+    });
+
 
 });
