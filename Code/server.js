@@ -475,8 +475,9 @@ function get_client_key(callback) {
 // Get the reader_setting from db.
 function get_reader_setting(callback) {
     var db_id = new sqlite3.Database(file);
+    var callbackstring = {};
     db_id.serialize(function () {
-        db_id.each("SELECT * FROM reader_setting WHERE id=1", function (err, row) {
+        db_id.each("SELECT * FROM reader_setting", function (err, row) {
             if (err) {
                 return callback(err);
             }
@@ -1046,7 +1047,7 @@ var server = app.listen(10000, function () {
 
     var host = server.address().address;
     var port = server.address().port;
-    console.log("Node Server listening at http://%s:%s", host, port)
+    console.log("Node Server listening at http://%s:%s", host, port);
     get_show_key(function handleResult(err, result) {
         if (err) {
             console.log('Get the show key error.');
@@ -1078,9 +1079,15 @@ var server = app.listen(10000, function () {
     });
 
     if (eshow_flag !='' && client_key !='' && reader_name!= '' && ip_address != '' && mac_address != ''){
+        console.log(eshow_flag + ',' + client_key + '' + reader_name + '' + ip_address + '' + mac_address);
         send_device_to_aws(reader_name, mac_address, ip_address);
         self_start();
         self_sync();
     }
+
+    else{
+        console.log('error' + eshow_flag + ',' + client_key + '' + reader_name + '' + ip_address + '' + mac_address);
+    }
+    console.log(start_status + timerate_status + syncon_status);
 
 });
