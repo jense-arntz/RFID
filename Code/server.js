@@ -673,13 +673,8 @@ function check_backup() {
         }, function (err) {
             var db_backup_trans = new TransactionDatabase(new sqlite3.Database(file, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
             db_backup_trans.beginTransaction(function (err, transaction) {
-                // Now we are inside a transaction.
                 // Use transaction as normal sqlite3.Database object.
                 transaction.run("DELETE FROM backup");
-                // This will be executed after the transaction is finished.
-
-                // Feel free to do any async operations.
-
                 // Remember to .commit() or .rollback()
                 transaction.commit(function (err) {
                     if (err)
@@ -697,9 +692,7 @@ function check_backup() {
             });
             console.log(posts.length);
             return posts;
-
         });
-
     });
 }
 
