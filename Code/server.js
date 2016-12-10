@@ -670,18 +670,48 @@ function check_backup() {
                 posts.push(row.filepath);
                 console.log(row.filepath);
             }
+        }, function (err) {
+            var db_backup_trans = new TransactionDatabase(new sqlite3.Database(file, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
+            db_backup_trans.beginTransaction(function (err, transaction) {
+                // Now we are inside a transaction.
+                // Use transaction as normal sqlite3.Database object.
+                transaction.run("DELETE FROM backup");
+                // This will be executed after the transaction is finished.
+
+                // Feel free to do any async operations.
+
+                // Remember to .commit() or .rollback()
+                transaction.commit(function (err) {
+                    if (err)
+                        console.log("Sad panda :-( commit() failed.", err);
+                    else {
+                        console.log("Happy panda :-) commit() was successful.");
+                        var db = new sqlite3.Database(file);
+                        db.run("VACUUM", function (error) {
+                            if (error)
+                                console.log(error);
+                        });
+                        console.log('Clear Table backup data');
+                    }
+                });
+            });
+            console.log(posts.length);
+            return posts;
+
         });
 
     });
-    console.log(posts.length);
-    return posts;
 }
 
 
 function save_backup(filepath) {
     var db_backup = new sqlite3.Database(file);
 
-    db_backup.run("INSERT into backup (filepath) VALUES (?)", filepath);
+    db_backup.run("INSERT into backup (filepath) VALUES (?)", filepath, function (err) {
+        if (err)
+            console.log('save_backup' + err);
+
+    });
 
     console.log('save backup : ' + filepath);
 }
@@ -766,7 +796,7 @@ app.get('/api/sync_on/', function (req, res) {
         catch (e) {
             console.log('sync on error');
             console.log('\r\n', e);
-            // res.send('Sync on Error.')
+            res.send('Sync on Error.')
         }
 
     }, time_interval);
@@ -787,7 +817,7 @@ function self_sync() {
         try {
             if (!exists_streaming_db) {
                 console.log('no streaming.db file exists.');
-                res.send('No DB File to transfer.');
+                console.log('No DB File to transfer.');
             }
             else {
                 console.log("table exists");
@@ -810,7 +840,7 @@ function self_sync() {
                 console.log('sync on succesfull');
 
                 sleep.sleep(5);
-                res.send('Sync on Successful.');
+                console.log('Sync on Successful.');
             }
         }
         catch (e) {
@@ -918,6 +948,7 @@ app.get('/api/start/:timer(\\d+)', function (req, res) {
 function self_start() {
     start_status = true;
     timer = 500;
+    calculate_alive_time();
     timerate_status = timer;
     console.log(timer);
 
@@ -933,13 +964,11 @@ function self_start() {
         //another chunk of data has been recieved, so append it to `str`
         response.on('data', function (chunk) {
             console.log(chunk);
-            res.send('Started !!!');
 
         });
 
         response.on('error', function handleRequestError(error) {
             console.log("Request error:", error);
-            res.send(error);
         });
 
         //the whole response has been recieved, so we just print it out here
