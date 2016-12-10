@@ -669,7 +669,7 @@ function check_backup() {
             }
             else {
                 posts.push(row.filepath);
-                console.log(row.filepath);
+                console.log('row filepath' + row.filepath);
             }
         }, function (err) {
             var db_backup_trans = new TransactionDatabase(new sqlite3.Database(file, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
@@ -692,7 +692,7 @@ function check_backup() {
                 });
             });
 
-            console.log(posts.length);
+            console.log('posts length' + posts.length);
             return posts;
         });
 
