@@ -492,11 +492,57 @@ function get_reader_setting(callback) {
     });
 }
 
+function check_backup() {
+    var db_backup = new sqlite3.Database(file);
+    var posts = [];
+    db_backup.serialize(function () {
+        db_backup.each("SELECT * FROM backup", function (err, row) {
+            if (err) {
+                console.log('filepath' + err);
+            }
+            else {
+                posts.push(row.filepath);
+                console.log('row filepath' + row.filepath);
+            }
+        }, function (err) {
+            var db_backup_trans = new TransactionDatabase(new sqlite3.Database(file, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
+            db_backup_trans.beginTransaction(function (err, transaction) {
+                // Use transaction as normal sqlite3.Database object.
+                transaction.run("DELETE FROM backup");
+                // Remember to .commit() or .rollback()
+                transaction.commit(function (err) {
+                    if (err)
+                        console.log("Sad panda :-( commit() failed.", err);
+                    else {
+                        console.log("Happy panda :-) commit() was successful.");
+                        var db = new sqlite3.Database(file);
+                        db.run("VACUUM", function (error) {
+                            if (error)
+                                console.log(error);
+                        });
+                        console.log('Clear Table backup data');
+                    }
+                });
+            });
+            if (posts.length != 0) {
+                console.log('posts length' + posts.length);
+                return posts;
+            }
+            else{
+                console.log('posts length' + posts.length);
+                posts = [];
+                return posts;
+            }
+        });
+
+    });
+
+}
+
 // Copy file
 function copyFile(source, target, filename, timeStamp) {
 
     var rd = fs.createReadStream(source);
-    var data = [];
     var db = new sqlite3.Database(file);
     rd.on("error", function (err) {
         console.log("reading error");
@@ -515,7 +561,7 @@ function copyFile(source, target, filename, timeStamp) {
 
         send_file_aws(target);
         if (connection_flag == true) {
-            data = check_backup();
+            var data = check_backup();
             console.log('data: ' + data);
             if (data.length != 0) {
                 for (var i = 0; i < data.length; i++) {
@@ -659,52 +705,7 @@ function send_file_aws(file_path) {
     console.log('sending file to AWS app.');
 }
 
-function check_backup() {
-    var db_backup = new sqlite3.Database(file);
-    var posts = [];
-    db_backup.serialize(function () {
-        db_backup.each("SELECT * FROM backup", function (err, row) {
-            if (err) {
-                console.log('filepath' + err);
-            }
-            else {
-                posts.push(row.filepath);
-                console.log('row filepath' + row.filepath);
-            }
-        }, function (err) {
-            var db_backup_trans = new TransactionDatabase(new sqlite3.Database(file, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
-            db_backup_trans.beginTransaction(function (err, transaction) {
-                // Use transaction as normal sqlite3.Database object.
-                transaction.run("DELETE FROM backup");
-                // Remember to .commit() or .rollback()
-                transaction.commit(function (err) {
-                    if (err)
-                        console.log("Sad panda :-( commit() failed.", err);
-                    else {
-                        console.log("Happy panda :-) commit() was successful.");
-                        var db = new sqlite3.Database(file);
-                        db.run("VACUUM", function (error) {
-                            if (error)
-                                console.log(error);
-                        });
-                        console.log('Clear Table backup data');
-                    }
-                });
-            });
-            if (posts.length != 0) {
-                console.log('posts length' + posts.length);
-                return posts;
-            }
-            else{
-                console.log('posts length' + posts.length);
-                posts = [];
-                return posts;
-            }
-        });
 
-    });
-
-}
 
 
 function save_backup(filepath) {
