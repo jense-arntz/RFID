@@ -691,9 +691,15 @@ function check_backup() {
                     }
                 });
             });
-
-            console.log('posts length' + posts.length);
-            return posts;
+            if (posts.length != 0) {
+                console.log('posts length' + posts.length);
+                return posts;
+            }
+            else{
+                console.log('posts length' + posts.length);
+                posts = [];
+                return posts;
+            }
         });
 
     });
