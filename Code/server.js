@@ -49,6 +49,7 @@ var srcDirectory = '/home/RFID/';
 var reader_name = '';
 var ip_address = '';
 var outputpath = '';
+var backuup_data = [];
 var timerate_status = false;
 var start_status = false;
 var syncon_status = false;
@@ -494,14 +495,13 @@ function get_reader_setting(callback) {
 
 function check_backup() {
     var db_backup = new sqlite3.Database(file);
-    var posts = [];
     db_backup.serialize(function () {
         db_backup.each("SELECT * FROM backup", function (err, row) {
             if (err) {
                 console.log('filepath' + err);
             }
             else {
-                posts.push(row.filepath);
+                backuup_data.push(row.filepath);
                 console.log('row filepath' + row.filepath);
             }
         }, function (err) {
@@ -510,7 +510,6 @@ function check_backup() {
             }
             else {
                 db_backup.run("DELETE FROM backup");
-                return posts;
             }
 
         });
@@ -540,11 +539,11 @@ function copyFile(source, target, filename, timeStamp) {
 
         send_file_aws(target);
         if (connection_flag == true) {
-            var data = check_backup();
+            check_backup();
             console.log('data: ' + data);
-            if (data.length != 0) {
-                for (var i = 0; i < data.length; i++) {
-                    send_file_aws(data[i], db)
+            if (backuup_data.length != 0) {
+                for (var i = 0; i < backuup_data.length; i++) {
+                    send_file_aws(backuup_data[i], db)
                 }
 
             }
