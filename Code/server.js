@@ -690,10 +690,13 @@ function check_backup() {
                     }
                 });
             });
+
             console.log(posts.length);
             return posts;
         });
+
     });
+
 }
 
 
