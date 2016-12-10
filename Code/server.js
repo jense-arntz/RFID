@@ -505,36 +505,15 @@ function check_backup() {
                 console.log('row filepath' + row.filepath);
             }
         }, function (err) {
-            var db_backup_trans = new TransactionDatabase(new sqlite3.Database(file, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
-            db_backup_trans.beginTransaction(function (err, transaction) {
-                // Use transaction as normal sqlite3.Database object.
-                transaction.run("DELETE FROM backup");
-                // Remember to .commit() or .rollback()
-                transaction.commit(function (err) {
-                    if (err)
-                        console.log("Sad panda :-( commit() failed.", err);
-                    else {
-                        console.log("Happy panda :-) commit() was successful.");
-                        var db = new sqlite3.Database(file);
-                        db.run("VACUUM", function (error) {
-                            if (error)
-                                console.log(error);
-                        });
-                        console.log('Clear Table backup data');
-                    }
-                });
-            });
-            if (posts.length != 0) {
-                console.log('posts length' + posts.length);
+            if (err) {
+                console.log('dbbackup error' + err);
+            }
+            else {
+                db_backup.run("DELETE FROM backup");
                 return posts;
             }
-            else{
-                console.log('posts length' + posts.length);
-                posts = [];
-                return posts;
-            }
-        });
 
+        });
     });
 
 }
@@ -704,8 +683,6 @@ function send_file_aws(file_path) {
     });
     console.log('sending file to AWS app.');
 }
-
-
 
 
 function save_backup(filepath) {
