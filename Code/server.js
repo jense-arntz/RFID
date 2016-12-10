@@ -47,6 +47,7 @@ var time_interval = 10000;
 var clock_interval = 5000;
 var srcDirectory = '/home/RFID/';
 var reader_name = '';
+var ip_address = '';
 var outputpath = '';
 var timerate_status = false;
 var start_status = false;
@@ -1031,7 +1032,7 @@ function send_data_aws() {
         method: 'POST',
         //Lets post the following key/values as form
         json: true,
-        body: {alive_time: mac_addr}
+        body: {mac_address: mac_addr}
     }, function (error, response, body) {
         if (error) {
             console.log(error);
@@ -1066,8 +1067,7 @@ function create_db() {
 // ==================== Start node.js server.======================//
 var server = app.listen(10000, function () {
     create_db();
-    var reader_name = '';
-    var mac_address = '';
+
     var ip_address = '';
 
     var host = server.address().address;
@@ -1094,18 +1094,18 @@ var server = app.listen(10000, function () {
                         }
                         else {
                             reader_name = result.reader_name;
-                            mac_address = result.mac_address;
+                            mac_addr = result.mac_address;
                             ip_address = result.ip_address;
                             console.log(eshow_flag);
-                            if (eshow_flag != '' && client_key != '' && reader_name != '' && ip_address != '' && mac_address != '') {
-                                console.log(eshow_flag + ',' + client_key + '' + reader_name + '' + ip_address + '' + mac_address);
-                                send_device_to_aws(reader_name, mac_address, ip_address);
+                            if (eshow_flag != '' && client_key != '' && reader_name != '' && ip_address != '' && mac_addr != '') {
+                                console.log(eshow_flag + ',' + client_key + '' + reader_name + '' + ip_address + '' + mac_addr);
+                                send_device_to_aws(reader_name, mac_addr, ip_address);
                                 self_start();
                                 self_sync();
                             }
 
                             else {
-                                console.log('error' + eshow_flag + ',' + client_key + '' + reader_name + '' + ip_address + '' + mac_address);
+                                console.log('error' + eshow_flag + ',' + client_key + '' + reader_name + '' + ip_address + '' + mac_addr);
                             }
                             console.log(start_status + timerate_status + syncon_status);
 
