@@ -659,6 +659,7 @@ function send_file_aws(file_path) {
             // Now we are inside a transaction.
             // Use transaction as normal sqlite3.Database object.
             transaction.run("DELETE FROM reader");
+            transaction.run("VACUUM");
             // This will be executed after the transaction is finished.
 
             // Feel free to do any async operations.
@@ -669,16 +670,6 @@ function send_file_aws(file_path) {
                     console.log("Sad panda :-( commit() failed.", err);
                 else {
                     console.log("Happy panda :-) commit() was successful.");
-                    db_streaming.beginTransaction(function (err, transaction) {
-                        transaction.run("VACUUM");
-                        transaction.commit(function (err) {
-                            if (err)
-                                console.log("VACUUM ERROR", err);
-                            else
-                                console.log("VACUUM Success");
-
-                        });
-                    });
                 }
             });
         });
