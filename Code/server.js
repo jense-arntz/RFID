@@ -41,7 +41,7 @@ var eshow_key = '';
 var client_key = '';
 var file_path = '';
 var mac_addr = '';
-var interval;
+var interval = null;
 var clock;
 var time_interval = 10000;
 var clock_interval = 5000;
@@ -540,7 +540,7 @@ function copyFile(source, target, filename, timeStamp) {
         send_file_aws(target);
         if (connection_flag == true) {
             check_backup();
-            console.log('data: ' + data);
+            console.log('data: ' + backuup_data);
             if (backuup_data.length != 0) {
                 for (var i = 0; i < backuup_data.length; i++) {
                     send_file_aws(backuup_data[i], db)
@@ -669,12 +669,16 @@ function send_file_aws(file_path) {
                     console.log("Sad panda :-( commit() failed.", err);
                 else {
                     console.log("Happy panda :-) commit() was successful.");
-                    var db = new sqlite3.Database(file_streaming);
-                    db.run("VACUUM", function (error) {
-                        if (error)
-                            console.log(error);
+                    db_streaming.beginTransaction(function (err, transaction) {
+                        transaction.run("VACUUM");
+                        transaction.commit(function (err) {
+                            if (err)
+                                console.log("VACUUM ERROR", err);
+                            else
+                                console.log("VACUUM Success");
+
+                        });
                     });
-                    console.log('Clear Table reader data');
                 }
             });
         });
@@ -826,7 +830,6 @@ function self_sync() {
         catch (e) {
             console.log('sync on error');
             console.log('\r\n', e);
-            // res.send('Sync on Error.')
         }
 
     }, time_interval);
@@ -837,6 +840,7 @@ app.get('/api/sync_off/', function (req, res) {
     console.log('sync off');
     syncon_status = false;
     clearInterval(interval);
+    interval = null;
     res.send('sync off');
 });
 
