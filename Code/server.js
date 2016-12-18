@@ -542,8 +542,9 @@ function copyFile(source, target, filename, timeStamp) {
             check_backup();
             console.log('data: ' + backuup_data);
             if (backuup_data.length != 0) {
+                console.log("backing up");
                 for (var i = 0; i < backuup_data.length; i++) {
-                    send_file_aws(backuup_data[i], db)
+                    send_file_aws(backuup_data[i])
                 }
 
             }
@@ -660,7 +661,7 @@ function send_file_aws(file_path) {
             // Use transaction as normal sqlite3.Database object.
             transaction.run("DELETE FROM reader");
             // This will be executed after the transaction is finished.
-
+            console.log("Reader table deleting in transaction");
             // Feel free to do any async operations.
 
             // Remember to .commit() or .rollback()
@@ -671,6 +672,7 @@ function send_file_aws(file_path) {
                     console.log("Happy panda :-) commit() was successful.");
                     var db = new sqlite3.Database(file_streaming);
                     db.run("VACUUM", function (error) {
+                        console.log("vaccumm running");
                         if (error)
                             console.log(error);
                     });
@@ -678,9 +680,9 @@ function send_file_aws(file_path) {
                 }
             });
         });
-
+         console.log('sent file to AWS app.');
     });
-    console.log('sending file to AWS app.');
+
 }
 
 
@@ -820,7 +822,6 @@ function self_sync() {
                 console.log('sync on succesfull');
 
                 sleep.sleep(5);
-                console.log('Sync on Successful.');
             }
         }
         catch (e) {
