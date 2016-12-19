@@ -53,7 +53,7 @@ var backuup_data = [];
 var timerate_status = false;
 var start_status = false;
 var syncon_status = false;
-
+var counter = 0;
 // ========================= Pages ========================//
 
 // index.html
@@ -514,7 +514,6 @@ function check_backup() {
 
         });
     });
-
 }
 
 // Copy file
@@ -660,6 +659,7 @@ function send_file_aws(file_path) {
             // Now we are inside a transaction.
             // Use transaction as normal sqlite3.Database object.
             transaction.run("DELETE FROM reader");
+
             // This will be executed after the transaction is finished.
             console.log("Reader table deleting in transaction");
             // Feel free to do any async operations.
@@ -670,13 +670,16 @@ function send_file_aws(file_path) {
                     console.log("Sad panda :-( commit() failed.", err);
                 else {
                     console.log("Happy panda :-) commit() was successful.");
-                    var db = new sqlite3.Database(file_streaming);
-                    db.run("VACUUM", function (error) {
-                        console.log("vaccumm running");
-                        if (error)
-                            console.log(error);
-                    });
-                    console.log('Clear Table reader data');
+                    if (counter/30 == 0) {
+                        var db = new sqlite3.Database(file_streaming);
+                        db.run("VACUUM", function (error) {
+                            console.log("vaccumm running");
+                            if (error)
+                                console.log(error);
+                        });
+                        console.log('Clear Table reader data');
+                    }
+                    counter = counter + 1;
                 }
             });
         });
