@@ -667,10 +667,13 @@ function send_file_aws(file_path) {
 
                 // Remember to .commit() or .rollback()
                 transaction.commit(function (err) {
-                    transaction.end();
+
                     if (err)
                         console.log("Sad panda :-( commit() failed.", err);
                     else {
+                        db_streaming.endtransiaction(function (err) {
+                        console.log(err)
+                    });
                         console.log("Happy panda :-) commit() was successful.");
                         var db = new sqlite3.Database(file_streaming);
 
