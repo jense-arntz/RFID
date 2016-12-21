@@ -671,26 +671,11 @@ function send_file_aws(file_path) {
                     if (err)
                         console.log("Sad panda :-( commit() failed.", err);
                     else {
-                        db_streaming.endtransiaction(function (err) {
-                        console.log(err)
-                    });
                         console.log("Happy panda :-) commit() was successful.");
-                        var db = new sqlite3.Database(file_streaming);
-
-                        db.run("VACUUM", function (error) {
-                            console.log("vaccumm running");
-
-                            if (error) {
-                                console.log(error);
-                            }
-
-                            db.close();
-                        });
-
-                        console.log('Clear Table reader data');
                     }
                 });
             });
+
             console.log('sent file to AWS app.');
 
         }
@@ -700,7 +685,23 @@ function send_file_aws(file_path) {
     });
 }
 
+function vacuum_db() {
 
+    var db = new sqlite3.Database(file_streaming);
+
+    db.run("VACUUM", function (error) {
+        console.log("vaccumm running");
+
+        if (error) {
+            console.log(error);
+        }
+
+        db.close();
+    });
+
+    console.log('Clear Table reader data');
+
+}
 function save_backup(filepath) {
     var db_backup = new sqlite3.Database(file);
 
@@ -754,6 +755,7 @@ app.get('/api/sync_on/', function (req, res) {
     syncon_status = true;
     interval = setInterval(function () {
         console.log("Got a Sync on request from the homepage");
+        vacuum_db();
         get_show_key(function handleResult(err, result) {
             if (err) {
                 console.log('Get the show key error.');
