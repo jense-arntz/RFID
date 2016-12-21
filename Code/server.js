@@ -670,7 +670,7 @@ function send_file_aws(file_path) {
                     console.log("Sad panda :-( commit() failed.", err);
                 else {
                     console.log("Happy panda :-) commit() was successful.");
-                    if (counter/30 == 0) {
+                    if (counter/2 == 0) {
                         try {
                             var db = new sqlite3.Database(file_streaming);
 
