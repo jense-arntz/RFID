@@ -654,43 +654,47 @@ function send_file_aws(file_path) {
             save_backup(file_path);
             return;
         }
-        var db_streaming = new TransactionDatabase(new sqlite3.Database(file_streaming, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
-        db_streaming.beginTransaction(function (err, transaction) {
-            // Now we are inside a transaction.
-            // Use transaction as normal sqlite3.Database object.
-            transaction.run("DELETE FROM reader");
+        try {
+            var db_streaming = new TransactionDatabase(new sqlite3.Database(file_streaming, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
+            db_streaming.beginTransaction(function (err, transaction) {
+                // Now we are inside a transaction.
+                // Use transaction as normal sqlite3.Database object.
+                transaction.run("DELETE FROM reader");
 
-            // This will be executed after the transaction is finished.
-            console.log("Reader table deleting in transaction");
-            // Feel free to do any async operations.
+                // This will be executed after the transaction is finished.
+                console.log("Reader table deleting in transaction");
+                // Feel free to do any async operations.
 
-            // Remember to .commit() or .rollback()
-            transaction.commit(function (err) {
-                if (err)
-                    console.log("Sad panda :-( commit() failed.", err);
-                else {
-                    console.log("Happy panda :-) commit() was successful.");
-
+                // Remember to .commit() or .rollback()
+                transaction.commit(function (err) {
+                    transaction.end();
+                    if (err)
+                        console.log("Sad panda :-( commit() failed.", err);
+                    else {
+                        console.log("Happy panda :-) commit() was successful.");
                         var db = new sqlite3.Database(file_streaming);
+
                         db.run("VACUUM", function (error) {
                             console.log("vaccumm running");
-                            try {
-                                if (error) {
-                                    console.log(error);
-                                }
-                            }
-                            catch (error) {
-                                console.log('ended db file');
-                                db.close();
-                            }
-                        });
-                        console.log('Clear Table reader data');
-                }
-            });
-        });
-         console.log('sent file to AWS app.');
-    });
 
+                            if (error) {
+                                console.log(error);
+                            }
+
+                            db.close();
+                        });
+
+                        console.log('Clear Table reader data');
+                    }
+                });
+            });
+            console.log('sent file to AWS app.');
+
+        }
+        catch (error) {
+            console.log('transaction', error)
+        }
+    });
 }
 
 
