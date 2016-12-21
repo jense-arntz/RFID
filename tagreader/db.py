@@ -18,12 +18,14 @@ class reader_db():
         if os.path.isfile('/home/RFID/reader.db'):
             self.db_file = '/home/RFID/reader.db'
             self.con = sqlite.connect(self.db_file)
+            self.con.isolation_level = None
             self.table_name = 'reader'
             self.cur = self.con.cursor()
         else:
             self.create_db()
             self.db_file = '/home/RFID/reader.db'
             self.con = sqlite.connect(self.db_file)
+            self.con.isolation_level = None
             self.table_name = 'reader'
             self.cur = self.con.cursor()
 
@@ -80,13 +82,15 @@ class reader_db():
 
             sql = 'INSERT INTO {table_name}(show_key, client_key, reader_name, mac_address, card_data, ' \
                   'timestamp, antenna, custom_field) VALUES(?,?,?,?,?,?,?,?)'.format(table_name=self.table_name)
+            self.cur.execute('begin')
             self.cur.execute(sql, (data['show_key'], data['client_key'], data['reader_name'], data['mac_address'],
                                    card_data, timestamp, antenna, Custom_data))
-            self.con.commit()
+
+            self.con.execute('commit')
 
         except Exception as e:
             print 'db exception : {}'.format(e)
-            self.con.rollback()
+            self.con.execute('rollback')
 
     def del_db(self):
         """
