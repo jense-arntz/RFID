@@ -671,13 +671,19 @@ function send_file_aws(file_path) {
                 else {
                     console.log("Happy panda :-) commit() was successful.");
                     if (counter/30 == 0) {
-                        var db = new sqlite3.Database(file_streaming);
+                        try {
+                            var db = new sqlite3.Database(file_streaming);
+
                         db.run("VACUUM", function (error) {
                             console.log("vaccumm running");
                             if (error)
                                 console.log(error);
                         });
                         console.log('Clear Table reader data');
+                            }
+                        catch (e){
+                            console.log(e);
+                        }
                     }
                     counter = counter + 1;
                 }
