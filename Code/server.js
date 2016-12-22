@@ -663,7 +663,7 @@ function send_file_aws(file_path) {
                 // This will be executed after the transaction is finished.
                 console.log("Reader table deleting in transaction");
                 // Feel free to do any async operations.
-
+                vacuum_db();
                 // Remember to .commit() or .rollback()
                 transaction.commit(function (err) {
 
@@ -671,12 +671,10 @@ function send_file_aws(file_path) {
                         console.log("Sad panda :-( commit() failed.", err);
                     else {
                         console.log("Happy panda :-) commit() was successful.");
-                        vacuum_db();
+
                     }
                 });
             });
-
-            console.log('sent file to AWS app.');
 
         }
         catch (er) {
@@ -688,7 +686,7 @@ function send_file_aws(file_path) {
 function vacuum_db() {
 
     try {
-        db_streaming.run("VACUUM", function (error) {
+        db_stream.run("VACUUM", function (error) {
             console.log("vaccumm running");
 
             if (error) {
