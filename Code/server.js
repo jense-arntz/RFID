@@ -671,6 +671,7 @@ function send_file_aws(file_path) {
                         console.log("Sad panda :-( commit() failed.", err);
                     else {
                         console.log("Happy panda :-) commit() was successful.");
+                        vacuum_db();
                     }
                 });
             });
@@ -693,19 +694,16 @@ function vacuum_db() {
             console.log(error);
         }
     });
-
     console.log('Clear Table reader data');
-
 }
+
 function save_backup(filepath) {
     var db_backup = new sqlite3.Database(file);
 
     db_backup.run("INSERT into backup (filepath) VALUES (?)", filepath, function (err) {
         if (err)
             console.log('save_backup' + err);
-
     });
-
     console.log('save backup : ' + filepath);
 }
 
@@ -749,7 +747,7 @@ app.get('/api/sync_on/', function (req, res) {
     syncon_status = true;
     interval = setInterval(function () {
         console.log("Got a Sync on request from the homepage");
-        vacuum_db();
+        //vacuum_db();
         get_show_key(function handleResult(err, result) {
             if (err) {
                 console.log('Get the show key error.');
@@ -800,7 +798,6 @@ function self_sync() {
     syncon_status = true;
     interval = setInterval(function () {
         console.log("Got a Sync on request from the homepage");
-        vacuum_db();
         get_show_key(function handleResult(err, result) {
             if (err) {
                 console.log('Get the show key error.');
@@ -834,6 +831,7 @@ function self_sync() {
                 console.log('sync on succesfull');
 
                 sleep.sleep(5);
+                //vacuum_db();
             }
         }
         catch (e) {
