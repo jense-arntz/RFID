@@ -655,26 +655,36 @@ function send_file_aws(file_path) {
         }
         try {
             
-            db_stream.beginTransaction(function (err, transaction) {
-                // Now we are inside a transaction.
-                // Use transaction as normal sqlite3.Database object.
-                transaction.run("DELETE FROM reader");
+            // db_stream.beginTransaction(function (err, transaction) {
+            //     // Now we are inside a transaction.
+            //     // Use transaction as normal sqlite3.Database object.
+            //     transaction.run("DELETE FROM reader");
+            //
+            //     // This will be executed after the transaction is finished.
+            //     console.log("Reader table deleting in transaction");
+            //     // Feel free to do any async operations.
+            //     vacuum_db();
+            //     // Remember to .commit() or .rollback()
+            //     transaction.commit(function (err) {
+            //
+            //         if (err)
+            //             console.log("Sad panda :-( commit() failed.", err);
+            //         else {
+            //             console.log("Happy panda :-) commit() was successful.");
+            //
+            //         }
+            //     });
+            // });
 
-                // This will be executed after the transaction is finished.
-                console.log("Reader table deleting in transaction");
-                // Feel free to do any async operations.
+            db_streaming.run("DELETE FROM reader", function (error) {
+            console.log("deleting running");
+
+            if (error) {
+                console.log(error);
                 vacuum_db();
-                // Remember to .commit() or .rollback()
-                transaction.commit(function (err) {
-
-                    if (err)
-                        console.log("Sad panda :-( commit() failed.", err);
-                    else {
-                        console.log("Happy panda :-) commit() was successful.");
-
-                    }
-                });
-            });
+            }
+        });
+        console.log('Delete Table reader data');
 
         }
         catch (er) {
@@ -686,7 +696,7 @@ function send_file_aws(file_path) {
 function vacuum_db() {
 
     try {
-        db_stream.run("VACUUM", function (error) {
+        db_streaming.run("VACUUM", function (error) {
             console.log("vaccumm running");
 
             if (error) {
