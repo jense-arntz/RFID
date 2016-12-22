@@ -97,11 +97,17 @@ class reader_db():
         :param EPC:
         :return:
         """
+
         self.exist_db()
-        sql = 'DELETE FROM {table_name}'.format(table_name=self.table_name)
-        print 'reg_no None'
-        self.cur.execute(sql)
-        self.con.commit()
+        try:
+            sql = 'DELETE FROM {table_name}'.format(table_name=self.table_name)
+            print 'reg_no None'
+            self.cur.execute(sql)
+            self.cur.execute('VACUUM')
+            self.con.commit()
+        except Exception as e:
+            print 'deleting db Exception: {}'.format(e)
+            self.con.rollback()
 
     def update_db(self, card_data, timestamp, Name=None):
         """

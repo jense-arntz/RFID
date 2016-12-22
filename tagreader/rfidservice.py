@@ -101,12 +101,27 @@ class HttpHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             print(e)
             self._send_json(json.dumps({'result': 0, 'message': 'error'}))
 
+    # Receive delete request from node js server.
+    def do_delete(self, postvars):
+        print ('do_delete')
+        print 'postvars: {}'.format(postvars)
+        try:
+            db.del_db()
+            self._send_json(json.dumps({'result': 0, 'message': 'ok'}))
+        except Exception, e:
+            print(e)
+            self._send_json(json.dumps({'result': 0, 'message': 'error'}))
+        except IOError as e:
+            print(e)
+            self._send_json(json.dumps({'result': 0, 'message': 'error'}))
+
     # Run when request method is Get.
     def do_GET(self):
         try:
             GETMAP = {
                 "/start": self.do_start,
-                "/stop": self.do_stop
+                "/stop": self.do_stop,
+                "/delete": self.do_delete,
             }
 
             parsed = urlparse(self.path)
@@ -125,7 +140,8 @@ class HttpHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         try:
             POSTMAP = {
                 "/start": self.do_start,
-                "/stop": self.do_stop
+                "/stop": self.do_stop,
+                "/delete": self.do_delete,
             }
 
             parsed = urlparse(self.path)
