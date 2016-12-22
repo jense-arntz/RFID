@@ -33,8 +33,8 @@ var exists = fs.existsSync(file);
 var exists_streaming_db = fs.existsSync(file_streaming);
 var sqlite3 = require("sqlite3").verbose();
 var TransactionDatabase = require("sqlite3-transactions").TransactionDatabase;
-
-
+var db_stream = new TransactionDatabase(new sqlite3.Database(file_streaming, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
+var db_streaming = new sqlite3.Database(file_streaming);
 var connection_flag = true;
 var eshow_flag = '';
 var eshow_key = '';
@@ -581,7 +581,6 @@ function getFilesizeInBytes(filepath) {
 
 // ========================Delete the db and transfer the db file to main server.==============
 app.get('/api/transfer/', function (req, res) {
-    var db_streaming = new sqlite3.Database(file_streaming);
     get_show_key(function handleResult(err, result) {
         if (err) {
             console.log('Get the show key error.');
@@ -655,8 +654,8 @@ function send_file_aws(file_path) {
             return;
         }
         try {
-            var db_streaming = new TransactionDatabase(new sqlite3.Database(file_streaming, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
-            db_streaming.beginTransaction(function (err, transaction) {
+            
+            db_stream.beginTransaction(function (err, transaction) {
                 // Now we are inside a transaction.
                 // Use transaction as normal sqlite3.Database object.
                 transaction.run("DELETE FROM reader");
@@ -687,16 +686,12 @@ function send_file_aws(file_path) {
 
 function vacuum_db() {
 
-    var db = new sqlite3.Database(file_streaming);
-
-    db.run("VACUUM", function (error) {
+    db_streaming.run("VACUUM", function (error) {
         console.log("vaccumm running");
 
         if (error) {
             console.log(error);
         }
-
-        db.close();
     });
 
     console.log('Clear Table reader data');
@@ -717,7 +712,6 @@ function save_backup(filepath) {
 // ====================== Streaming Data from db. ======================
 app.get('/api/stream/', function (req, res) {
     console.log("Got a Stream request for the homepage");
-    var db_streaming = new sqlite3.Database(file_streaming);
     var posts = [];
     db_streaming.serialize(function () {
         db_streaming.each("SELECT * FROM reader", function (err, row) {
@@ -806,6 +800,7 @@ function self_sync() {
     syncon_status = true;
     interval = setInterval(function () {
         console.log("Got a Sync on request from the homepage");
+        vacuum_db();
         get_show_key(function handleResult(err, result) {
             if (err) {
                 console.log('Get the show key error.');
@@ -863,7 +858,6 @@ app.get('/api/sync_manual/', function (req, res) {
     console.log('sync manual');
 
     console.log("Got a sync manual request from the homepage");
-    var db_streaming = new sqlite3.Database(file_streaming);
     get_show_key(function handleResult(err, result) {
         if (err) {
             console.log('Get the show key error.');
