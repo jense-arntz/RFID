@@ -679,22 +679,27 @@ function send_file_aws(file_path) {
             console.log('sent file to AWS app.');
 
         }
-        catch (error) {
-            console.log('transaction', error)
+        catch (er) {
+            console.log('transaction', er)
         }
     });
 }
 
 function vacuum_db() {
 
-    db_streaming.run("VACUUM", function (error) {
-        console.log("vaccumm running");
+    try {
+        db_streaming.run("VACUUM", function (error) {
+            console.log("vaccumm running");
 
-        if (error) {
-            console.log(error);
-        }
-    });
-    console.log('Clear Table reader data');
+            if (error) {
+                console.log(error);
+            }
+        });
+        console.log('Clear Table reader data');
+    }
+    catch(err){
+        console.log('error', err);
+    }
 }
 
 function save_backup(filepath) {
