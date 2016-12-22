@@ -33,7 +33,7 @@ var exists = fs.existsSync(file);
 var exists_streaming_db = fs.existsSync(file_streaming);
 var sqlite3 = require("sqlite3").verbose();
 var TransactionDatabase = require("sqlite3-transactions").TransactionDatabase;
-var db_stream = new TransactionDatabase(new sqlite3.Database(file_streaming, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
+// var db_stream = new TransactionDatabase(new sqlite3.Database(file_streaming, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
 var db_streaming = new sqlite3.Database(file_streaming);
 var connection_flag = true;
 var eshow_flag = '';
@@ -681,8 +681,9 @@ function send_file_aws(file_path) {
 
             if (error) {
                 console.log(error);
-                vacuum_db();
+
             }
+            vacuum_db();
         });
         console.log('Delete Table reader data');
 
