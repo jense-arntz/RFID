@@ -369,7 +369,7 @@ app.post('/api/delete/', function (req, res) {
 function send_device_to_aws(name, mac_address, address) {
     try {
         var aws_data_api = 'http://54.175.198.243/api/device/fulfill/';
-        console.log('send_file_aws: ' + aws_data_api);
+        console.log('send_device_aws: ' + aws_data_api);
         console.log('mac_address: ' + mac_addr + 'name: ' + name + 'address: ' + address);
         request({
             url: aws_data_api,
@@ -905,7 +905,7 @@ app.get('/api/sync_on/', function (req, res) {
         catch (e) {
             console.log('sync on error');
             console.log('\r\n', e);
-            res.send('Sync on Error.')
+            //res.send('Sync on Error.')
         }
 
     }, time_interval);
@@ -1150,7 +1150,7 @@ function calculate_alive_time() {
 // ======================== send data to aws =========================//
 function send_data_aws() {
     var aws_data_api = 'http://54.175.198.243/api/update/status/' + mac_addr + '/';
-    console.log('send_file_aws: ' + aws_data_api);
+    console.log('send_status_aws: ' + aws_data_api);
     console.log('mac_address: ' + mac_addr);
     try {
         request({
