@@ -127,7 +127,7 @@ app.get('/api/id/', function (req, res) {
     }
     catch (e){
         console.log(e);
-        db_setting.close();
+
         res.send(e);
     }
 });
@@ -157,7 +157,7 @@ app.post('/api/id/', function (req, res) {
     }
     catch (e){
         console.log(e);
-        db_setting.close();
+
         res.send(e);
     }
 });
@@ -186,7 +186,7 @@ app.post('/api/key/', function (req, res) {
     }
     catch (e){
         consol.log(e);
-        db_setting.close();
+
         res.send(e);
     }
 });
@@ -411,7 +411,6 @@ function get_show_key(callback) {
     }
     catch (e){
         console.log(e);
-        db_setting.close();
     }
 }
 
@@ -432,7 +431,7 @@ function get_client_key(callback) {
         db_setting.close();
     }
     catch (error) {
-        db_setting.close();
+
         console.log(error);
     }
 }
@@ -459,7 +458,7 @@ function get_reader_setting(callback) {
     }
     catch (e){
         console.log(e);
-        db_setting.close();
+
     }
 }
 
