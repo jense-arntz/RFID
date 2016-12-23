@@ -14,7 +14,6 @@ var archiver = require('archiver');
 var zipArchive = archiver('zip');
 var dns = require('dns');
 var app = express();
-var Promise = require("promise");
 
 // ============== Define the static directives.===================//
 app.use('/public', express.static('/home/RFID/Code/public'));
@@ -33,6 +32,7 @@ var exists = fs.existsSync(reader_setting);
 var exists_streaming_db = fs.existsSync(reader);
 var sqlite3 = require("sqlite3").verbose();
 var db_streaming = new sqlite3.Database(reader);
+var db_setting = sqlite3.Database(reader_setting);
 var connection_flag = true;
 var eshow_flag = '';
 var eshow_key = '';
@@ -101,10 +101,9 @@ app.get('/api/status/', function (req, res) {
 
 // ========================= Load the eshow id and client key ============================
 app.get('/api/id/', function (req, res) {
-    var db_id = new sqlite3.Database(reader_setting);
     var posts = [];
-    db_id.serialize(function () {
-        db_id.each("SELECT * FROM eshow where id=1", function (err, row) {
+    db_setting.serialize(function () {
+        db_setting.each("SELECT * FROM eshow where id=1", function (err, row) {
             if (err) {
                 posts.push({eshow_id: 'None', client_key: 'None'});
                 console.log('None: ' + err);
@@ -127,17 +126,16 @@ app.get('/api/id/', function (req, res) {
 
 // ========================= Create/Edit eshow id===========================
 app.post('/api/id/', function (req, res) {
-    var db_id = new sqlite3.Database(reader_setting);
     var data = '';
     if (eshow_flag == '' && client_key == '') {
-        db_id.run("INSERT into eshow (show_key) VALUES (?)", [req.body.eshow_id]);
+        db_setting.run("INSERT into eshow (show_key) VALUES (?)", [req.body.eshow_id]);
         eshow_flag = req.body.eshow_id;
         data = 'Insert Eshow key Success!';
         console.log(data);
 
     }
     else {
-        db_id.run("UPDATE eshow set show_key=? where id=1", [req.body.eshow_id]);
+        db_setting.run("UPDATE eshow set show_key=? where id=1", [req.body.eshow_id]);
         eshow_flag = req.body.eshow_id;
         data = 'Update Eshow key to ' + req.body.eshow_id;
         console.log(data);
@@ -148,16 +146,16 @@ app.post('/api/id/', function (req, res) {
 
 // ========================== Create/Edit client_key =======================
 app.post('/api/key/', function (req, res) {
-    var db_id = new sqlite3.Database(reader_setting);
+
     var data = '';
     if (eshow_flag == '' && client_key == '') {
-        db_id.run("INSERT into eshow (client_key) VALUES (?)", [req.body.client_key]);
+        db_setting.run("INSERT into eshow (client_key) VALUES (?)", [req.body.client_key]);
         client_key = req.body.client_key;
         data = 'Insert Client Key ' + req.body.client_key;
         console.log(data);
     }
     else {
-        db_id.run("UPDATE eshow set client_key=? where id=1", [req.body.client_key]);
+        db_setting.run("UPDATE eshow set client_key=? where id=1", [req.body.client_key]);
         client_key = req.body.client_key;
         data = 'Update Client Key' + req.body.client_key;
         console.log(data);
@@ -169,10 +167,10 @@ app.post('/api/key/', function (req, res) {
 app.get('/api/device/list/', function (req, res) {
     try {
 
-        var db = new sqlite3.Database(reader_setting);
+
         var posts = [];
-        db.serialize(function () {
-            db.each("SELECT * FROM reader_setting", function (err, row) {
+        db_setting.serialize(function () {
+            db_setting.each("SELECT * FROM reader_setting", function (err, row) {
                 if (err) {
                     posts.push({name: None, mac_address: None, address: None, power: None});
                     console.log('None: ' + err);
@@ -211,10 +209,10 @@ app.get('/api/device/list/', function (req, res) {
 // ==================== Load the File list===================================
 app.get('/api/device/files/', function (req, res) {
     try {
-        var db = new sqlite3.Database(reader_setting);
+
         var posts = [];
-        db.serialize(function () {
-            db.each("SELECT * FROM file", function (err, row) {
+        db_setting.serialize(function () {
+            db_setting.each("SELECT * FROM file", function (err, row) {
                 if (err) {
                     posts.push({file_name: None, file_size: None, date: None});
                     console.log('None: ' + err);
@@ -251,9 +249,9 @@ app.post('/api/add/', function (req, res) {
             res.send('Power level value must be lower than 255.');
         }
         else {
-            var db = new sqlite3.Database(reader_setting);
 
-            db.run("INSERT into reader_setting (reader_name, mac_address, ip_address, power_level) VALUES (?, ?, ?, ?)",
+
+            db_setting.run("INSERT into reader_setting (reader_name, mac_address, ip_address, power_level) VALUES (?, ?, ?, ?)",
                 [req.body.name, req.body.mac_address, req.body.address, req.body.power], function (err) {
                     if (err) {
                         console.log('add device error');
@@ -285,9 +283,8 @@ app.post('/api/update/', function (req, res) {
             res.send('Power level value must be lower than 255.');
         }
         else {
-            var db = new sqlite3.Database(reader_setting);
 
-            db.run("UPDATE reader_setting set reader_name=?, ip_address=?, power_level=? where mac_address=?",
+            db_setting.run("UPDATE reader_setting set reader_name=?, ip_address=?, power_level=? where mac_address=?",
                 [req.body.name, req.body.address, req.body.power, req.body.mac_address], function (err) {
                     if (err) {
                         console.log('update device error');
@@ -316,9 +313,7 @@ app.post('/api/delete/', function (req, res) {
     try {
         console.log(req.body.address);
 
-        var db = new sqlite3.Database(reader_setting);
-
-        db.run("Delete from reader_setting where mac_address=?", [req.body.address]);
+        db_setting.run("Delete from reader_setting where mac_address=?", [req.body.address]);
         reader_name = '';
         mac_addr = '';
 
@@ -355,10 +350,9 @@ function send_device_to_aws(name, mac_address, address) {
 
 // Get the show_key from db.
 function get_show_key(callback) {
-    var db_id = new sqlite3.Database(reader_setting);
     var show_key = '';
-    db_id.serialize(function () {
-        db_id.each("SELECT * FROM eshow WHERE id=1", function (err, row) {
+    db_setting.serialize(function () {
+        db_setting.each("SELECT * FROM eshow WHERE id=1", function (err, row) {
             if (err) {
                 return callback(err);
             }
@@ -371,9 +365,8 @@ function get_show_key(callback) {
 
 // Get the show_key from db.
 function get_client_key(callback) {
-    var db_id = new sqlite3.Database(reader_setting);
-    db_id.serialize(function () {
-        db_id.each("SELECT * FROM eshow WHERE id=1", function (err, row) {
+    db_setting.serialize(function () {
+        db_setting.each("SELECT * FROM eshow WHERE id=1", function (err, row) {
             if (err) {
                 return callback(err);
             }
@@ -386,10 +379,9 @@ function get_client_key(callback) {
 
 // Get the reader_setting from db.
 function get_reader_setting(callback) {
-    var db_id = new sqlite3.Database(reader_setting);
     var callbackstring = {};
-    db_id.serialize(function () {
-        db_id.each("SELECT * FROM reader_setting", function (err, row) {
+    db_setting.serialize(function () {
+        db_setting.each("SELECT * FROM reader_setting", function (err, row) {
             if (err) {
                 return callback(err);
             }
@@ -404,26 +396,30 @@ function get_reader_setting(callback) {
 }
 
 function check_backup() {
-    var db_backup = new sqlite3.Database(reader_setting);
-    db_backup.serialize(function () {
-        db_backup.each("SELECT * FROM backup", function (err, row) {
-            if (err) {
-                console.log('filepath' + err);
-            }
-            else {
-                backuup_data.push(row.filepath);
-                console.log('row filepath' + row.filepath);
-            }
-        }, function (err) {
-            if (err) {
-                console.log('dbbackup error' + err);
-            }
-            else {
-                db_backup.run("DELETE FROM backup");
-            }
+    try {
 
+        db_setting.serialize(function () {
+            db_setting.each("SELECT * FROM backup", function (err, row) {
+                if (err) {
+                    console.log('filepath' + err);
+                }
+                else {
+                    backuup_data.push(row.filepath);
+                    console.log('row filepath' + row.filepath);
+                }
+            }, function (err) {
+                if (err) {
+                    console.log('dbbackup error' + err);
+                }
+                else {
+                    db_setting.run("DELETE FROM backup");
+                }
+            });
         });
-    });
+    }
+    catch (err){
+        console.log(' backup:', err);
+    }
 }
 
 // Copy file
@@ -494,9 +490,7 @@ function insert_file_to_db(filename, size, date) {
     console.log("7-Insert file name to file db");
 
     try {
-        var db = new sqlite3.Database(reader_setting);
-
-        db.run("INSERT into file (file_name, file_size, date) VALUES (?, ?, ?)",
+        db_setting.run("INSERT into file (file_name, file_size, date) VALUES (?, ?, ?)",
             [filename, size, date]);
 
         console.log('8-Insert data Success!');
@@ -715,9 +709,7 @@ function send_file_aws(file_path) {
 
 // Back up db files.
 function save_backup(filepath) {
-    var db_backup = new sqlite3.Database(reader_setting);
-
-    db_backup.run("INSERT into backup (filepath) VALUES (?)", filepath, function (err) {
+    db_setting.run("INSERT into backup (filepath) VALUES (?)", filepath, function (err) {
         if (err)
             console.log('save_backup' + err);
     });
@@ -1063,19 +1055,17 @@ function create_db() {
         fs.openSync(reader_setting, "w");
     }
 
-    var db = new sqlite3.Database(reader_setting);
-
-    db.serialize(function () {
+    db_setting.serialize(function () {
         if (!exists) {
             console.log("Creating table.");
-            db.run("CREATE TABLE reader_setting (id INTEGER PRIMARY KEY AUTOINCREMENT, reader_name TEXT, mac_address TEXT, ip_address TEXT, power_level Text)");
-            db.run("CREATE TABLE eshow(id INTEGER PRIMARY KEY AUTOINCREMENT, show_key TEXT, client_key TEXT)");
-            db.run("CREATE TABLE file(id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT, file_size INTEGER, date TEXT)");
-            db.run("CREATE TABLE backup(id INTEGER PRIMARY KEY AUTOINCREMENT, filepath TEXT)");
+            db_setting.run("CREATE TABLE reader_setting (id INTEGER PRIMARY KEY AUTOINCREMENT, reader_name TEXT, mac_address TEXT, ip_address TEXT, power_level Text)");
+            db_setting.run("CREATE TABLE eshow(id INTEGER PRIMARY KEY AUTOINCREMENT, show_key TEXT, client_key TEXT)");
+            db_setting.run("CREATE TABLE file(id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT, file_size INTEGER, date TEXT)");
+            db_setting.run("CREATE TABLE backup(id INTEGER PRIMARY KEY AUTOINCREMENT, filepath TEXT)");
         }
     });
 
-    db.close();
+    //db.close();
 }
 
 // ==================== Start node.js server.======================//
