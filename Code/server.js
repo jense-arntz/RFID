@@ -417,7 +417,7 @@ function check_backup() {
             });
         });
     }
-    catch (err){
+    catch (err) {
         console.log(' backup:', err);
     }
 }
@@ -482,7 +482,6 @@ function send_zip_aws(file_path) {
 
     console.log('sending zip file to AWS app.');
 }
-
 
 
 // ====================Add the file name to file.db.==================================
@@ -575,7 +574,6 @@ app.get('/api/endshow/', function (req, res) {
 });
 
 
-
 // ========================Delete the db and transfer the db file to main server.==============
 app.get('/api/transfer/', function (req, res) {
     get_show_key(function handleResult(err, result) {
@@ -621,7 +619,7 @@ app.get('/api/transfer/', function (req, res) {
 
 
 // Send request to rfidservice for deleting database
-function clear_reader_db(){
+function clear_reader_db() {
     //The url we want is: 'http://127.0.0.1:8080'
     console.log('11-send delete request to server.')
     var options = {
@@ -640,11 +638,12 @@ function clear_reader_db(){
 
         response.on('error', function handleRequestError(error) {
             console.log("Request error:", error);
-            
+
         });
 
         //the whole response has been recieved, so we just print it out here
         response.on('end', function () {
+            console.log("16-end delete")
 
         });
     };
@@ -717,7 +716,6 @@ function save_backup(filepath) {
 }
 
 
-
 // ====================== Streaming Data from db. ======================
 app.get('/api/stream/', function (req, res) {
     console.log("Got a Stream request for the homepage");
@@ -758,7 +756,7 @@ app.get('/api/sync_on/', function (req, res) {
     syncon_status = true;
     interval = setInterval(function () {
         console.log("Got a Sync on request from the homepage");
-        //vacuum_db();
+
         if (eshow_flag == '') {
             get_show_key(function handleResult(err, result) {
                 if (err) {
@@ -769,32 +767,32 @@ app.get('/api/sync_on/', function (req, res) {
             });
         }
         try {
-            if (!exists_streaming_db) {
-                console.log('no streaming.db file exists.');
-                res.send('No DB File to transfer.');
+            // if (!exists_streaming_db) {
+            //     console.log('no streaming.db file exists.');
+            //     res.send('No DB File to transfer.');
+            // }
+            // else {
+            var folder_path = '/home/pi/' + eshow_flag;
+
+            // make eshow dir.
+            if (!fs.existsSync(folder_path)) {
+                fs.mkdirSync(folder_path);
             }
-            else {
-                var folder_path = '/home/pi/' + eshow_flag;
 
-                // make eshow dir.
-                if (!fs.existsSync(folder_path)) {
-                    fs.mkdirSync(folder_path);
-                }
+            // Filename
+            var timeStamp = (new Date).toISOString().replace(/z/gi, '').trim();
+            console.log(timeStamp);
+            var filename = eshow_flag + ':' + timeStamp + '.db';
+            console.log(filename);
+            var file_path = folder_path + '/' + filename;
 
-                // Filename
-                var timeStamp = (new Date).toISOString().replace(/z/gi, '').trim();
-                console.log(timeStamp);
-                var filename = eshow_flag + ':' + timeStamp + '.db';
-                console.log(filename);
-                var file_path = folder_path + '/' + filename;
+            // Copy the file to given path.
+            copyFile(reader, file_path, filename, timeStamp);
+            console.log('sync on succesfull');
 
-                // Copy the file to given path.
-                copyFile(reader, file_path, filename, timeStamp);
-                console.log('sync on succesfull');
-
-                sleep.sleep(5);
-                res.send('Sync on Successful.');
-            }
+            sleep.sleep(5);
+            res.send('Sync on Successful.');
+            // }
         }
         catch (e) {
             console.log('sync on error');
@@ -820,31 +818,31 @@ function self_sync() {
             });
         }
         try {
-            if (!exists_streaming_db) {
-                console.log('no streaming.db file exists.');
-                console.log('No DB File to transfer.');
+            // if (!exists_streaming_db) {
+            //     console.log('no streaming.db file exists.');
+            //     console.log('No DB File to transfer.');
+            // }
+
+            console.log("3- starting...");
+            var folder_path = '/home/pi/' + eshow_flag;
+
+            // make eshow dir.
+            if (!fs.existsSync(folder_path)) {
+                fs.mkdirSync(folder_path);
             }
-            else {
-                console.log("3- table exists");
-                var folder_path = '/home/pi/' + eshow_flag;
 
-                // make eshow dir.
-                if (!fs.existsSync(folder_path)) {
-                    fs.mkdirSync(folder_path);
-                }
+            // Filename
+            var timeStamp = (new Date).toISOString().replace(/z/gi, '').trim();
+            var filename = eshow_flag + ':' + timeStamp + '.db';
+            console.log('4-', filename);
+            var file_path = folder_path + '/' + filename;
 
-                // Filename
-                var timeStamp = (new Date).toISOString().replace(/z/gi, '').trim();
-                var filename = eshow_flag + ':' + timeStamp + '.db';
-                console.log('4-',filename);
-                var file_path = folder_path + '/' + filename;
+            // Copy the file to given path.
+            copyFile(reader, file_path, filename, timeStamp);
+            console.log('5-sync on succesfull');
 
-                // Copy the file to given path.
-                copyFile(reader, file_path, filename, timeStamp);
-                console.log('5-sync on succesfull');
+            sleep.sleep(5);
 
-                sleep.sleep(5);
-            }
         }
         catch (e) {
             console.log('sync on error');
