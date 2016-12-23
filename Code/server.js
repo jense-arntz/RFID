@@ -430,7 +430,6 @@ function check_backup() {
 function copyFile(source, target, filename, timeStamp) {
 
     var rd = fs.createReadStream(source);
-    var db = new sqlite3.Database(reader_setting);
     rd.on("error", function (err) {
         console.log("reading error");
     });
@@ -441,20 +440,21 @@ function copyFile(source, target, filename, timeStamp) {
     wr.on("close", function (ex) {
 
         var size = getFilesizeInBytes(target);
-        console.log('size', size);
+        console.log('6-size', size);
 
         insert_file_to_db(filename, size, timeStamp);
-        console.log('insert_file_to_db');
+        console.log('9-complete insert_file_to_db');
 
         send_file_aws(target);
         if (connection_flag == true) {
             check_backup();
-            console.log('data: ' + backuup_data);
+            console.log('13-data: ' + backuup_data);
             if (backuup_data.length != 0) {
-                console.log("backing up");
+                console.log("14-backing up");
                 for (var i = 0; i < backuup_data.length; i++) {
                     send_file_aws(backuup_data[i])
                 }
+                connection_flag = false;
 
             }
         }
@@ -491,7 +491,7 @@ function send_zip_aws(file_path) {
 
 // ====================Add the file name to file.db.==================================
 function insert_file_to_db(filename, size, date) {
-    console.log("Insert file name to file db");
+    console.log("7-Insert file name to file db");
 
     try {
         var db = new sqlite3.Database(reader_setting);
@@ -499,7 +499,7 @@ function insert_file_to_db(filename, size, date) {
         db.run("INSERT into file (file_name, file_size, date) VALUES (?, ?, ?)",
             [filename, size, date]);
 
-        console.log('Insert data Success!');
+        console.log('8-Insert data Success!');
     }
 
     catch (e) {
@@ -625,22 +625,11 @@ app.get('/api/transfer/', function (req, res) {
     }
 });
 
-// function check_internet() {
-//     dns.resolve('www.google.com', function (err) {
-//         if (err) {
-//             console.log("No connection");
-//             return false;
-//         } else {
-//             console.log("Connected");
-//             return true;
-//         }
-//     });
-//
-// }
 
 // Send request to rfidservice for deleting database
 function clear_reader_db(){
     //The url we want is: 'http://127.0.0.1:8080'
+    console.log('11-send delete request to server.')
     var options = {
         host: '127.0.0.1',
         port: 8080,
@@ -651,7 +640,7 @@ function clear_reader_db(){
 
         //another chunk of data has been recieved, so append it to `str`
         response.on('data', function (chunk) {
-            console.log('deleted successfully');
+            console.log('12-deleted successfully');
 
         });
 
@@ -672,8 +661,7 @@ function clear_reader_db(){
 // send file to aws app.
 function send_file_aws(file_path) {
     var aws_api = 'http://54.175.198.243/api/file/' + mac_addr + '/';
-    console.log('send_file_aws: ' + aws_api);
-    console.log('mac_address: ' + mac_addr);
+    console.log('10-send_file_aws: ' + aws_api);
 
     var formData = {
         file: fs.createReadStream(file_path)
@@ -779,20 +767,21 @@ app.get('/api/sync_on/', function (req, res) {
     interval = setInterval(function () {
         console.log("Got a Sync on request from the homepage");
         //vacuum_db();
-        get_show_key(function handleResult(err, result) {
-            if (err) {
-                console.log('Get the show key error.');
-                res.send('No show key error');
-            }
-            eshow_flag = result;
-        });
+        if (eshow_flag == '') {
+            get_show_key(function handleResult(err, result) {
+                if (err) {
+                    console.log('Get the show key error.');
+                    res.send('No show key error');
+                }
+                eshow_flag = result;
+            });
+        }
         try {
             if (!exists_streaming_db) {
                 console.log('no streaming.db file exists.');
                 res.send('No DB File to transfer.');
             }
             else {
-                console.log("table exists");
                 var folder_path = '/home/pi/' + eshow_flag;
 
                 // make eshow dir.
@@ -828,21 +817,23 @@ function self_sync() {
     console.log('sync on');
     syncon_status = true;
     interval = setInterval(function () {
-        console.log("Got a Sync on request from the homepage");
-        get_show_key(function handleResult(err, result) {
-            if (err) {
-                console.log('Get the show key error.');
-                res.send('No show key error');
-            }
-            eshow_flag = result;
-        });
+        console.log("1-Got a Sync on request from the homepage");
+        if (eshow_flag == "") {
+            get_show_key(function handleResult(err, result) {
+                if (err) {
+                    console.log('Get the show key error.');
+                }
+                eshow_flag = result;
+                console.log('2-Get Show key')
+            });
+        }
         try {
             if (!exists_streaming_db) {
                 console.log('no streaming.db file exists.');
                 console.log('No DB File to transfer.');
             }
             else {
-                console.log("table exists");
+                console.log("3- table exists");
                 var folder_path = '/home/pi/' + eshow_flag;
 
                 // make eshow dir.
@@ -852,23 +843,22 @@ function self_sync() {
 
                 // Filename
                 var timeStamp = (new Date).toISOString().replace(/z/gi, '').trim();
-                console.log(timeStamp);
                 var filename = eshow_flag + ':' + timeStamp + '.db';
-                console.log(filename);
+                console.log('4-',filename);
                 var file_path = folder_path + '/' + filename;
 
                 // Copy the file to given path.
                 copyFile(reader, file_path, filename, timeStamp);
-                console.log('sync on succesfull');
+                console.log('5-sync on succesfull');
 
                 sleep.sleep(5);
-                //vacuum_db();
             }
         }
         catch (e) {
             console.log('sync on error');
             console.log('\r\n', e);
         }
+        console.log('15- Loop completion.')
 
     }, time_interval);
 }
