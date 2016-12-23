@@ -737,6 +737,7 @@ function clear_reader_db() {
 
 }
 
+
 // send file to aws app.
 function send_file_aws(file_path) {
     try {
