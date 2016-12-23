@@ -106,7 +106,7 @@ app.get('/api/status/', function (req, res) {
 app.get('/api/id/', function (req, res) {
     try {
         var posts = [];
-        var db_id= new sqlite3.Database(reader_setting);
+        var db_id = new sqlite3.Database(reader_setting);
         db_id.serialize(function () {
             db_id.each("SELECT * FROM eshow where id=1", function (err, row) {
                 if (err) {
@@ -128,7 +128,7 @@ app.get('/api/id/', function (req, res) {
         });
         db_id.close();
     }
-    catch (e){
+    catch (e) {
         console.log(e);
 
         res.send(e);
@@ -158,7 +158,7 @@ app.post('/api/id/', function (req, res) {
         res.send(data);
 
     }
-    catch (e){
+    catch (e) {
         console.log(e);
 
         res.send(e);
@@ -187,7 +187,7 @@ app.post('/api/key/', function (req, res) {
         db_key.close();
         res.send(data);
     }
-    catch (e){
+    catch (e) {
         console.log(e);
 
         res.send(e);
@@ -350,7 +350,7 @@ app.post('/api/update/', function (req, res) {
 // ==============Delete the device from db.=========================
 app.post('/api/delete/', function (req, res) {
     console.log("Got a Delete request for the homepage");
-    var db_del= new sqlite3.Database(reader_setting);
+    var db_del = new sqlite3.Database(reader_setting);
     try {
         console.log(req.body.address);
         db_del.serialize(function () {
@@ -389,7 +389,7 @@ function send_device_to_aws(name, mac_address, address) {
             }
         });
     }
-    catch (e){
+    catch (e) {
         console.log(e);
     }
 }
@@ -399,7 +399,7 @@ function send_device_to_aws(name, mac_address, address) {
 function get_show_key(callback) {
     try {
         var show_key = '';
-        var db_show_key= new sqlite3.Database(reader_setting);
+        var db_show_key = new sqlite3.Database(reader_setting);
         db_show_key.serialize(function () {
             db_show_key.each("SELECT * FROM eshow WHERE id=1", function (err, row) {
                 if (err) {
@@ -412,7 +412,7 @@ function get_show_key(callback) {
         });
         db_show_key.close();
     }
-    catch (e){
+    catch (e) {
         console.log(e);
     }
 }
@@ -459,7 +459,7 @@ function get_reader_setting(callback) {
         });
         db_reader.close();
     }
-    catch (e){
+    catch (e) {
         console.log(e);
 
     }
@@ -523,7 +523,7 @@ function copyFile(source, target, filename, timeStamp) {
         });
         rd.pipe(wr);
     }
-    catch (e){
+    catch (e) {
         console.log(e);
     }
 }
@@ -552,8 +552,8 @@ function send_zip_aws(file_path) {
 
         console.log('sending zip file to AWS app.');
     }
-    catch (e){
-        console.log (e);
+    catch (e) {
+        console.log(e);
     }
 }
 
@@ -651,7 +651,7 @@ app.get('/api/endshow/', function (req, res) {
         }
         res.send(data);
     }
-    catch (e){
+    catch (e) {
         console.log(e);
         res.send(e);
     }
@@ -735,7 +735,7 @@ function clear_reader_db() {
         };
         http.request(options, on_callback).end();
     }
-    catch (e){
+    catch (e) {
         console.log(e);
     }
 
@@ -780,7 +780,7 @@ function send_file_aws(file_path) {
             // }
         });
     }
-    catch(e){
+    catch (e) {
         console.log(e);
     }
 }
@@ -813,7 +813,7 @@ function save_backup(filepath) {
         db_save_back.close();
         console.log('save backup : ' + filepath);
     }
-    catch (e){
+    catch (e) {
         console.log(e);
         db_save_back.close();
     }
@@ -856,7 +856,7 @@ app.get('/api/stream/', function (req, res) {
         });
         db_streaming.close();
     }
-    catch (e){
+    catch (e) {
         console.log(e);
         db_streaming.close();
     }
@@ -1058,7 +1058,7 @@ app.get('/api/start/:timer(\\d+)', function (req, res) {
         };
         http.request(options, on_callback).end();
     }
-    catch(e){
+    catch (e) {
         console.log(e);
     }
 });
@@ -1096,7 +1096,7 @@ function self_start() {
         };
         http.request(options, on_callback).end();
     }
-    catch(e){
+    catch (e) {
         console.log(e);
     }
 }
@@ -1134,7 +1134,7 @@ app.get('/api/stop/', function (req, res) {
         };
         http.request(options, callback).end();
     }
-    catch(e){
+    catch (e) {
         console.log(e);
     }
 });
@@ -1172,7 +1172,7 @@ function send_data_aws() {
             }
         });
     }
-    catch(e){
+    catch (e) {
         console.log(e);
     }
 }
@@ -1193,8 +1193,8 @@ function create_db() {
             fs.openSync(reader_backup, "w");
         }
         var db = new sqlite3.Database(reader_setting);
-        var db_file_create = new sqlite3.Database(reader_file);
-        var db_backup_create = new sqlite3.Database(reader_backup);
+
+
         db.serialize(function () {
             if (!exists) {
                 console.log("Creating table.");
@@ -1202,20 +1202,23 @@ function create_db() {
                 db.run("CREATE TABLE eshow(id INTEGER PRIMARY KEY AUTOINCREMENT, show_key TEXT, client_key TEXT)");
             }
         });
-
         db.close();
+        var db_file_create = new sqlite3.Database(reader_file);
         db_file_create.serialize(function () {
-                console.log("Creating file database table.");
-                db.run("CREATE TABLE file(id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT, file_size INTEGER, date TEXT)");
+            console.log("Creating file database table.");
+            db.run("CREATE TABLE file(id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT, file_size INTEGER, date TEXT)");
         });
         db_file_create.close();
+
+        var db_backup_create = new sqlite3.Database(reader_backup);
         db_backup_create.serialize(function () {
-                console.log("Creating backup database table.");
-                db.run("CREATE TABLE backup(id INTEGER PRIMARY KEY AUTOINCREMENT, filepath TEXT)");
+            console.log("Creating backup database table.");
+            db.run("CREATE TABLE backup(id INTEGER PRIMARY KEY AUTOINCREMENT, filepath TEXT)");
         });
         db_backup_create.close();
+
     }
-    catch(e){
+    catch (e) {
         console.log(e);
     }
 }
@@ -1273,7 +1276,7 @@ var server = app.listen(10000, function () {
             }
         });
     }
-    catch(e){
+    catch (e) {
         console.log('starting:', e);
     }
 
