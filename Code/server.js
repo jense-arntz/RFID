@@ -1177,55 +1177,57 @@ function send_data_aws() {
     }
 }
 
-// ========================== Create db when no exists.===================//
-function create_db() {
-    try {
-        if (!exists) {
-            console.log("Creating DB file.");
-            fs.openSync(reader_setting, "w");
-        }
-        if (!exists_file) {
-            console.log("Creating DB file.");
-            fs.openSync(reader_file, "w");
-        }
-        if (!exists_backup) {
-            console.log("Creating DB file.");
-            fs.openSync(reader_backup, "w");
-        }
-        var db = new sqlite3.Database(reader_setting);
-
-
-        db.serialize(function () {
-            if (!exists) {
-                console.log("Creating table.");
-                db.run("CREATE TABLE reader_setting (id INTEGER PRIMARY KEY AUTOINCREMENT, reader_name TEXT, mac_address TEXT, ip_address TEXT, power_level Text)");
-                db.run("CREATE TABLE eshow(id INTEGER PRIMARY KEY AUTOINCREMENT, show_key TEXT, client_key TEXT)");
-            }
-        });
-        db.close();
-        var db_file_create = new sqlite3.Database(reader_file);
-        db_file_create.serialize(function () {
-            console.log("Creating file database table.");
-            db.run("CREATE TABLE file(id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT, file_size INTEGER, date TEXT)");
-        });
-        db_file_create.close();
-
-        var db_backup_create = new sqlite3.Database(reader_backup);
-        db_backup_create.serialize(function () {
-            console.log("Creating backup database table.");
-            db.run("CREATE TABLE backup(id INTEGER PRIMARY KEY AUTOINCREMENT, filepath TEXT)");
-        });
-        db_backup_create.close();
-
-    }
-    catch (e) {
-        console.log(e);
-    }
-}
+// // ========================== Create db when no exists.===================//
+// function create_db() {
+//     try {
+//         if (!exists) {
+//             console.log("Creating DB file.");
+//             fs.openSync(reader_setting, "w");
+//         }
+//         if (!exists_file) {
+//             console.log("Creating DB file.");
+//             fs.openSync(reader_file, "w");
+//         }
+//         if (!exists_backup) {
+//             console.log("Creating DB file.");
+//             fs.openSync(reader_backup, "w");
+//         }
+//         var db = new sqlite3.Database(reader_setting);
+//         db.serialize(function () {
+//             if (!exists) {
+//                 console.log("Creating table.");
+//                 db.run("CREATE TABLE reader_setting (id INTEGER PRIMARY KEY AUTOINCREMENT, reader_name TEXT, mac_address TEXT, ip_address TEXT, power_level Text)");
+//                 db.run("CREATE TABLE eshow(id INTEGER PRIMARY KEY AUTOINCREMENT, show_key TEXT, client_key TEXT)");
+//             }
+//         });
+//         db.close();
+//         var db_file_create = new sqlite3.Database(reader_file);
+//         db_file_create.serialize(function () {
+//             if(!exists_file) {
+//                 console.log("Creating file database table.");
+//                 db.run("CREATE TABLE file(id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT, file_size INTEGER, date TEXT)");
+//             }
+//         });
+//         db_file_create.close();
+//
+//         var db_backup_create = new sqlite3.Database(reader_backup);
+//         db_backup_create.serialize(function () {
+//             if(!exists_backup) {
+//                 console.log("Creating backup database table.");
+//                 db.run("CREATE TABLE backup(id INTEGER PRIMARY KEY AUTOINCREMENT, filepath TEXT)");
+//             }
+//         });
+//         db_backup_create.close();
+//
+//     }
+//     catch (e) {
+//         console.log(e);
+//     }
+// }
 
 // ==================== Start node.js server.======================//
 var server = app.listen(10000, function () {
-    create_db();
+    // create_db();
 
     var ip_address = '';
 
