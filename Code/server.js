@@ -13,6 +13,7 @@ var sleep = require('sleep');
 var archiver = require('archiver');
 var zipArchive = archiver('zip');
 var dns = require('dns');
+var sqlite3 = require("sqlite3").verbose();
 var app = express();
 
 // ============== Define the static directives.===================//
@@ -30,7 +31,7 @@ var reader = "/home/RFID/reader.db";
 var clock_file = "/home/RFID/clock.txt";
 var exists = fs.existsSync(reader_setting);
 var exists_streaming_db = fs.existsSync(reader);
-var sqlite3 = require("sqlite3").verbose();
+
 var connection_flag = true;
 var eshow_flag = '';
 var eshow_key = '';
@@ -101,7 +102,7 @@ app.get('/api/status/', function (req, res) {
 app.get('/api/id/', function (req, res) {
     try {
         var posts = [];
-        var db_id= sqlite3.Database(reader_setting);
+        var db_id= new sqlite3.Database(reader_setting);
         db_id.serialize(function () {
             db_id.each("SELECT * FROM eshow where id=1", function (err, row) {
                 if (err) {
@@ -135,7 +136,7 @@ app.get('/api/id/', function (req, res) {
 app.post('/api/id/', function (req, res) {
     try {
         var data = '';
-        var db_id_1 = sqlite3.Database(reader_setting);
+        var db_id_1 = new sqlite3.Database(reader_setting);
         if (eshow_flag == '' && client_key == '') {
             db_id_1.run("INSERT into eshow (show_key) VALUES (?)", [req.body.eshow_id]);
             eshow_flag = req.body.eshow_id;
@@ -165,7 +166,7 @@ app.post('/api/key/', function (req, res) {
 
     try {
         var data = '';
-        var db_key = sqlite3.Database(reader_setting);
+        var db_key = new sqlite3.Database(reader_setting);
         if (eshow_flag == '' && client_key == '') {
             db_key.run("INSERT into eshow (client_key) VALUES (?)", [req.body.client_key]);
             client_key = req.body.client_key;
@@ -193,7 +194,7 @@ app.post('/api/key/', function (req, res) {
 app.get('/api/device/list/', function (req, res) {
     try {
 
-        var db_setting = sqlite3.Database(reader_setting);
+        var db_setting = new sqlite3.Database(reader_setting);
         var posts = [];
         db_setting.serialize(function () {
             db_setting.each("SELECT * FROM reader_setting", function (err, row) {
@@ -238,7 +239,7 @@ app.get('/api/device/files/', function (req, res) {
     try {
 
         var posts = [];
-        var db_files = sqlite3.Database(reader_setting);
+        var db_files = new sqlite3.Database(reader_setting);
         db_files.serialize(function () {
             db_files.each("SELECT * FROM file", function (err, row) {
                 if (err) {
@@ -272,7 +273,7 @@ app.get('/api/device/files/', function (req, res) {
 app.post('/api/add/', function (req, res) {
 
     try {
-        var db_add = sqlite3.Database(reader_setting);
+        var db_add = new sqlite3.Database(reader_setting);
         console.log(req.body.name, req.body.mac_address, req.body.address, req.body.power);
         mac_addr = req.body.mac_address;
         if (req.body.power > 255) {
@@ -309,7 +310,7 @@ app.post('/api/update/', function (req, res) {
 
     try {
 
-        var db_update = sqlite3.Database(reader_setting);
+        var db_update = new sqlite3.Database(reader_setting);
         console.log(req.body.name, req.body.mac_address, req.body.address, req.body.power);
         if (req.body.power > 255) {
             res.send('Power level value must be lower than 255.');
@@ -345,7 +346,7 @@ app.post('/api/update/', function (req, res) {
 // ==============Delete the device from db.=========================
 app.post('/api/delete/', function (req, res) {
     console.log("Got a Delete request for the homepage");
-    var db_del= sqlite3.Database(reader_setting);
+    var db_del= new sqlite3.Database(reader_setting);
     try {
         console.log(req.body.address);
         db_del.serialize(function () {
@@ -394,7 +395,7 @@ function send_device_to_aws(name, mac_address, address) {
 function get_show_key(callback) {
     try {
         var show_key = '';
-        var db_show_key= sqlite3.Database(reader_setting);
+        var db_show_key= new sqlite3.Database(reader_setting);
         db_show_key.serialize(function () {
             db_show_key.each("SELECT * FROM eshow WHERE id=1", function (err, row) {
                 if (err) {
@@ -415,7 +416,7 @@ function get_show_key(callback) {
 // Get the show_key from db.
 function get_client_key(callback) {
     try {
-        var db_client_key = sqlite3.Database(reader_setting);
+        var db_client_key = new sqlite3.Database(reader_setting);
         db_client_key.serialize(function () {
             db_client_key.each("SELECT * FROM eshow WHERE id=1", function (err, row) {
                 if (err) {
@@ -438,7 +439,7 @@ function get_client_key(callback) {
 function get_reader_setting(callback) {
     try {
         var callbackstring = {};
-        var db_reader = sqlite3.Database(reader_setting);
+        var db_reader = new sqlite3.Database(reader_setting);
         db_reader.serialize(function () {
             db_reader.each("SELECT * FROM reader_setting", function (err, row) {
                 if (err) {
@@ -462,7 +463,7 @@ function get_reader_setting(callback) {
 
 function check_backup() {
     try {
-        var db_backup = sqlite3.Database(reader_setting);
+        var db_backup = new sqlite3.Database(reader_setting);
         db_backup.serialize(function () {
             db_backup.each("SELECT * FROM backup", function (err, row) {
                 if (err) {
@@ -556,7 +557,7 @@ function send_zip_aws(file_path) {
 // ====================Add the file name to file.db.==================================
 function insert_file_to_db(filename, size, date) {
     console.log("7-Insert file name to file db");
-    var db_insert_file = sqlite3.Database(reader_setting);
+    var db_insert_file = new sqlite3.Database(reader_setting);
     try {
         db_insert_file.serialize(function () {
             db_insert_file.run("INSERT into file (file_name, file_size, date) VALUES (?, ?, ?)",
@@ -798,7 +799,7 @@ function send_file_aws(file_path) {
 
 // Back up db files.
 function save_backup(filepath) {
-    var db_save_back = sqlite3.Database(reader_setting);
+    var db_save_back = new sqlite3.Database(reader_setting);
     try {
         db_save_back.run("INSERT into backup (filepath) VALUES (?)", filepath, function (err) {
             if (err)
@@ -1178,7 +1179,7 @@ function create_db() {
             console.log("Creating DB file.");
             fs.openSync(reader_setting, "w");
         }
-        var db = sqlite3.Database(reader_setting);
+        var db = new sqlite3.Database(reader_setting);
         db.serialize(function () {
             if (!exists) {
                 console.log("Creating table.");
@@ -1206,46 +1207,51 @@ var server = app.listen(10000, function () {
     var port = server.address().port;
     console.log("Node Server listening at http://%s:%s", host, port);
     // Array to hold async tasks
-    get_show_key(function handleResult(err, result) {
-        if (err) {
-            console.log('Get the show key error.');
-        }
-        else {
-            eshow_flag = result;
-            console.log(eshow_flag);
-            get_client_key(function handleResult(err, result) {
-                if (err) {
-                    console.log('Get the show key error.');
-                }
-                else {
-                    client_key = result;
-                    console.log(client_key);
-                    get_reader_setting(function handleResult(err, result) {
-                        if (err) {
-                            console.log('Get the show key error.');
-                        }
-                        else {
-                            reader_name = result.reader_name;
-                            mac_addr = result.mac_address;
-                            ip_address = result.ip_address;
-                            console.log(eshow_flag);
-                            if (eshow_flag != '' && client_key != '' && reader_name != '' && ip_address != '' && mac_addr != '') {
-                                console.log(eshow_flag + ',' + client_key + '' + reader_name + '' + ip_address + '' + mac_addr);
-                                send_device_to_aws(reader_name, mac_addr, ip_address);
-                                self_start();
-                                self_sync();
+    try {
+        get_show_key(function handleResult(err, result) {
+            if (err) {
+                console.log('Get the show key error.');
+            }
+            else {
+                eshow_flag = result;
+                console.log(eshow_flag);
+                get_client_key(function handleResult(err, result) {
+                    if (err) {
+                        console.log('Get the show key error.');
+                    }
+                    else {
+                        client_key = result;
+                        console.log(client_key);
+                        get_reader_setting(function handleResult(err, result) {
+                            if (err) {
+                                console.log('Get the show key error.');
                             }
-
                             else {
-                                console.log('error' + eshow_flag + ',' + client_key + '' + reader_name + '' + ip_address + '' + mac_addr);
-                            }
-                            console.log(start_status + timerate_status + syncon_status);
+                                reader_name = result.reader_name;
+                                mac_addr = result.mac_address;
+                                ip_address = result.ip_address;
+                                console.log(eshow_flag);
+                                if (eshow_flag != '' && client_key != '' && reader_name != '' && ip_address != '' && mac_addr != '') {
+                                    console.log(eshow_flag + ',' + client_key + '' + reader_name + '' + ip_address + '' + mac_addr);
+                                    send_device_to_aws(reader_name, mac_addr, ip_address);
+                                    self_start();
+                                    self_sync();
+                                }
 
-                        }
-                    });
-                }
-            });
-        }
-    });
+                                else {
+                                    console.log('error' + eshow_flag + ',' + client_key + '' + reader_name + '' + ip_address + '' + mac_addr);
+                                }
+                                console.log(start_status + timerate_status + syncon_status);
+
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+    catch(e){
+        console.log('starting:', e);
+    }
 
 });
