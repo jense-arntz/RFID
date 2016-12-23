@@ -38,8 +38,8 @@
       <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="517" column="16" selection-start-line="517" selection-start-column="16" selection-end-line="517" selection-end-column="16" />
+            <state relative-caret-position="6698">
+              <caret line="394" column="22" selection-start-line="394" selection-start-column="22" selection-end-line="394" selection-end-column="22" />
               <folding>
                 <element signature="n#style#0;n#input#0;n#div#1;n#div#2;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -47,12 +47,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="node_server.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Code/node_server.sh">
+      <file leaf-file-name="tagreader.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tagreader/tagreader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="32" column="51" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
-              <folding />
+            <state relative-caret-position="663">
+              <caret line="410" column="4" selection-start-line="410" selection-start-column="4" selection-end-line="410" selection-end-column="4" />
+              <folding>
+                <marker date="1482521775490" expanded="true" signature="5930:5958" placeholder="SELECT * FRO... reader_setting" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tagreader/db.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-447">
+              <caret line="98" column="11" selection-start-line="98" selection-start-column="11" selection-end-line="98" selection-end-column="11" />
+              <folding>
+                <marker date="1482439233635" expanded="true" signature="1559:1717" placeholder="CREATE TABLE... missing_value" />
+                <marker date="1482439233635" expanded="true" signature="2737:2901" placeholder="INSERT INTO missing_value... " />
+                <marker date="1482439233635" expanded="true" signature="3452:3464" placeholder="DELETE FROM " />
+                <marker date="1482439233635" expanded="true" signature="3987:4039" placeholder="UPDATE missi... " />
+                <marker date="1482439233635" expanded="true" signature="4359:4373" placeholder="SELECT * FRO... missing_value" />
+                <marker date="1482439233635" expanded="true" signature="4704:4718" placeholder="SELECT * FRO... missing_value" />
+                <marker date="1482439233635" expanded="true" signature="4798:4812" placeholder="SELECT * FRO... missing_value" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -60,8 +80,8 @@
       <file leaf-file-name="list.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="41" column="18" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
+            <state relative-caret-position="901">
+              <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -70,8 +90,51 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Code/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="593">
-              <caret line="586" column="41" selection-start-line="586" selection-start-column="41" selection-end-line="586" selection-end-column="41" />
+            <state relative-caret-position="179">
+              <caret line="752" column="0" selection-start-line="752" selection-start-column="0" selection-end-line="752" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rfidservice.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tagreader/rfidservice.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="96" column="28" selection-start-line="96" selection-start-column="28" selection-end-line="96" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="live_data.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Code/live_data.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="986">
+              <caret line="58" column="108" selection-start-line="58" selection-start-column="108" selection-end-line="58" selection-end-column="108" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="0">
+                <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="node_server.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Code/node_server.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="561">
+              <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -82,69 +145,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="459">
               <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="live_data.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Code/live_data.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="58" column="108" selection-start-line="58" selection-start-column="108" selection-end-line="58" selection-end-column="108" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#span#0;n#a#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tagreader.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tagreader/tagreader.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="291" column="40" selection-start-line="291" selection-start-column="40" selection-end-line="291" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-                <marker date="1476389966685" expanded="true" signature="5930:5958" placeholder="SELECT * FRO... reader_setting" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tagreader/db.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1683">
-              <caret line="100" column="24" selection-start-line="100" selection-start-column="24" selection-end-line="100" selection-end-column="24" />
-              <folding>
-                <marker date="1474670938579" expanded="true" signature="1471:1629" placeholder="CREATE TABLE... missing_value" />
-                <marker date="1474670938579" expanded="true" signature="2623:2783" placeholder="INSERT INTO missing_value... " />
-                <marker date="1474670938579" expanded="true" signature="3191:3203" placeholder="DELETE FROM " />
-                <marker date="1474670938579" expanded="true" signature="3556:3608" placeholder="UPDATE missi... " />
-                <marker date="1474670938579" expanded="true" signature="3928:3942" placeholder="SELECT * FRO... missing_value" />
-                <marker date="1474670938579" expanded="true" signature="4273:4287" placeholder="SELECT * FRO... missing_value" />
-                <marker date="1474670938579" expanded="true" signature="4367:4381" placeholder="SELECT * FRO... missing_value" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="const.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tagreader/const.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="protocol.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tagreader/protocol.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1275">
-              <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -177,7 +177,6 @@
         <option value="$PROJECT_DIR$/Code/test.py" />
         <option value="$PROJECT_DIR$/tagreader/startup.sh.py" />
         <option value="$PROJECT_DIR$/tagreader/server.py" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/tagreader/startup.sh" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/Code/start_node.sh" />
@@ -186,16 +185,18 @@
         <option value="$PROJECT_DIR$/tagreader/test.py" />
         <option value="$PROJECT_DIR$/bender.py" />
         <option value="$PROJECT_DIR$/Code/public/js/page-data-tables.js" />
-        <option value="$PROJECT_DIR$/tagreader/rfidservice.py" />
         <option value="$PROJECT_DIR$/tagreader/attendde.py" />
-        <option value="$PROJECT_DIR$/tagreader/db.py" />
         <option value="$PROJECT_DIR$/Code/settings.html" />
-        <option value="$PROJECT_DIR$/Code/list.html" />
         <option value="$PROJECT_DIR$/Code/index.html" />
         <option value="$PROJECT_DIR$/tagreader/protocol.py" />
-        <option value="$PROJECT_DIR$/tagreader/tagreader.py" />
         <option value="$PROJECT_DIR$/Code/live_data.html" />
+        <option value="$PROJECT_DIR$/Code/public/css/style.css" />
+        <option value="$PROJECT_DIR$/Code/list.html" />
         <option value="$PROJECT_DIR$/Code/dashboard.html" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/tagreader/db.py" />
+        <option value="$PROJECT_DIR$/tagreader/rfidservice.py" />
+        <option value="$PROJECT_DIR$/tagreader/tagreader.py" />
         <option value="$PROJECT_DIR$/Code/server.js" />
       </list>
     </option>
@@ -236,6 +237,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -284,7 +286,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -654,350 +655,350 @@
       <option name="presentableId" value="Default" />
       <updated>1468123022189</updated>
     </task>
-    <task id="LOCAL-00068" summary="version 1.1">
-      <created>1469037645213</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
+    <task id="LOCAL-00133" summary="Fixing the code on database design.">
+      <created>1478696323111</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
       <option name="project" value="LOCAL" />
-      <updated>1469037645213</updated>
+      <updated>1478696323111</updated>
     </task>
-    <task id="LOCAL-00069" summary="version 1.1">
-      <created>1469049621945</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
+    <task id="LOCAL-00134" summary="Fixing the code on database design.">
+      <created>1478810825658</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
       <option name="project" value="LOCAL" />
-      <updated>1469049621945</updated>
+      <updated>1478810825691</updated>
     </task>
-    <task id="LOCAL-00070" summary="version 1.2">
-      <created>1469049813941</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
+    <task id="LOCAL-00135" summary="Fixing the code on database design.">
+      <created>1478810965911</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
       <option name="project" value="LOCAL" />
-      <updated>1469049813941</updated>
+      <updated>1478810965911</updated>
     </task>
-    <task id="LOCAL-00071" summary="version 1.2">
-      <created>1469053349086</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
+    <task id="LOCAL-00136" summary="Fixing the code on database design.">
+      <created>1478811202172</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
       <option name="project" value="LOCAL" />
-      <updated>1469053349086</updated>
+      <updated>1478811202172</updated>
     </task>
-    <task id="LOCAL-00072" summary="version 1.2">
-      <created>1469054335665</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
+    <task id="LOCAL-00137" summary="Fixing the code on database design.">
+      <created>1478811612819</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
       <option name="project" value="LOCAL" />
-      <updated>1469054335665</updated>
+      <updated>1478811612819</updated>
     </task>
-    <task id="LOCAL-00073" summary="version 1.2">
-      <created>1469187203968</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
+    <task id="LOCAL-00138" summary="Fixing the code on database design.">
+      <created>1478812345006</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
       <option name="project" value="LOCAL" />
-      <updated>1469187203968</updated>
+      <updated>1478812345006</updated>
     </task>
-    <task id="LOCAL-00074" summary="version 1.2">
-      <created>1469195160260</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
+    <task id="LOCAL-00139" summary="Fixing the code on database design.">
+      <created>1480854273157</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
       <option name="project" value="LOCAL" />
-      <updated>1469195160261</updated>
+      <updated>1480854273157</updated>
     </task>
-    <task id="LOCAL-00075" summary="version 1.2">
-      <created>1469198665868</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
+    <task id="LOCAL-00140" summary="Fixing the code on database design.">
+      <created>1480854438388</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
       <option name="project" value="LOCAL" />
-      <updated>1469198665868</updated>
+      <updated>1480854438388</updated>
     </task>
-    <task id="LOCAL-00076" summary="version 1.2">
-      <created>1469200039728</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
+    <task id="LOCAL-00141" summary="Fixing self-fulfilling device info to aws.">
+      <created>1480854764632</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
       <option name="project" value="LOCAL" />
-      <updated>1469200039728</updated>
+      <updated>1480854764632</updated>
     </task>
-    <task id="LOCAL-00077" summary="version 1.2">
-      <created>1469205212127</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
+    <task id="LOCAL-00142" summary="Fixing the code on database design.">
+      <created>1480860851781</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
       <option name="project" value="LOCAL" />
-      <updated>1469205212127</updated>
+      <updated>1480860851781</updated>
     </task>
-    <task id="LOCAL-00078" summary="version 1.2">
-      <created>1469205286147</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
+    <task id="LOCAL-00143" summary="Fixing the code on database design.">
+      <created>1480864410102</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
       <option name="project" value="LOCAL" />
-      <updated>1469205286147</updated>
+      <updated>1480864410102</updated>
     </task>
-    <task id="LOCAL-00079" summary="version 1.2">
-      <created>1469209538539</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
+    <task id="LOCAL-00144" summary="Fixing the code on database design.">
+      <created>1481024675117</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
       <option name="project" value="LOCAL" />
-      <updated>1469209538539</updated>
+      <updated>1481024675117</updated>
     </task>
-    <task id="LOCAL-00080" summary="version 1.2">
-      <created>1469216272019</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
+    <task id="LOCAL-00145" summary="Fixing the code on database design.">
+      <created>1481227937337</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
       <option name="project" value="LOCAL" />
-      <updated>1469216272019</updated>
+      <updated>1481227937338</updated>
     </task>
-    <task id="LOCAL-00081" summary="version 1.2">
-      <created>1469218783132</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
+    <task id="LOCAL-00146" summary="Fixing the code on database design.">
+      <created>1481229637972</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
       <option name="project" value="LOCAL" />
-      <updated>1469218783132</updated>
+      <updated>1481229637972</updated>
     </task>
-    <task id="LOCAL-00082" summary="version 1.2">
-      <created>1469218808490</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
+    <task id="LOCAL-00147" summary="Fixing the code on database design.">
+      <created>1481266116909</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
       <option name="project" value="LOCAL" />
-      <updated>1469218808490</updated>
+      <updated>1481266116910</updated>
     </task>
-    <task id="LOCAL-00083" summary="version 1.2">
-      <created>1469262571613</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
+    <task id="LOCAL-00148" summary="Fixing the code on database design.">
+      <created>1481312874646</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
       <option name="project" value="LOCAL" />
-      <updated>1469262571613</updated>
+      <updated>1481312874647</updated>
     </task>
-    <task id="LOCAL-00084" summary="version 1.2">
-      <created>1469262590246</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
+    <task id="LOCAL-00149" summary="Fixing the code on database design.">
+      <created>1481313249948</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
       <option name="project" value="LOCAL" />
-      <updated>1469262590246</updated>
+      <updated>1481313249948</updated>
     </task>
-    <task id="LOCAL-00085" summary="version 1.2">
-      <created>1469262612383</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
+    <task id="LOCAL-00150" summary="Fixing the code on database design.">
+      <created>1481360865220</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
       <option name="project" value="LOCAL" />
-      <updated>1469262612383</updated>
+      <updated>1481360865220</updated>
     </task>
-    <task id="LOCAL-00086" summary="version 1.2">
-      <created>1469471246998</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
+    <task id="LOCAL-00151" summary="Fixing the code on database design.">
+      <created>1481360908456</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
       <option name="project" value="LOCAL" />
-      <updated>1469471246998</updated>
+      <updated>1481360908456</updated>
     </task>
-    <task id="LOCAL-00087" summary="version 1.2">
-      <created>1469471263498</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
+    <task id="LOCAL-00152" summary="Fixing the code on database design.">
+      <created>1481361939122</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
       <option name="project" value="LOCAL" />
-      <updated>1469471263498</updated>
+      <updated>1481361939122</updated>
     </task>
-    <task id="LOCAL-00088" summary="version 1.2">
-      <created>1469475147145</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
+    <task id="LOCAL-00153" summary="Fixing the code on database design.">
+      <created>1481362653834</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
       <option name="project" value="LOCAL" />
-      <updated>1469475147145</updated>
+      <updated>1481362653834</updated>
     </task>
-    <task id="LOCAL-00089" summary="version 1.2">
-      <created>1469475718606</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
+    <task id="LOCAL-00154" summary="Fixing the code on database design.">
+      <created>1481362723953</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
       <option name="project" value="LOCAL" />
-      <updated>1469475718606</updated>
+      <updated>1481362723953</updated>
     </task>
-    <task id="LOCAL-00090" summary="version 1.2">
-      <created>1469475994315</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
+    <task id="LOCAL-00155" summary="Fixing the code on database design.">
+      <created>1481363016532</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
       <option name="project" value="LOCAL" />
-      <updated>1469475994315</updated>
+      <updated>1481363016532</updated>
     </task>
-    <task id="LOCAL-00091" summary="version 1.2">
-      <created>1469478866100</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
+    <task id="LOCAL-00156" summary="Fixing the code on database design.">
+      <created>1481363343546</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
       <option name="project" value="LOCAL" />
-      <updated>1469478866100</updated>
+      <updated>1481363343546</updated>
     </task>
-    <task id="LOCAL-00092" summary="version 1.2">
-      <created>1469479090469</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
+    <task id="LOCAL-00157" summary="Fixing the code on database design.">
+      <created>1481363677294</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
       <option name="project" value="LOCAL" />
-      <updated>1469479090469</updated>
+      <updated>1481363677294</updated>
     </task>
-    <task id="LOCAL-00093" summary="version 1.2">
-      <created>1469479215546</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
+    <task id="LOCAL-00158" summary="Fixing the code on database design.">
+      <created>1481365074571</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
       <option name="project" value="LOCAL" />
-      <updated>1469479215546</updated>
+      <updated>1481365074571</updated>
     </task>
-    <task id="LOCAL-00094" summary="version 1.2">
-      <created>1469481527160</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
+    <task id="LOCAL-00159" summary="Fixing the code on database design.">
+      <created>1482008091196</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
       <option name="project" value="LOCAL" />
-      <updated>1469481527160</updated>
+      <updated>1482008091197</updated>
     </task>
-    <task id="LOCAL-00095" summary="version 1.2">
-      <created>1469485708781</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
+    <task id="LOCAL-00160" summary="Fixing the code on database design.">
+      <created>1482010097460</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
       <option name="project" value="LOCAL" />
-      <updated>1469485708781</updated>
+      <updated>1482010097461</updated>
     </task>
-    <task id="LOCAL-00096" summary="version 1.2">
-      <created>1469566111145</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
+    <task id="LOCAL-00161" summary="Fixing the code on database design.">
+      <created>1482014034277</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
       <option name="project" value="LOCAL" />
-      <updated>1469566111146</updated>
+      <updated>1482014034277</updated>
     </task>
-    <task id="LOCAL-00097" summary="version 1.2">
-      <created>1469567431477</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
+    <task id="LOCAL-00162" summary="Fixing the code on database design.">
+      <created>1482039870982</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
       <option name="project" value="LOCAL" />
-      <updated>1469567431477</updated>
+      <updated>1482039870982</updated>
     </task>
-    <task id="LOCAL-00098" summary="version 1.2">
-      <created>1469568714118</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
+    <task id="LOCAL-00163" summary="Fixing the code on database design.">
+      <created>1482141900664</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
       <option name="project" value="LOCAL" />
-      <updated>1469568714119</updated>
+      <updated>1482141900664</updated>
     </task>
-    <task id="LOCAL-00099" summary="version 1.2">
-      <created>1469692141683</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
+    <task id="LOCAL-00164" summary="Fixing the code on database design.">
+      <created>1482351475889</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
       <option name="project" value="LOCAL" />
-      <updated>1469692141684</updated>
+      <updated>1482351475890</updated>
     </task>
-    <task id="LOCAL-00100" summary="Fixing the code when transfer file to ftp server.">
-      <created>1469729421625</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
+    <task id="LOCAL-00165" summary="Fixing the code on database design.">
+      <created>1482354121944</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
       <option name="project" value="LOCAL" />
-      <updated>1469729421625</updated>
+      <updated>1482354121944</updated>
     </task>
-    <task id="LOCAL-00101" summary="Fixing the code on database design.">
-      <created>1469735271974</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
+    <task id="LOCAL-00166" summary="Fixing the code on database design.">
+      <created>1482355304149</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
       <option name="project" value="LOCAL" />
-      <updated>1469735271974</updated>
+      <updated>1482355304149</updated>
     </task>
-    <task id="LOCAL-00102" summary="Fixing the code on database design.">
-      <created>1469736963749</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
+    <task id="LOCAL-00167" summary="Fixing the code on database design.">
+      <created>1482360681311</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
       <option name="project" value="LOCAL" />
-      <updated>1469736963749</updated>
+      <updated>1482360681311</updated>
     </task>
-    <task id="LOCAL-00103" summary="Fixing the code on database design.">
-      <created>1469738635428</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
+    <task id="LOCAL-00168" summary="Fixing the code on database design.">
+      <created>1482361961493</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
       <option name="project" value="LOCAL" />
-      <updated>1469738635428</updated>
+      <updated>1482361961493</updated>
     </task>
-    <task id="LOCAL-00104" summary="Fixing the code on database design.">
-      <created>1469739044569</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
+    <task id="LOCAL-00169" summary="Fixing the code on database design.">
+      <created>1482362332405</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
       <option name="project" value="LOCAL" />
-      <updated>1469739044569</updated>
+      <updated>1482362332405</updated>
     </task>
-    <task id="LOCAL-00105" summary="Fixing the code on database design.">
-      <created>1470252558303</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
+    <task id="LOCAL-00170" summary="Fixing the code on database design.">
+      <created>1482362996725</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
       <option name="project" value="LOCAL" />
-      <updated>1470252558303</updated>
+      <updated>1482362996725</updated>
     </task>
-    <task id="LOCAL-00106" summary="Fixing the code on database design.">
-      <created>1470598929319</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
+    <task id="LOCAL-00171" summary="Fixing the code on database design.">
+      <created>1482409524591</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
       <option name="project" value="LOCAL" />
-      <updated>1470598929319</updated>
+      <updated>1482409524591</updated>
     </task>
-    <task id="LOCAL-00107" summary="Fixing the code on database design.">
-      <created>1470599480521</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
+    <task id="LOCAL-00172" summary="Fixing the code on database design.">
+      <created>1482410197336</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
       <option name="project" value="LOCAL" />
-      <updated>1470599480521</updated>
+      <updated>1482410197336</updated>
     </task>
-    <task id="LOCAL-00108" summary="Fixing the code on database design.">
-      <created>1471720801467</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
+    <task id="LOCAL-00173" summary="Fixing the code on database design.">
+      <created>1482428658993</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
       <option name="project" value="LOCAL" />
-      <updated>1471720801477</updated>
+      <updated>1482428658993</updated>
     </task>
-    <task id="LOCAL-00109" summary="Fixing the code on database design.">
-      <created>1471846440237</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
+    <task id="LOCAL-00174" summary="Fixing the code on database design.">
+      <created>1482430370649</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
       <option name="project" value="LOCAL" />
-      <updated>1471846440237</updated>
+      <updated>1482430370649</updated>
     </task>
-    <task id="LOCAL-00110" summary="Fixing the code on database design.">
-      <created>1473500198529</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
+    <task id="LOCAL-00175" summary="Fixing the code on database design.">
+      <created>1482433803387</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
       <option name="project" value="LOCAL" />
-      <updated>1473500198655</updated>
+      <updated>1482433803387</updated>
     </task>
-    <task id="LOCAL-00111" summary="Fixing the code on database design.">
-      <created>1473690106304</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
+    <task id="LOCAL-00176" summary="Fixing the code on database design.">
+      <created>1482435254204</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
       <option name="project" value="LOCAL" />
-      <updated>1473690106311</updated>
+      <updated>1482435254204</updated>
     </task>
-    <task id="LOCAL-00112" summary="Fixing the code with changes">
-      <created>1473690219230</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
+    <task id="LOCAL-00177" summary="Fixing the code on database design.">
+      <created>1482439240000</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
       <option name="project" value="LOCAL" />
-      <updated>1473690219230</updated>
+      <updated>1482439240000</updated>
     </task>
-    <task id="LOCAL-00113" summary="Fixing the code on database design.">
-      <created>1473691248046</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
+    <task id="LOCAL-00178" summary="Fixing the code on database design.">
+      <created>1482522285526</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
       <option name="project" value="LOCAL" />
-      <updated>1473691248046</updated>
+      <updated>1482522285526</updated>
     </task>
-    <task id="LOCAL-00114" summary="Fixing the code on database design.">
-      <created>1473692073448</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
+    <task id="LOCAL-00179" summary="Fixing the code on database design.">
+      <created>1482524020638</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
       <option name="project" value="LOCAL" />
-      <updated>1473692073448</updated>
+      <updated>1482524020638</updated>
     </task>
-    <task id="LOCAL-00115" summary="Fixing the code on database design.">
-      <created>1473718055369</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
+    <task id="LOCAL-00180" summary="Fixing the code on database design.">
+      <created>1482524357364</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
       <option name="project" value="LOCAL" />
-      <updated>1473718055369</updated>
+      <updated>1482524357364</updated>
     </task>
-    <task id="LOCAL-00116" summary="Fixing the code on database design.">
-      <created>1473718068423</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
+    <task id="LOCAL-00181" summary="Fixing the code on database design.">
+      <created>1482524469922</created>
+      <option name="number" value="00181" />
+      <option name="presentableId" value="LOCAL-00181" />
       <option name="project" value="LOCAL" />
-      <updated>1473718068423</updated>
+      <updated>1482524469922</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <option name="localTasksCounter" value="182" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1013,9 +1014,10 @@
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21197411" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23515625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945284" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2945285" sideWeight="0.51230013" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918552" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13370787" sideWeight="0.51230013" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945284" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17811409" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1023,11 +1025,10 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22817229" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918552" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10149942" sideWeight="0.48769987" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.101123594" sideWeight="0.48769987" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28106853" sideWeight="0.4895449" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945284" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1052,6 +1053,7 @@
     <MESSAGE value="version 1.2" />
     <MESSAGE value="Fixing the code when transfer file to ftp server." />
     <MESSAGE value="Fixing the code with changes" />
+    <MESSAGE value="Fixing self-fulfilling device info to aws." />
     <MESSAGE value="Fixing the code on database design." />
     <option name="LAST_COMMIT_MESSAGE" value="Fixing the code on database design." />
   </component>
@@ -1062,14 +1064,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tagreader/test.py" />
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="310" column="47" selection-start-line="310" selection-start-column="47" selection-end-line="310" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/db.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1109,13 +1103,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="6952" column="4" selection-start-line="6952" selection-start-column="4" selection-end-line="6952" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Code/public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="5056" column="1" selection-start-line="5056" selection-start-column="1" selection-end-line="5056" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1220,47 +1207,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="493">
-            <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownFxPreviewEditor">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/test.py" />
     <entry file="file://$PROJECT_DIR$/tagreader/attendde.py" />
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4386">
-          <caret line="266" column="15" selection-start-line="266" selection-start-column="15" selection-end-line="266" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tagreader/crc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="3" selection-start-line="47" selection-start-column="3" selection-end-line="47" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tagreader/rfidservice.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Code/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1268,18 +1216,116 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Code/settings.html">
+    <entry file="file://$PROJECT_DIR$/tagreader/protocol.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
+        <state relative-caret-position="1275">
+          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tagreader/crc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="717">
+          <caret line="47" column="3" selection-start-line="47" selection-start-column="3" selection-end-line="47" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tagreader/const.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4012">
+          <caret line="244" column="0" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1343">
-          <caret line="79" column="31" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
+        <state relative-caret-position="5899">
+          <caret line="347" column="24" selection-start-line="347" selection-start-column="24" selection-end-line="347" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/settings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2516">
+          <caret line="148" column="5" selection-start-line="148" selection-start-column="5" selection-end-line="148" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/public/lib/bootstrap/dist/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="45085" selection-start-line="4" selection-start-column="45085" selection-end-line="4" selection-end-column="45085" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/public/css/style.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79832">
+          <caret line="4696" column="18" selection-start-line="4696" selection-start-column="18" selection-end-line="4696" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/live_data.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="986">
+          <caret line="58" column="108" selection-start-line="58" selection-start-column="108" selection-end-line="58" selection-end-column="108" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/node_server.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6698">
+          <caret line="394" column="22" selection-start-line="394" selection-start-column="22" selection-end-line="394" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#div#1;n#div#2;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1293,87 +1339,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1683">
-          <caret line="100" column="24" selection-start-line="100" selection-start-column="24" selection-end-line="100" selection-end-column="24" />
+        <state relative-caret-position="-447">
+          <caret line="98" column="11" selection-start-line="98" selection-start-column="11" selection-end-line="98" selection-end-column="11" />
           <folding>
-            <marker date="1474670938579" expanded="true" signature="1471:1629" placeholder="CREATE TABLE... missing_value" />
-            <marker date="1474670938579" expanded="true" signature="2623:2783" placeholder="INSERT INTO missing_value... " />
-            <marker date="1474670938579" expanded="true" signature="3191:3203" placeholder="DELETE FROM " />
-            <marker date="1474670938579" expanded="true" signature="3556:3608" placeholder="UPDATE missi... " />
-            <marker date="1474670938579" expanded="true" signature="3928:3942" placeholder="SELECT * FRO... missing_value" />
-            <marker date="1474670938579" expanded="true" signature="4273:4287" placeholder="SELECT * FRO... missing_value" />
-            <marker date="1474670938579" expanded="true" signature="4367:4381" placeholder="SELECT * FRO... missing_value" />
+            <marker date="1482439233635" expanded="true" signature="1559:1717" placeholder="CREATE TABLE... missing_value" />
+            <marker date="1482439233635" expanded="true" signature="2737:2901" placeholder="INSERT INTO missing_value... " />
+            <marker date="1482439233635" expanded="true" signature="3452:3464" placeholder="DELETE FROM " />
+            <marker date="1482439233635" expanded="true" signature="3987:4039" placeholder="UPDATE missi... " />
+            <marker date="1482439233635" expanded="true" signature="4359:4373" placeholder="SELECT * FRO... missing_value" />
+            <marker date="1482439233635" expanded="true" signature="4704:4718" placeholder="SELECT * FRO... missing_value" />
+            <marker date="1482439233635" expanded="true" signature="4798:4812" placeholder="SELECT * FRO... missing_value" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tagreader/const.py">
+    <entry file="file://$PROJECT_DIR$/tagreader/rfidservice.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tagreader/protocol.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+        <state relative-caret-position="369">
+          <caret line="96" column="28" selection-start-line="96" selection-start-column="28" selection-end-line="96" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tagreader/tagreader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="291" column="40" selection-start-line="291" selection-start-column="40" selection-end-line="291" selection-end-column="40" />
+        <state relative-caret-position="663">
+          <caret line="410" column="4" selection-start-line="410" selection-start-column="4" selection-end-line="410" selection-end-column="4" />
           <folding>
-            <element signature="e#0#22#0" expanded="true" />
-            <marker date="1476389966685" expanded="true" signature="5930:5958" placeholder="SELECT * FRO... reader_setting" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Code/live_data.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="58" column="108" selection-start-line="58" selection-start-column="108" selection-end-line="58" selection-end-column="108" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#span#0;n#a#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Code/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="41" column="18" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Code/node_server.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="32" column="51" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Code/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="517" column="16" selection-start-line="517" selection-start-column="16" selection-end-line="517" selection-end-column="16" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#2;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1482521775490" expanded="true" signature="5930:5958" placeholder="SELECT * FRO... reader_setting" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="586" column="41" selection-start-line="586" selection-start-column="41" selection-end-line="586" selection-end-column="41" />
+        <state relative-caret-position="179">
+          <caret line="752" column="0" selection-start-line="752" selection-start-column="0" selection-end-line="752" selection-end-column="0" />
           <folding />
         </state>
       </provider>
