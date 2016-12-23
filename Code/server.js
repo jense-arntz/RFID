@@ -32,7 +32,7 @@ var exists = fs.existsSync(reader_setting);
 var exists_streaming_db = fs.existsSync(reader);
 var sqlite3 = require("sqlite3").verbose();
 var db_streaming = new sqlite3.Database(reader);
-var db_setting = sqlite3.Database(reader_setting);
+
 var connection_flag = true;
 var eshow_flag = '';
 var eshow_key = '';
@@ -101,73 +101,101 @@ app.get('/api/status/', function (req, res) {
 
 // ========================= Load the eshow id and client key ============================
 app.get('/api/id/', function (req, res) {
-    var posts = [];
-    db_setting.serialize(function () {
-        db_setting.each("SELECT * FROM eshow where id=1", function (err, row) {
-            if (err) {
-                posts.push({eshow_id: 'None', client_key: 'None'});
-                console.log('None: ' + err);
-            }
-            else {
-                posts.push({eshow_id: row.show_key, client_key: row.client_key});
-                console.log(row.show_key, row.client_key);
-                eshow_flag = row.show_key;
-                client_key = row.client_key;
-            }
+    try {
+        var posts = [];
+        var db_setting = sqlite3.Database(reader_setting);
+        db_setting.serialize(function () {
+            db_setting.each("SELECT * FROM eshow where id=1", function (err, row) {
+                if (err) {
+                    posts.push({eshow_id: 'None', client_key: 'None'});
+                    console.log('None: ' + err);
+                }
+                else {
+                    posts.push({eshow_id: row.show_key, client_key: row.client_key});
+                    console.log(row.show_key, row.client_key);
+                    eshow_flag = row.show_key;
+                    client_key = row.client_key;
+                }
 
-        }, function () {
-            // All done fetching records, render response
-            res.set('Content-Type', 'application/json');
-            res.send(posts);
+            }, function () {
+                // All done fetching records, render response
+                res.set('Content-Type', 'application/json');
+                res.send(posts);
+            });
         });
-    });
+        db_setting.close();
+    }
+    catch (e){
+        console.log(e);
+        db_setting.close();
+        res.send(e);
+    }
 });
 
 
 // ========================= Create/Edit eshow id===========================
 app.post('/api/id/', function (req, res) {
-    var data = '';
-    if (eshow_flag == '' && client_key == '') {
-        db_setting.run("INSERT into eshow (show_key) VALUES (?)", [req.body.eshow_id]);
-        eshow_flag = req.body.eshow_id;
-        data = 'Insert Eshow key Success!';
-        console.log(data);
+    try {
+        var data = '';
+        var db_setting = sqlite3.Database(reader_setting);
+        if (eshow_flag == '' && client_key == '') {
+            db_setting.run("INSERT into eshow (show_key) VALUES (?)", [req.body.eshow_id]);
+            eshow_flag = req.body.eshow_id;
+            data = 'Insert Eshow key Success!';
+            console.log(data);
+
+        }
+        else {
+            db_setting.run("UPDATE eshow set show_key=? where id=1", [req.body.eshow_id]);
+            eshow_flag = req.body.eshow_id;
+            data = 'Update Eshow key to ' + req.body.eshow_id;
+            console.log(data);
+        }
+        db_setting.close();
+        res.send(data);
 
     }
-    else {
-        db_setting.run("UPDATE eshow set show_key=? where id=1", [req.body.eshow_id]);
-        eshow_flag = req.body.eshow_id;
-        data = 'Update Eshow key to ' + req.body.eshow_id;
-        console.log(data);
+    catch (e){
+        console.log(e);
+        db_setting.close();
+        res.send(e);
     }
-
-    res.send(data);
 });
 
 // ========================== Create/Edit client_key =======================
 app.post('/api/key/', function (req, res) {
 
-    var data = '';
-    if (eshow_flag == '' && client_key == '') {
-        db_setting.run("INSERT into eshow (client_key) VALUES (?)", [req.body.client_key]);
-        client_key = req.body.client_key;
-        data = 'Insert Client Key ' + req.body.client_key;
-        console.log(data);
+    try {
+        var data = '';
+        var db_setting = sqlite3.Database(reader_setting);
+        if (eshow_flag == '' && client_key == '') {
+            db_setting.run("INSERT into eshow (client_key) VALUES (?)", [req.body.client_key]);
+            client_key = req.body.client_key;
+            data = 'Insert Client Key ' + req.body.client_key;
+            console.log(data);
+
+        }
+        else {
+            db_setting.run("UPDATE eshow set client_key=? where id=1", [req.body.client_key]);
+            client_key = req.body.client_key;
+            data = 'Update Client Key' + req.body.client_key;
+            console.log(data);
+        }
+        db_setting.close();
+        res.send(data);
     }
-    else {
-        db_setting.run("UPDATE eshow set client_key=? where id=1", [req.body.client_key]);
-        client_key = req.body.client_key;
-        data = 'Update Client Key' + req.body.client_key;
-        console.log(data);
+    catch (e){
+        consol.log(e);
+        db_setting.close();
+        res.send(e);
     }
-    res.send(data);
 });
 
 // ==================== Load the device list===================================
 app.get('/api/device/list/', function (req, res) {
     try {
 
-
+        var db_setting = sqlite3.Database(reader_setting);
         var posts = [];
         db_setting.serialize(function () {
             db_setting.each("SELECT * FROM reader_setting", function (err, row) {
@@ -198,6 +226,7 @@ app.get('/api/device/list/', function (req, res) {
 
             });
         });
+        db_setting.close();
     }
     catch (e) {
         console.log('\r\n', e);
@@ -211,6 +240,7 @@ app.get('/api/device/files/', function (req, res) {
     try {
 
         var posts = [];
+        var db_setting = sqlite3.Database(reader_setting);
         db_setting.serialize(function () {
             db_setting.each("SELECT * FROM file", function (err, row) {
                 if (err) {
@@ -230,6 +260,7 @@ app.get('/api/device/files/', function (req, res) {
                 res.send(posts);
             });
         });
+        db_setting.close();
     }
     catch (e) {
         console.log('\r\n', e);
@@ -243,6 +274,7 @@ app.get('/api/device/files/', function (req, res) {
 app.post('/api/add/', function (req, res) {
 
     try {
+        var db_setting = sqlite3.Database(reader_setting);
         console.log(req.body.name, req.body.mac_address, req.body.address, req.body.power);
         mac_addr = req.body.mac_address;
         if (req.body.power > 255) {
@@ -262,7 +294,7 @@ app.post('/api/add/', function (req, res) {
                         console.log('send device information to aws.');
                     }
                 });
-
+            db_setting.close();
             console.log('Insert data Success!');
             res.send('Added the Device to List.');
         }
@@ -278,23 +310,28 @@ app.post('/api/add/', function (req, res) {
 app.post('/api/update/', function (req, res) {
 
     try {
+
+        var db_setting = sqlite3.Database(reader_setting);
         console.log(req.body.name, req.body.mac_address, req.body.address, req.body.power);
         if (req.body.power > 255) {
             res.send('Power level value must be lower than 255.');
         }
         else {
+            db_setting.serialize(function () {
 
-            db_setting.run("UPDATE reader_setting set reader_name=?, ip_address=?, power_level=? where mac_address=?",
-                [req.body.name, req.body.address, req.body.power, req.body.mac_address], function (err) {
-                    if (err) {
-                        console.log('update device error');
-                        res.send('error to update device');
-                    }
-                    else {
-                        send_device_to_aws(req.body.name, req.body.mac_address, req.body.address);
-                        console.log('send device information to aws.');
-                    }
-                });
+                db_setting.run("UPDATE reader_setting set reader_name=?, ip_address=?, power_level=? where mac_address=?",
+                    [req.body.name, req.body.address, req.body.power, req.body.mac_address], function (err) {
+                        if (err) {
+                            console.log('update device error');
+                            res.send('error to update device');
+                        }
+                        else {
+                            send_device_to_aws(req.body.name, req.body.mac_address, req.body.address);
+                            console.log('send device information to aws.');
+                        }
+                    });
+            });
+            db_setting.close();
             reader_name = req.body.name;
             console.log('Update data Success!');
             res.send('Updated the Device Setting.');
@@ -310,13 +347,15 @@ app.post('/api/update/', function (req, res) {
 // ==============Delete the device from db.=========================
 app.post('/api/delete/', function (req, res) {
     console.log("Got a Delete request for the homepage");
+    var db_setting = sqlite3.Database(reader_setting);
     try {
         console.log(req.body.address);
-
-        db_setting.run("Delete from reader_setting where mac_address=?", [req.body.address]);
-        reader_name = '';
-        mac_addr = '';
-
+        db_setting.serialize(function () {
+            db_setting.run("Delete from reader_setting where mac_address=?", [req.body.address]);
+            reader_name = '';
+            mac_addr = '';
+        });
+        db_setting.close();
         console.log('Delete data Success!');
         res.send('Deleted the Devices From List.');
     }
@@ -329,75 +368,104 @@ app.post('/api/delete/', function (req, res) {
 
 // ======================== send device information to aws =========================//
 function send_device_to_aws(name, mac_address, address) {
-    var aws_data_api = 'http://54.175.198.243/api/device/fulfill/';
-    console.log('send_file_aws: ' + aws_data_api);
-    console.log('mac_address: ' + mac_addr + 'name: ' + name + 'address: ' + address);
-    request({
-        url: aws_data_api,
-        method: 'POST',
-        //Lets post the following key/values as form
-        json: true,
-        body: {name: name, mac_addr: mac_address, client_key: client_key, show_key: eshow_flag, ip_address: address}
-    }, function (error, response, body) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log(response.statusCode, body);
-        }
-    });
+    try {
+        var aws_data_api = 'http://54.175.198.243/api/device/fulfill/';
+        console.log('send_file_aws: ' + aws_data_api);
+        console.log('mac_address: ' + mac_addr + 'name: ' + name + 'address: ' + address);
+        request({
+            url: aws_data_api,
+            method: 'POST',
+            //Lets post the following key/values as form
+            json: true,
+            body: {name: name, mac_addr: mac_address, client_key: client_key, show_key: eshow_flag, ip_address: address}
+        }, function (error, response, body) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log(response.statusCode, body);
+            }
+        });
+    }
+    catch (e){
+        console.log(e);
+    }
 }
 
 
 // Get the show_key from db.
 function get_show_key(callback) {
-    var show_key = '';
-    db_setting.serialize(function () {
-        db_setting.each("SELECT * FROM eshow WHERE id=1", function (err, row) {
-            if (err) {
-                return callback(err);
-            }
-            eshow_flag = row.show_key;
-            console.log(row.show_key);
-            callback(null, eshow_flag);
+    try {
+        var show_key = '';
+        var db_setting = sqlite3.Database(reader_setting);
+        db_setting.serialize(function () {
+            db_setting.each("SELECT * FROM eshow WHERE id=1", function (err, row) {
+                if (err) {
+                    return callback(err);
+                }
+                eshow_flag = row.show_key;
+                console.log(row.show_key);
+                callback(null, eshow_flag);
+            });
         });
-    });
+        db_setting.close();
+    }
+    catch (e){
+        console.log(e);
+        db_setting.close();
+    }
 }
 
 // Get the show_key from db.
 function get_client_key(callback) {
-    db_setting.serialize(function () {
-        db_setting.each("SELECT * FROM eshow WHERE id=1", function (err, row) {
-            if (err) {
-                return callback(err);
-            }
-            client_key = row.client_key;
-            console.log(row.client_key);
-            callback(null, client_key);
+    try {
+        var db_setting = sqlite3.Database(reader_setting);
+        db_setting.serialize(function () {
+            db_setting.each("SELECT * FROM eshow WHERE id=1", function (err, row) {
+                if (err) {
+                    return callback(err);
+                }
+                client_key = row.client_key;
+                console.log(row.client_key);
+                callback(null, client_key);
+            });
         });
-    });
+        db_setting.close();
+    }
+    catch (error) {
+        db_setting.close();
+        console.log(error);
+    }
 }
 
 // Get the reader_setting from db.
 function get_reader_setting(callback) {
-    var callbackstring = {};
-    db_setting.serialize(function () {
-        db_setting.each("SELECT * FROM reader_setting", function (err, row) {
-            if (err) {
-                return callback(err);
-            }
+    try {
+        var callbackstring = {};
+        var db_setting = sqlite3.Database(reader_setting);
+        db_setting.serialize(function () {
+            db_setting.each("SELECT * FROM reader_setting", function (err, row) {
+                if (err) {
+                    return callback(err);
+                }
 
-            callbackstring.reader_name = row.reader_name;
-            callbackstring.mac_address = row.mac_address;
-            callbackstring.ip_address = row.ip_address;
-            console.log(callbackstring);
-            callback(null, callbackstring);
+                callbackstring.reader_name = row.reader_name;
+                callbackstring.mac_address = row.mac_address;
+                callbackstring.ip_address = row.ip_address;
+                console.log(callbackstring);
+                callback(null, callbackstring);
+            });
         });
-    });
+        db_setting.close();
+    }
+    catch (e){
+        console.log(e);
+        db_setting.close();
+    }
 }
 
 function check_backup() {
     try {
-
+        var db_setting = sqlite3.Database(reader_setting);
         db_setting.serialize(function () {
             db_setting.each("SELECT * FROM backup", function (err, row) {
                 if (err) {
@@ -407,15 +475,11 @@ function check_backup() {
                     backuup_data.push(row.filepath);
                     console.log('row filepath' + row.filepath);
                 }
-            }, function (err) {
-                if (err) {
-                    console.log('dbbackup error' + err);
-                }
-                else {
-                    db_setting.run("DELETE FROM backup");
-                }
             });
+            db_setting.run("DELETE FROM backup");
+
         });
+        db_setting.close();
     }
     catch (err) {
         console.log(' backup:', err);
@@ -424,75 +488,87 @@ function check_backup() {
 
 // Copy file
 function copyFile(source, target, filename, timeStamp) {
+    try {
+        var rd = fs.createReadStream(source);
+        rd.on("error", function (err) {
+            console.log("reading error");
+        });
+        var wr = fs.createWriteStream(target);
+        wr.on("error", function (err) {
+            console.log("writing error");
+        });
+        wr.on("close", function (ex) {
 
-    var rd = fs.createReadStream(source);
-    rd.on("error", function (err) {
-        console.log("reading error");
-    });
-    var wr = fs.createWriteStream(target);
-    wr.on("error", function (err) {
-        console.log("writing error");
-    });
-    wr.on("close", function (ex) {
+            var size = getFilesizeInBytes(target);
+            console.log('6-size', size);
 
-        var size = getFilesizeInBytes(target);
-        console.log('6-size', size);
+            insert_file_to_db(filename, size, timeStamp);
+            console.log('9-complete insert_file_to_db');
 
-        insert_file_to_db(filename, size, timeStamp);
-        console.log('9-complete insert_file_to_db');
+            send_file_aws(target);
+            if (connection_flag == true) {
+                check_backup();
+                console.log('13-data: ' + backuup_data);
+                if (backuup_data.length != 0) {
+                    console.log("14-backing up");
+                    for (var i = 0; i < backuup_data.length; i++) {
+                        send_file_aws(backuup_data[i])
+                    }
+                    connection_flag = false;
 
-        send_file_aws(target);
-        if (connection_flag == true) {
-            check_backup();
-            console.log('13-data: ' + backuup_data);
-            if (backuup_data.length != 0) {
-                console.log("14-backing up");
-                for (var i = 0; i < backuup_data.length; i++) {
-                    send_file_aws(backuup_data[i])
                 }
-                connection_flag = false;
-
             }
-        }
-    });
-    rd.pipe(wr);
+        });
+        rd.pipe(wr);
+    }
+    catch (e){
+        console.log(e);
+    }
 }
 
 // send zip file to aws app.
 function send_zip_aws(file_path) {
     var aws_api = 'http://54.175.198.243/api/zip/' + mac_addr + '/';
+    try {
+        var formData = {
+            // Pass a simple key-value pair
+            filename: eshow_flag,
+            // Pass eshow key
+            eshow_key: eshow_flag,
+            // Pass data via Streams
+            file: fs.createReadStream(file_path)
+        };
+        request.post({
+            url: aws_api,
+            formData: formData
+        }, function optionalCallback(err, httpResponse, body) {
+            if (err) {
+                return console.error('upload failed:', err);
+            }
+            console.log('Upload successful!  Server responded with:', body);
+        });
 
-    var formData = {
-        // Pass a simple key-value pair
-        filename: eshow_flag,
-        // Pass eshow key
-        eshow_key: eshow_flag,
-        // Pass data via Streams
-        file: fs.createReadStream(file_path)
-    };
-    request.post({
-        url: aws_api,
-        formData: formData
-    }, function optionalCallback(err, httpResponse, body) {
-        if (err) {
-            return console.error('upload failed:', err);
-        }
-        console.log('Upload successful!  Server responded with:', body);
-    });
-
-    console.log('sending zip file to AWS app.');
+        console.log('sending zip file to AWS app.');
+    }
+    catch (e){
+        console.log (e);
+    }
 }
 
 
 // ====================Add the file name to file.db.==================================
 function insert_file_to_db(filename, size, date) {
     console.log("7-Insert file name to file db");
-
+    var db_setting = sqlite3.Database(reader_setting);
     try {
-        db_setting.run("INSERT into file (file_name, file_size, date) VALUES (?, ?, ?)",
-            [filename, size, date]);
+        db_setting.serialize(function () {
+            db_setting.run("INSERT into file (file_name, file_size, date) VALUES (?, ?, ?)",
+                [filename, size, date]);
 
+
+        });
         console.log('8-Insert data Success!');
+        db_setting.close();
     }
 
     catch (e) {
@@ -511,71 +587,78 @@ function getFilesizeInBytes(filepath) {
 
 // ========================== Click End Show =======================
 app.get('/api/endshow/', function (req, res) {
-    get_show_key(function handleResult(err, result) {
-        if (err) {
-            console.log('Get the show key error.');
-            res.send('No show key error');
+    try {
+        get_show_key(function handleResult(err, result) {
+            if (err) {
+                console.log('Get the show key error.');
+                res.send('No show key error');
+            }
+            else {
+                eshow_flag = result;
+                console.log(eshow_flag);
+            }
+        });
+
+        var data = '';
+        if (eshow_flag == '') {
+            console.log('Show Key Empty!');
+            data = 'Please Insert Show Key';
         }
         else {
-            eshow_flag = result;
-            console.log(eshow_flag);
-        }
-    });
+            var timeStamp = (new Date).toISOString().replace(/z/gi, '').trim();
+            var folderpath = srcDirectory + eshow_flag;
+            outputpath = srcDirectory + eshow_flag + ':' + timeStamp + '.zip';
+            // make eshow dir.
+            if (!fs.existsSync(folderpath)) {
+                data = 'No Files exist!!!'
+            }
 
-    var data = '';
-    if (eshow_flag == '') {
-        console.log('Show Key Empty!');
-        data = 'Please Insert Show Key';
+            else {
+                var string = 'Name: ' + reader_name + '\n' + 'Mac address: ' + mac_addr;
+                console.log(string);
+
+                fs.writeFile(folderpath + '/info.txt', string, function (err) {
+                    if (err) console.log(err);
+                    console.log('successful.');
+                });
+                console.log(folderpath);
+
+                var output = fs.createWriteStream(outputpath);
+
+                output.on('close', function () {
+                    console.log('done with the zip', outputpath);
+                });
+                zipArchive.pipe(output);
+                zipArchive.bulk([
+                    {src: ['**/*'], cwd: folderpath, expand: true}
+                ]);
+                zipArchive.finalize(function (err, bytes) {
+
+                    if (err) {
+                        throw err;
+                    }
+
+                    console.log('done:', base, bytes);
+                    send_zip_aws(outputpath);
+
+                });
+
+                data = 'zip archive is sent to AWS successfully.'
+            }
+
+        }
+        res.send(data);
     }
-    else {
-        var timeStamp = (new Date).toISOString().replace(/z/gi, '').trim();
-        var folderpath = srcDirectory + eshow_flag;
-        outputpath = srcDirectory + eshow_flag + ':' + timeStamp + '.zip';
-        // make eshow dir.
-        if (!fs.existsSync(folderpath)) {
-            data = 'No Files exist!!!'
-        }
-
-        else {
-            var string = 'Name: ' + reader_name + '\n' + 'Mac address: ' + mac_addr;
-            console.log(string);
-
-            fs.writeFile(folderpath + '/info.txt', string, function (err) {
-                if (err) console.log(err);
-                console.log('successful.');
-            });
-            console.log(folderpath);
-
-            var output = fs.createWriteStream(outputpath);
-
-            output.on('close', function () {
-                console.log('done with the zip', outputpath);
-            });
-            zipArchive.pipe(output);
-            zipArchive.bulk([
-                {src: ['**/*'], cwd: folderpath, expand: true}
-            ]);
-            zipArchive.finalize(function (err, bytes) {
-
-                if (err) {
-                    throw err;
-                }
-
-                console.log('done:', base, bytes);
-                send_zip_aws(outputpath);
-
-            });
-
-            data = 'zip archive is sent to AWS successfully.'
-        }
-
+    catch (e){
+        console.log(e);
+        res.send(e);
     }
-    res.send(data);
 });
 
 
 // ========================Delete the db and transfer the db file to main server.==============
 app.get('/api/transfer/', function (req, res) {
+
     get_show_key(function handleResult(err, result) {
         if (err) {
             console.log('Get the show key error.');
@@ -621,72 +704,82 @@ app.get('/api/transfer/', function (req, res) {
 // Send request to rfidservice for deleting database
 function clear_reader_db() {
     //The url we want is: 'http://127.0.0.1:8080'
-    console.log('11-send delete request to server.')
-    var options = {
-        host: '127.0.0.1',
-        port: 8080,
-        path: '/delete'
-    };
+    try {
+        console.log('11-send delete request to server.')
+        var options = {
+            host: '127.0.0.1',
+            port: 8080,
+            path: '/delete'
+        };
 
-    var on_callback = function (response) {
+        var on_callback = function (response) {
 
-        //another chunk of data has been recieved, so append it to `str`
-        response.on('data', function (chunk) {
-            console.log('12-deleted successfully');
+            //another chunk of data has been recieved, so append it to `str`
+            response.on('data', function (chunk) {
+                console.log('12-deleted successfully');
 
-        });
+            });
 
-        response.on('error', function handleRequestError(error) {
-            console.log("Request error:", error);
+            response.on('error', function handleRequestError(error) {
+                console.log("Request error:", error);
 
-        });
+            });
 
-        //the whole response has been recieved, so we just print it out here
-        response.on('end', function () {
-            console.log("16-end delete")
+            //the whole response has been recieved, so we just print it out here
+            response.on('end', function () {
+                console.log("16-end delete")
 
-        });
-    };
-    http.request(options, on_callback).end();
+            });
+        };
+        http.request(options, on_callback).end();
+    }
+    catch (e){
+        console.log(e);
+    }
 
 }
 
 // send file to aws app.
 function send_file_aws(file_path) {
-    var aws_api = 'http://54.175.198.243/api/file/' + mac_addr + '/';
-    console.log('10-send_file_aws: ' + aws_api);
+    try {
+        var aws_api = 'http://54.175.198.243/api/file/' + mac_addr + '/';
+        console.log('10-send_file_aws: ' + aws_api);
 
-    var formData = {
-        file: fs.createReadStream(file_path)
-    };
-    request.post({
-        url: aws_api,
-        formData: formData
-    }, function optionalCallback(err, httpResponse, body) {
-        if (err) {
-            connection_flag = false;
-            save_backup(file_path);
-            return;
-        }
-        clear_reader_db();
-        // try {
-        //
-        //     db_streaming.run("DELETE FROM reader", function (error) {
-        //     console.log("deleting running");
-        //
-        //     if (error) {
-        //         console.log(error);
-        //
-        //     }
-        //     vacuum_db();
-        // });
-        // console.log('Delete Table reader data');
-        //
-        // }
-        // catch (er) {
-        //     console.log('transaction', er)
-        // }
-    });
+        var formData = {
+            file: fs.createReadStream(file_path)
+        };
+        request.post({
+            url: aws_api,
+            formData: formData
+        }, function optionalCallback(err, httpResponse, body) {
+            if (err) {
+                connection_flag = false;
+                save_backup(file_path);
+                return;
+            }
+            clear_reader_db();
+            // try {
+            //
+            //     db_streaming.run("DELETE FROM reader", function (error) {
+            //     console.log("deleting running");
+            //
+            //     if (error) {
+            //         console.log(error);
+            //
+            //     }
+            //     vacuum_db();
+            // });
+            // console.log('Delete Table reader data');
+            //
+            // }
+            // catch (er) {
+            //     console.log('transaction', er)
+            // }
+        });
+    }
+    catch(e){
+        console.log(e);
+    }
 }
 
 // function vacuum_db() {
@@ -708,11 +801,19 @@ function send_file_aws(file_path) {
 
 // Back up db files.
 function save_backup(filepath) {
-    db_setting.run("INSERT into backup (filepath) VALUES (?)", filepath, function (err) {
-        if (err)
-            console.log('save_backup' + err);
-    });
-    console.log('save backup : ' + filepath);
+    var db_setting = sqlite3.Database(reader_setting);
+    try {
+        db_setting.run("INSERT into backup (filepath) VALUES (?)", filepath, function (err) {
+            if (err)
+                console.log('save_backup' + err);
+        });
+        db_setting.close();
+        console.log('save backup : ' + filepath);
+    }
+    catch (e){
+        console.log(e);
+        db_setting.close();
+    }
 }
 
 
@@ -720,34 +821,42 @@ function save_backup(filepath) {
 app.get('/api/stream/', function (req, res) {
     console.log("Got a Stream request for the homepage");
     var posts = [];
-    db_streaming.serialize(function () {
-        db_streaming.each("SELECT * FROM reader", function (err, row) {
-            if (err) {
-                posts.push({EPC: 'No Card', time: 'None'});
-                res.set('Content-Type', 'application/json');
-                res.send(posts);
+    var db_streaming = new sqlite3.Database(reader);
+    try {
+        db_streaming.serialize(function () {
+            db_streaming.each("SELECT * FROM reader", function (err, row) {
+                if (err) {
+                    posts.push({EPC: 'No Card', time: 'None'});
+                    res.set('Content-Type', 'application/json');
+                    res.send(posts);
 
-            }
-            posts.push({antenna: row.antenna, EPC: row.card_data, Custom: row.custom_field, time: row.timestamp});
-            console.log(row.antenna, row.card_data, row.custom_field, row.timestamp)
-        }, function (err) {
-            var send_data = [];
-            if (err) {
-                send_data = []
-            }
-            else {
-                if (posts.length > 10) {
-                    count = posts.length - 1;
-                    for (var i = count; i > count - 10; i--) {
-                        send_data.push(posts[i]);
+                }
+                posts.push({antenna: row.antenna, EPC: row.card_data, Custom: row.custom_field, time: row.timestamp});
+                console.log(row.antenna, row.card_data, row.custom_field, row.timestamp)
+            }, function (err) {
+                var send_data = [];
+                if (err) {
+                    send_data = []
+                }
+                else {
+                    if (posts.length > 10) {
+                        count = posts.length - 1;
+                        for (var i = count; i > count - 10; i--) {
+                            send_data.push(posts[i]);
+                        }
                     }
                 }
-            }
-            // All done fetching records, render response
-            res.set('Content-Type', 'application/json');
-            res.send(send_data);
+                // All done fetching records, render response
+                res.set('Content-Type', 'application/json');
+                res.send(send_data);
+            });
         });
-    });
+        db_streaming.close();
+    }
+    catch (e){
+        console.log(e);
+        db_streaming.close();
+    }
 });
 
 
@@ -896,7 +1005,7 @@ app.get('/api/sync_manual/', function (req, res) {
             console.log(filename);
             var file_path = folder_path + '/' + filename;
             // Copy the file to given path.
-            copyFile(reader, file_path, filename, db_streaming, timeStamp);
+            copyFile(reader, file_path, filename, timeStamp);
 
             sleep.sleep(3);
             res.send('Sync Manual Successful.');
@@ -917,34 +1026,38 @@ app.get('/api/start/:timer(\\d+)', function (req, res) {
     timer = req.params.timer;
     timerate_status = timer;
     console.log(timer);
+    try {
+        //The url we want is: 'http://127.0.0.1:8080'
+        var options = {
+            host: '127.0.0.1',
+            port: 8080,
+            path: '/start?timer=' + timer
+        };
 
-    //The url we want is: 'http://127.0.0.1:8080'
-    var options = {
-        host: '127.0.0.1',
-        port: 8080,
-        path: '/start?timer=' + timer
-    };
+        var on_callback = function (response) {
 
-    var on_callback = function (response) {
+            //another chunk of data has been recieved, so append it to `str`
+            response.on('data', function (chunk) {
+                console.log(chunk);
+                res.send('Started !!!');
 
-        //another chunk of data has been recieved, so append it to `str`
-        response.on('data', function (chunk) {
-            console.log(chunk);
-            res.send('Started !!!');
+            });
 
-        });
+            response.on('error', function handleRequestError(error) {
+                console.log("Request error:", error);
+                res.send(error);
+            });
 
-        response.on('error', function handleRequestError(error) {
-            console.log("Request error:", error);
-            res.send(error);
-        });
+            //the whole response has been recieved, so we just print it out here
+            response.on('end', function () {
 
-        //the whole response has been recieved, so we just print it out here
-        response.on('end', function () {
-
-        });
-    };
-    http.request(options, on_callback).end();
+            });
+        };
+        http.request(options, on_callback).end();
+    }
+    catch(e){
+        console.log(e);
+    }
 });
 
 function self_start() {
@@ -953,32 +1066,36 @@ function self_start() {
     calculate_alive_time();
     timerate_status = timer;
     console.log(timer);
+    try {
+        //The url we want is: 'http://127.0.0.1:8080'
+        var options = {
+            host: '127.0.0.1',
+            port: 8080,
+            path: '/start?timer=' + timer
+        };
 
-    //The url we want is: 'http://127.0.0.1:8080'
-    var options = {
-        host: '127.0.0.1',
-        port: 8080,
-        path: '/start?timer=' + timer
-    };
+        var on_callback = function (response) {
 
-    var on_callback = function (response) {
+            //another chunk of data has been recieved, so append it to `str`
+            response.on('data', function (chunk) {
+                console.log(chunk);
 
-        //another chunk of data has been recieved, so append it to `str`
-        response.on('data', function (chunk) {
-            console.log(chunk);
+            });
 
-        });
+            response.on('error', function handleRequestError(error) {
+                console.log("Request error:", error);
+            });
 
-        response.on('error', function handleRequestError(error) {
-            console.log("Request error:", error);
-        });
+            //the whole response has been recieved, so we just print it out here
+            response.on('end', function () {
 
-        //the whole response has been recieved, so we just print it out here
-        response.on('end', function () {
-
-        });
-    };
-    http.request(options, on_callback).end();
+            });
+        };
+        http.request(options, on_callback).end();
+    }
+    catch(e){
+        console.log(e);
+    }
 }
 
 // ================= Stop server from AWID.=======================
@@ -987,31 +1104,36 @@ app.get('/api/stop/', function (req, res) {
     timerate_status = false;
     clearInterval(clock);
     console.log("Got a Stop request");
-    var options = {
-        host: '127.0.0.1',
-        port: 8080,
-        path: '/stop'
-    };
-    var callback = function (response) {
+    try {
+        var options = {
+            host: '127.0.0.1',
+            port: 8080,
+            path: '/stop'
+        };
+        var callback = function (response) {
 
-        //another chunk of data has been recieved, so append it to `str`
-        response.on('data', function (chunk) {
-            console.log(chunk);
-            res.send('Stopped !!!');
-        });
+            //another chunk of data has been recieved, so append it to `str`
+            response.on('data', function (chunk) {
+                console.log(chunk);
+                res.send('Stopped !!!');
+            });
 
-        //another chunk of data has been recieved, so append it to `str`
-        response.on('error', function handleRequestError(error) {
-            console.log("Request error:", error);
-            res.send(error);
-        });
+            //another chunk of data has been recieved, so append it to `str`
+            response.on('error', function handleRequestError(error) {
+                console.log("Request error:", error);
+                res.send(error);
+            });
 
-        //the whole response has been recieved, so we just print it out here
-        response.on('end', function () {
+            //the whole response has been recieved, so we just print it out here
+            response.on('end', function () {
 
-        });
-    };
-    http.request(options, callback).end();
+            });
+        };
+        http.request(options, callback).end();
+    }
+    catch(e){
+        console.log(e);
+    }
 });
 
 
@@ -1032,39 +1154,49 @@ function send_data_aws() {
     var aws_data_api = 'http://54.175.198.243/api/update/status/' + mac_addr + '/';
     console.log('send_file_aws: ' + aws_data_api);
     console.log('mac_address: ' + mac_addr);
-    request({
-        url: aws_data_api,
-        method: 'POST',
-        //Lets post the following key/values as form
-        json: true,
-        body: {mac_address: mac_addr}
-    }, function (error, response, body) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log(response.statusCode, body);
-        }
-    });
+    try {
+        request({
+            url: aws_data_api,
+            method: 'POST',
+            //Lets post the following key/values as form
+            json: true,
+            body: {mac_address: mac_addr}
+        }, function (error, response, body) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log(response.statusCode, body);
+            }
+        });
+    }
+    catch(e){
+        console.log(e);
+    }
 }
 
 // ========================== Create db when no exists.===================//
 function create_db() {
-    if (!exists) {
-        console.log("Creating DB file.");
-        fs.openSync(reader_setting, "w");
-    }
-
-    db_setting.serialize(function () {
+    try {
         if (!exists) {
-            console.log("Creating table.");
-            db_setting.run("CREATE TABLE reader_setting (id INTEGER PRIMARY KEY AUTOINCREMENT, reader_name TEXT, mac_address TEXT, ip_address TEXT, power_level Text)");
-            db_setting.run("CREATE TABLE eshow(id INTEGER PRIMARY KEY AUTOINCREMENT, show_key TEXT, client_key TEXT)");
-            db_setting.run("CREATE TABLE file(id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT, file_size INTEGER, date TEXT)");
-            db_setting.run("CREATE TABLE backup(id INTEGER PRIMARY KEY AUTOINCREMENT, filepath TEXT)");
+            console.log("Creating DB file.");
+            fs.openSync(reader_setting, "w");
         }
-    });
+        var db_setting = sqlite3.Database(reader_setting);
+        db_setting.serialize(function () {
+            if (!exists) {
+                console.log("Creating table.");
+                db_setting.run("CREATE TABLE reader_setting (id INTEGER PRIMARY KEY AUTOINCREMENT, reader_name TEXT, mac_address TEXT, ip_address TEXT, power_level Text)");
+                db_setting.run("CREATE TABLE eshow(id INTEGER PRIMARY KEY AUTOINCREMENT, show_key TEXT, client_key TEXT)");
+                db_setting.run("CREATE TABLE file(id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT, file_size INTEGER, date TEXT)");
+                db_setting.run("CREATE TABLE backup(id INTEGER PRIMARY KEY AUTOINCREMENT, filepath TEXT)");
+            }
+        });
 
-    //db.close();
+        db_setting.close();
+    }
+    catch(e){
+        console.log(e);
+    }
 }
 
 // ==================== Start node.js server.======================//
