@@ -28,8 +28,12 @@ app.use(bodyParser.json());
 var fs = require("fs");
 var reader_setting = "/home/RFID/reader_setting.db";
 var reader = "/home/RFID/reader.db";
+var reader_file = "/home/RFID/reader_file.db";
+var reader_backup = "/home/RFID/reader_backup.db";
 var clock_file = "/home/RFID/clock.txt";
 var exists = fs.existsSync(reader_setting);
+var exists_file = fs.existsSync(reader_file);
+var exists_backup = fs.existsSync(reader_backup);
 var exists_streaming_db = fs.existsSync(reader);
 
 var connection_flag = true;
@@ -239,7 +243,7 @@ app.get('/api/device/files/', function (req, res) {
     try {
 
         var posts = [];
-        var db_files = new sqlite3.Database(reader_setting);
+        var db_files = new sqlite3.Database(reader_file);
         db_files.serialize(function () {
             db_files.each("SELECT * FROM file", function (err, row) {
                 if (err) {
@@ -463,7 +467,7 @@ function get_reader_setting(callback) {
 
 function check_backup() {
     try {
-        var db_backup = new sqlite3.Database(reader_setting);
+        var db_backup = new sqlite3.Database(reader_backup);
         db_backup.serialize(function () {
             db_backup.each("SELECT * FROM backup", function (err, row) {
                 if (err) {
@@ -557,7 +561,7 @@ function send_zip_aws(file_path) {
 // ====================Add the file name to file.db.==================================
 function insert_file_to_db(filename, size, date) {
     console.log("7-Insert file name to file db");
-    var db_insert_file = new sqlite3.Database(reader_setting);
+    var db_insert_file = new sqlite3.Database(reader_file);
     try {
         db_insert_file.serialize(function () {
             db_insert_file.run("INSERT into file (file_name, file_size, date) VALUES (?, ?, ?)",
@@ -800,7 +804,7 @@ function send_file_aws(file_path) {
 
 // Back up db files.
 function save_backup(filepath) {
-    var db_save_back = new sqlite3.Database(reader_setting);
+    var db_save_back = new sqlite3.Database(reader_backup);
     try {
         db_save_back.run("INSERT into backup (filepath) VALUES (?)", filepath, function (err) {
             if (err)
@@ -1180,18 +1184,36 @@ function create_db() {
             console.log("Creating DB file.");
             fs.openSync(reader_setting, "w");
         }
+        if (!exists_file) {
+            console.log("Creating DB file.");
+            fs.openSync(reader_file, "w");
+        }
+        if (!exists_backup) {
+            console.log("Creating DB file.");
+            fs.openSync(reader_backup, "w");
+        }
         var db = new sqlite3.Database(reader_setting);
+        var db_file_create = new sqlite3.Database(reader_file);
+        var db_backup_create = new sqlite3.Database(reader_backup);
         db.serialize(function () {
             if (!exists) {
                 console.log("Creating table.");
                 db.run("CREATE TABLE reader_setting (id INTEGER PRIMARY KEY AUTOINCREMENT, reader_name TEXT, mac_address TEXT, ip_address TEXT, power_level Text)");
                 db.run("CREATE TABLE eshow(id INTEGER PRIMARY KEY AUTOINCREMENT, show_key TEXT, client_key TEXT)");
-                db.run("CREATE TABLE file(id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT, file_size INTEGER, date TEXT)");
-                db.run("CREATE TABLE backup(id INTEGER PRIMARY KEY AUTOINCREMENT, filepath TEXT)");
             }
         });
 
         db.close();
+        db_file_create.serialize(function () {
+                console.log("Creating file database table.");
+                db.run("CREATE TABLE file(id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT, file_size INTEGER, date TEXT)");
+        });
+        db_file_create.close();
+        db_backup_create.serialize(function () {
+                console.log("Creating backup database table.");
+                db.run("CREATE TABLE backup(id INTEGER PRIMARY KEY AUTOINCREMENT, filepath TEXT)");
+        });
+        db_backup_create.close();
     }
     catch(e){
         console.log(e);
