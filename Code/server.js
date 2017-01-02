@@ -226,7 +226,6 @@ app.get('/api/device/list/', function (req, res) {
                 // All done fetching records, render response
                 res.set('Content-Type', 'application/json');
                 res.send(posts);
-
             });
         });
         db_setting.close();
@@ -372,7 +371,7 @@ app.post('/api/delete/', function (req, res) {
 // ======================== send device information to aws =========================//
 function send_device_to_aws(name, mac_address, address) {
     try {
-        var aws_data_api = 'http://54.175.198.243/api/device/fulfill/';
+        var aws_data_api = 'http://54.84.143.166/api/device/fulfill/';
         console.log('send_device_aws: ' + aws_data_api);
         console.log('mac_address: ' + mac_addr + 'name: ' + name + 'address: ' + address);
         request({
@@ -530,7 +529,7 @@ function copyFile(source, target, filename, timeStamp) {
 
 // send zip file to aws app.
 function send_zip_aws(file_path) {
-    var aws_api = 'http://54.175.198.243/api/zip/' + mac_addr + '/';
+    var aws_api = 'http://54.84.143.166/api/zip/' + mac_addr + '/';
     try {
         var formData = {
             // Pass a simple key-value pair
@@ -745,7 +744,7 @@ function clear_reader_db() {
 // send file to aws app.
 function send_file_aws(file_path) {
     try {
-        var aws_api = 'http://54.175.198.243/api/file/' + mac_addr + '/';
+        var aws_api = 'http://54.84.143.166/api/file/' + mac_addr + '/';
         console.log('10-send_file_aws: ' + aws_api);
 
         var formData = {
@@ -1154,7 +1153,7 @@ function calculate_alive_time() {
 
 // ======================== send data to aws =========================//
 function send_data_aws() {
-    var aws_data_api = 'http://54.175.198.243/api/update/status/' + mac_addr + '/';
+    var aws_data_api = 'http://54.84.143.166/api/update/status/' + mac_addr + '/';
     console.log('send_status_aws: ' + aws_data_api);
     console.log('mac_address: ' + mac_addr);
     try {
