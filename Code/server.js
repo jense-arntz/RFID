@@ -37,6 +37,7 @@ var exists_backup = fs.existsSync(reader_backup);
 var exists_streaming_db = fs.existsSync(reader);
 
 var connection_flag = true;
+var check_reader_flag = false;
 var eshow_flag = '';
 var eshow_key = '';
 var client_key = '';
@@ -498,10 +499,10 @@ function check_reader() {
                 else {
                     if (rows.length != 0) {
                         console.log('check_reader: YES');
-                        return true;
+                        check_reader_flag = true;
                     }
                     else{
-                        return false;
+                        check_reader_flag = false;
                     }
                 }
             });
@@ -516,7 +517,7 @@ function check_reader() {
 // Copy file
 function copyFile(source, target, filename, timeStamp) {
     try {
-        if (check_reader()) {
+        if (check_reader_flag) {
             var rd = fs.createReadStream(source);
             rd.on("error", function (err) {
                 console.log("reading error");
