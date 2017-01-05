@@ -488,7 +488,7 @@ function check_backup() {
     }
 }
 
-function check_reader() {
+function check_reader(callback) {
     try {
         var db_reader = new sqlite3.Database(reader);
         db_reader.serialize(function () {
@@ -499,10 +499,11 @@ function check_reader() {
                 else {
                     if (rows.length != 0) {
                         console.log('check_reader: YES');
-                        check_reader_flag = true;
+                        callback(null, true);
                     }
                     else{
-                        check_reader_flag = false;
+                        console.log('check_reader: NO');
+                        callback(null, false);
                     }
                 }
             });
@@ -517,6 +518,16 @@ function check_reader() {
 // Copy file
 function copyFile(source, target, filename, timeStamp) {
     try {
+        check_reader(function handleResult(err, result) {
+            if (err) {
+                console.log('check reader error', err);
+                // res.send('No show key error');
+            }
+            else {
+                check_reader_flag = result;
+                console.log('check_reader_flag', check_reader_flag);
+            }
+        });
         if (check_reader_flag) {
             var rd = fs.createReadStream(source);
             rd.on("error", function (err) {
