@@ -491,7 +491,7 @@ function check_reader() {
     try {
         var db_reader = new sqlite3.Database(reader);
         db_reader.serialize(function () {
-            db_reader.all("SELECT * FROM backup", function (err, rows) {
+            db_reader.all("SELECT * FROM reader", function (err, rows) {
                 if (err) {
                     console.log('check_reader' + err);
                 }
