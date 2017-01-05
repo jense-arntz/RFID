@@ -487,9 +487,36 @@ function check_backup() {
     }
 }
 
+function check_reader() {
+    try {
+        var db_reader = new sqlite3.Database(reader);
+        db_reader.serialize(function () {
+            db_reader.all("SELECT * FROM backup", function (err, rows) {
+                if (err) {
+                    console.log('check_reader' + err);
+                }
+                else {
+                    if (rows.length != 0) {
+                        console.log('check_reader: YES');
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
+                }
+            });
+        });
+        db_reader.close();
+    }
+    catch (err) {
+        console.log(' backup:', err);
+    }
+}
+
 // Copy file
 function copyFile(source, target, filename, timeStamp) {
     try {
+        if (check_reader()) {
             var rd = fs.createReadStream(source);
             rd.on("error", function (err) {
                 console.log("reading error");
@@ -521,6 +548,10 @@ function copyFile(source, target, filename, timeStamp) {
                 }
             });
             rd.pipe(wr);
+        }
+        else{
+            console.log('No data in reader.db');
+        }
     }
     catch (e) {
         console.log(e);
