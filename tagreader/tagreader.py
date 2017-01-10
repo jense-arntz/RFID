@@ -564,6 +564,7 @@ def start_tag_reader_thread(timer):
     tag_reader_thread.start()
 
 
+
 # Stop thread
 def stop_tag_reader_thread():
     global tag_reader_thread
