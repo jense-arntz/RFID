@@ -71,6 +71,14 @@ def read_single_tag_id():
     return protocol_packet(TYPE_EPC_COMMAND, 0x00)
 
 
+def sys_configure_antenna(value):
+    return protocol_packet(TYPE_SYSTEM_COMMAMD, 0x88, value)
+
+
+def sys_antenna_level():
+    return protocol_packet(TYPE_SYSTEM_COMMAMD, 0x62)
+
+
 # EPC Class 1 Generation 2 Command (0x20) /// Read Single Tag ID (0x10).
 def read_single_tag_id_timeout(timeout):
     return protocol_packet(TYPE_EPC_COMMAND, 0x10, timeout)
