@@ -277,81 +277,6 @@ def enable_antenna_switch(s):
     return True
 
 
-# def configure_antenna_setting(s):
-#     s.send(bytearray(sys_configure_antenna([0x02])))
-#     time.sleep(.1)
-#
-#     ack = s.recv(1).encode('hex')
-#     # sleep ?
-#     if ack == ACK_FAIL:
-#         print('ACK FAIL')
-#         return False
-#
-#     len = int(s.recv(1).encode('hex'), 16)
-#     print 'read_antenna_status length: {}'.format(len)
-#     if len > 0:
-#         body = s.recv(len)
-#     else:
-#         print('LEN = 0')
-#         return False
-#     cmd_type = body[0].encode('hex')
-#     cmd_code = body[1].encode('hex')
-#
-#     antenna_detect = body[2].encode('hex')
-#     antenna_setting = body[3].encode('hex')
-#
-#     print('command type: {}'.format(cmd_type))
-#     print('command code: {}'.format(cmd_code))
-#     print('Antenna Detect : {}'.format(antenna_detect))
-#     print('Antenna Setting : {}'.format(antenna_setting))
-#     # check command type and command code
-#     return True
-
-
-def read_antenna_status(s):
-    s.send(bytearray(sys_antenna_status()))
-    time.sleep(.1)
-
-    ack = s.recv(1).encode('hex')
-    # sleep ?
-    if ack == ACK_FAIL:
-        print('ACK FAIL')
-        return False
-
-    len = int(s.recv(1).encode('hex'), 16)
-    print 'read_antenna_status length: {}'.format(len)
-    if len > 0:
-        body = s.recv(len)
-    else:
-        print('LEN = 0')
-        return False
-    cmd_type = body[0].encode('hex')
-    cmd_code = body[1].encode('hex')
-    switch_status = body[2:].encode('hex')
-    # current_antenna = body[3].encode('hex')
-    # number_antenna = body[4].encode('hex')
-    # antenna1_rate = body[5].encode('hex')
-    # antenna2_rate = body[6].encode('hex')
-    # antenna3_rate = body[7].encode('hex')
-    # antenna4_rate = body[8].encode('hex')
-    # antenna_status = body[9].encode('hex')
-    # antenna_level = body[10:13].encode('hex')
-
-    print('command type: {}'.format(cmd_type))
-    print('command code: {}'.format(cmd_code))
-    print('Switching On/Off: {}'.format(switch_status))
-    # print('Current Antenna: {}'.format(current_antenna))
-    # print('Number enabled : {}'.format(number_antenna))
-    # print('Antenna1 Rate : {}'.format(antenna1_rate))
-    # print('Antenna2 Rate : {}'.format(antenna2_rate))
-    # print('Antenna3 Rate : {}'.format(antenna3_rate))
-    # print('Antenna4 Rate : {}'.format(antenna4_rate))
-    # print('Antenna Status : {}'.format(antenna_status))
-    # print('Antenna Power Level : {}'.format(antenna_level))
-    # check command type and command code
-    return True
-
-
 def antenna_switch_rate(s):
     s.send(bytearray(sys_antenna_rate([0x05, 0x05])))
     time.sleep(.1)
@@ -503,12 +428,6 @@ def main(timer):
 
     # read reader's status
     if not read_reader_status(s):
-        print('failed to read the reader\'s status.')
-        s.close()
-        return
-
-    # read firmware version
-    if not read_firmware_version(s):
         print('failed to read the reader\'s status.')
         s.close()
         return
