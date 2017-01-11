@@ -327,33 +327,33 @@ def read_antenna_status(s):
         return False
     cmd_type = body[0].encode('hex')
     cmd_code = body[1].encode('hex')
-    switch_status = body[2].encode('hex')
-    current_antenna = body[3].encode('hex')
-    number_antenna = body[4].encode('hex')
-    antenna1_rate = body[5].encode('hex')
-    antenna2_rate = body[6].encode('hex')
-    antenna3_rate = body[7].encode('hex')
-    antenna4_rate = body[8].encode('hex')
-    antenna_status = body[9].encode('hex')
-    antenna_level = body[10:13].encode('hex')
+    switch_status = body[2:].encode('hex')
+    # current_antenna = body[3].encode('hex')
+    # number_antenna = body[4].encode('hex')
+    # antenna1_rate = body[5].encode('hex')
+    # antenna2_rate = body[6].encode('hex')
+    # antenna3_rate = body[7].encode('hex')
+    # antenna4_rate = body[8].encode('hex')
+    # antenna_status = body[9].encode('hex')
+    # antenna_level = body[10:13].encode('hex')
 
     print('command type: {}'.format(cmd_type))
     print('command code: {}'.format(cmd_code))
     print('Switching On/Off: {}'.format(switch_status))
-    print('Current Antenna: {}'.format(current_antenna))
-    print('Number enabled : {}'.format(number_antenna))
-    print('Antenna1 Rate : {}'.format(antenna1_rate))
-    print('Antenna2 Rate : {}'.format(antenna2_rate))
-    print('Antenna3 Rate : {}'.format(antenna3_rate))
-    print('Antenna4 Rate : {}'.format(antenna4_rate))
-    print('Antenna Status : {}'.format(antenna_status))
-    print('Antenna Power Level : {}'.format(antenna_level))
+    # print('Current Antenna: {}'.format(current_antenna))
+    # print('Number enabled : {}'.format(number_antenna))
+    # print('Antenna1 Rate : {}'.format(antenna1_rate))
+    # print('Antenna2 Rate : {}'.format(antenna2_rate))
+    # print('Antenna3 Rate : {}'.format(antenna3_rate))
+    # print('Antenna4 Rate : {}'.format(antenna4_rate))
+    # print('Antenna Status : {}'.format(antenna_status))
+    # print('Antenna Power Level : {}'.format(antenna_level))
     # check command type and command code
     return True
 
 
 def antenna_switch_rate(s):
-    s.send(bytearray(sys_antenna_rate([0x05, 0x06])))
+    s.send(bytearray(sys_antenna_rate([0x05, 0x05])))
     time.sleep(.1)
 
     ack = s.recv(1).encode('hex')
@@ -513,14 +513,15 @@ def main(timer):
         s.close()
         return
 
-    # Enable Antenna Switch
-    if not enable_antenna_switch(s):
+    # control reader power level
+    if not read_power_level(s):
         print('failed to read the reader\'s status.')
         s.close()
         return
 
-    if not antenna_switch_rate(s):
-        print('failed to set reader switch \'s status.')
+    # Enable Antenna Switch
+    if not enable_antenna_switch(s):
+        print('failed to read the reader\'s status.')
         s.close()
         return
 
@@ -530,9 +531,8 @@ def main(timer):
         s.close()
         return
 
-    # control reader power level
-    if not read_power_level(s):
-        print('failed to read the reader\'s status.')
+    if not antenna_switch_rate(s):
+        print('failed to set reader switch \'s status.')
         s.close()
         return
 
