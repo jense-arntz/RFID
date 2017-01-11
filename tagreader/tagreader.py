@@ -256,23 +256,23 @@ def enable_antenna_switch(s):
         print('ACK FAIL')
         return False
 
-    # len = int(s.recv(1).encode('hex'), 16)
-    # print 'read_antenna_switch length: {}'.format(len)
-    # if len > 0:
-    #     body = s.recv(len)
-    # else:
-    #     print('LEN = 0')
-    #     return False
-    #
-    # cmd_type = body[0].encode('hex')
-    # cmd_code = body[1].encode('hex')
-    #
-    # print('command type: {}'.format(cmd_type))
-    # print('command code: {}'.format(cmd_code))
-    #
-    # # check command type and command code
-    # antenna_switch = body[2:]
-    # print('antenna switch: {}'.format(antenna_switch.encode('hex')))
+    len = int(s.recv(1).encode('hex'), 16)
+    print 'read_antenna_switch length: {}'.format(len)
+    if len > 0:
+        body = s.recv(len)
+    else:
+        print('LEN = 0')
+        return False
+
+    cmd_type = body[0].encode('hex')
+    cmd_code = body[1].encode('hex')
+
+    print('command type: {}'.format(cmd_type))
+    print('command code: {}'.format(cmd_code))
+
+    # check command type and command code
+    antenna_switch = body[2:]
+    print('antenna switch: {}'.format(antenna_switch.encode('hex')))
 
     return True
 
@@ -541,7 +541,7 @@ def main(timer):
     #     s.close()
     #     return
     # ready to start
-    # start_loop(s, time_interval=timer)
+    start_loop(s, time_interval=timer)
     print 'end'
     s.close()
 
