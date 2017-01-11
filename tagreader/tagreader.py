@@ -353,7 +353,7 @@ def read_antenna_status(s):
 
 
 def antenna_switch_rate(s):
-    s.send(bytearray(sys_antenna_rate([0x01, 0x01])))
+    s.send(bytearray(sys_antenna_rate([0x05, 0x06])))
     time.sleep(.1)
 
     ack = s.recv(1).encode('hex')
@@ -519,14 +519,14 @@ def main(timer):
         s.close()
         return
 
-    # set antenna source
-    if not read_antenna_source(s):
-        print('failed to read the reader\'s status.')
+    if not antenna_switch_rate(s):
+        print('failed to set reader switch \'s status.')
         s.close()
         return
 
-    if not antenna_switch_rate(s):
-        print('failed to set reader switch \'s status.')
+    # set antenna source
+    if not read_antenna_source(s):
+        print('failed to read the reader\'s status.')
         s.close()
         return
 
@@ -535,6 +535,7 @@ def main(timer):
         print('failed to read the reader\'s status.')
         s.close()
         return
+
     # if not read_antenna_status(s):
     #     print('failed to set reader switch \'s status.')
     #     s.close()
