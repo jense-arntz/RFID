@@ -536,10 +536,10 @@ def main(timer):
         s.close()
         return
 
-    if not read_antenna_status(s):
-        print('failed to set reader switch \'s status.')
-        s.close()
-        return
+    # if not read_antenna_status(s):
+    #     print('failed to set reader switch \'s status.')
+    #     s.close()
+    #     return
     # ready to start
     # start_loop(s, time_interval=timer)
     print 'end'
