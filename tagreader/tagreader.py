@@ -520,22 +520,16 @@ def main(timer):
         return
 
     # Enable Antenna Switch
-    # if not configure_antenna_setting(s):
-    #     print('failed to read the reader\'s status.')
-    #     s.close()
-    #     return
-
-    # Enable Antenna Switch
     if not enable_antenna_switch(s):
         print('failed to read the reader\'s status.')
         s.close()
         return
 
-    # set antenna source
-    if not read_antenna_source(s):
-        print('failed to read the reader\'s status.')
-        s.close()
-        return
+    # # set antenna source
+    # if not read_antenna_source(s):
+    #     print('failed to read the reader\'s status.')
+    #     s.close()
+    #     return
 
     if not antenna_switch_rate(s):
         print('failed to set reader switch \'s status.')
@@ -547,7 +541,8 @@ def main(timer):
     #     s.close()
     #     return
     # ready to start
-    start_loop(s, time_interval=timer)
+    # start_loop(s, time_interval=timer)
+    print 'end'
     s.close()
 
 
