@@ -277,35 +277,35 @@ def enable_antenna_switch(s):
     return True
 
 
-def configure_antenna_setting(s):
-    s.send(bytearray(sys_configure_antenna([0x03])))
-    time.sleep(.1)
-
-    ack = s.recv(1).encode('hex')
-    # sleep ?
-    if ack == ACK_FAIL:
-        print('ACK FAIL')
-        return False
-
-    len = int(s.recv(1).encode('hex'), 16)
-    print 'read_antenna_status length: {}'.format(len)
-    if len > 0:
-        body = s.recv(len)
-    else:
-        print('LEN = 0')
-        return False
-    cmd_type = body[0].encode('hex')
-    cmd_code = body[1].encode('hex')
-
-    antenna_detect = body[2].encode('hex')
-    antenna_setting = body[3].encode('hex')
-
-    print('command type: {}'.format(cmd_type))
-    print('command code: {}'.format(cmd_code))
-    print('Antenna Detect : {}'.format(antenna_detect))
-    print('Antenna Setting : {}'.format(antenna_setting))
-    # check command type and command code
-    return True
+# def configure_antenna_setting(s):
+#     s.send(bytearray(sys_configure_antenna([0x02])))
+#     time.sleep(.1)
+#
+#     ack = s.recv(1).encode('hex')
+#     # sleep ?
+#     if ack == ACK_FAIL:
+#         print('ACK FAIL')
+#         return False
+#
+#     len = int(s.recv(1).encode('hex'), 16)
+#     print 'read_antenna_status length: {}'.format(len)
+#     if len > 0:
+#         body = s.recv(len)
+#     else:
+#         print('LEN = 0')
+#         return False
+#     cmd_type = body[0].encode('hex')
+#     cmd_code = body[1].encode('hex')
+#
+#     antenna_detect = body[2].encode('hex')
+#     antenna_setting = body[3].encode('hex')
+#
+#     print('command type: {}'.format(cmd_type))
+#     print('command code: {}'.format(cmd_code))
+#     print('Antenna Detect : {}'.format(antenna_detect))
+#     print('Antenna Setting : {}'.format(antenna_setting))
+#     # check command type and command code
+#     return True
 
 
 def read_antenna_status(s):
@@ -520,10 +520,10 @@ def main(timer):
         return
 
     # Enable Antenna Switch
-    if not configure_antenna_setting(s):
-        print('failed to read the reader\'s status.')
-        s.close()
-        return
+    # if not configure_antenna_setting(s):
+    #     print('failed to read the reader\'s status.')
+    #     s.close()
+    #     return
 
     # Enable Antenna Switch
     if not enable_antenna_switch(s):
@@ -542,10 +542,10 @@ def main(timer):
         s.close()
         return
 
-    if not read_antenna_status(s):
-        print('failed to set reader switch \'s status.')
-        s.close()
-        return
+    # if not read_antenna_status(s):
+    #     print('failed to set reader switch \'s status.')
+    #     s.close()
+    #     return
     # ready to start
     start_loop(s, time_interval=timer)
     s.close()
@@ -562,7 +562,6 @@ def start_tag_reader_thread(timer):
 
     tag_reader_thread = threading.Thread(target=main, args=(timer,))
     tag_reader_thread.start()
-
 
 
 # Stop thread
