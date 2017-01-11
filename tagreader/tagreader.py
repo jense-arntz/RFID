@@ -394,7 +394,7 @@ def start_loop(s, time_interval=5):
 
         save_db(response[2:-4].encode('hex'), response[-3].encode('hex'))
 
-        time.sleep(int(time_interval))
+        #time.sleep(int(time_interval))
 
     print "exit socket."
     s.send(bytearray([STOP_COMMAND]))
@@ -428,6 +428,11 @@ def main(timer):
 
     # read reader's status
     if not read_reader_status(s):
+        print('failed to read the reader\'s status.')
+        s.close()
+        return
+
+    if not read_firmware_version(s):
         print('failed to read the reader\'s status.')
         s.close()
         return
