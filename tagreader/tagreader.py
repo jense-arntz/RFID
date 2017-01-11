@@ -513,12 +513,6 @@ def main(timer):
         s.close()
         return
 
-    # control reader power level
-    if not read_power_level(s):
-        print('failed to read the reader\'s status.')
-        s.close()
-        return
-
     # Enable Antenna Switch
     if not enable_antenna_switch(s):
         print('failed to read the reader\'s status.')
@@ -536,6 +530,11 @@ def main(timer):
         s.close()
         return
 
+    # control reader power level
+    if not read_power_level(s):
+        print('failed to read the reader\'s status.')
+        s.close()
+        return
     # if not read_antenna_status(s):
     #     print('failed to set reader switch \'s status.')
     #     s.close()
