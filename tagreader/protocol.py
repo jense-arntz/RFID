@@ -20,8 +20,6 @@ def protocol_packet(TYPE, CMD, DATA=[]):
 def sys_firmware_version():
     return protocol_packet(TYPE_SYSTEM_COMMAMD, 0x00)
 
-
-
 # System Command (0x00) /// Temperature (0x01)
 def sys_temperature():
     return protocol_packet(TYPE_SYSTEM_COMMAMD, 0x01)
