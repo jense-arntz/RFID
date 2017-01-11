@@ -519,11 +519,11 @@ def main(timer):
         s.close()
         return
 
-    # # set antenna source
-    # if not read_antenna_source(s):
-    #     print('failed to read the reader\'s status.')
-    #     s.close()
-    #     return
+    # set antenna source
+    if not read_antenna_source(s):
+        print('failed to read the reader\'s status.')
+        s.close()
+        return
 
     if not antenna_switch_rate(s):
         print('failed to set reader switch \'s status.')
