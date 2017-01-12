@@ -400,7 +400,7 @@ def start_loop(s, time_interval=5):
         #     time.sleep(time_interval)
         #     continue
 
-        save_db(response[2:-4].encode('hex'), response[-3].encode('hex'))
+        save_db(response[2:-5].encode('hex'), response[-3].encode('hex'))
 
         time.sleep(int(time_interval))
 
