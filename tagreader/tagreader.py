@@ -484,6 +484,12 @@ def main(timer):
         s.close()
         return
     time.sleep(.5)
+
+    # read reader's status
+    if not read_reader_status(s):
+        print('failed to read the reader\'s status.')
+        s.close()
+        return
     # if not read_antenna_status(s):
     #     print('failed to set reader switch \'s status.')
     #     s.close()
