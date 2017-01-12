@@ -402,7 +402,7 @@ def start_loop(s, time_interval=5):
 
         save_db(response[2:-5].encode('hex'), response[-3].encode('hex'))
 
-        time.sleep(int(time_interval))
+        # time.sleep(int(time_interval))
 
     print "exit socket."
     s.send(bytearray([STOP_COMMAND]))
