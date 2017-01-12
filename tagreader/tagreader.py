@@ -251,6 +251,7 @@ def enable_antenna_switch(s):
     time.sleep(.1)
 
     ack = s.recv(1).encode('hex')
+    print 'enable_antenna_switch ACK: {}'.format(ack)
     # sleep ?
     if ack == ACK_FAIL:
         print('ACK FAIL')
@@ -283,6 +284,7 @@ def antenna_switch_rate(s):
 
     ack = s.recv(1).encode('hex')
     # sleep ?
+    print 'antenna_switch_rate ACK: {}'.format(ack)
     if ack == ACK_FAIL:
         print('ACK FAIL')
         return False
@@ -431,41 +433,41 @@ def main(timer):
         print('failed to read the reader\'s status.')
         s.close()
         return
-
+    time.sleep(.5)
     if not read_firmware_version(s):
         print('failed to read the reader\'s status.')
         s.close()
         return
-
+    time.sleep(.5)
     # control reader power level
     if not read_power_level(s):
         print('failed to read the reader\'s status.')
         s.close()
         return
-
+    time.sleep(.5)
     # Enable Antenna Switch
     if not enable_antenna_switch(s):
         print('failed to read the reader\'s status.')
         s.close()
         return
-
+    time.sleep(.5)
     # set antenna source
     if not read_antenna_source(s):
         print('failed to read the reader\'s status.')
         s.close()
         return
-
+    time.sleep(.5)
     if not antenna_switch_rate(s):
         print('failed to set reader switch \'s status.')
         s.close()
         return
-
+    time.sleep(.5)
     # if not read_antenna_status(s):
     #     print('failed to set reader switch \'s status.')
     #     s.close()
     #     return
     # ready to start
-    start_loop(s, time_interval=timer)
+    # start_loop(s, time_interval=timer)
     print 'end'
     s.close()
 

@@ -7,7 +7,7 @@ def protocol_packet(TYPE, CMD, DATA=[]):
 
     payload = [LEN, TYPE, CMD] + DATA
     # crc = crcb(payload)
-
+    print 'payload: {}'.format(payload)
     # Check Sum for command
     crc = check_sum(payload)
 
