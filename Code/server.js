@@ -518,52 +518,48 @@ function check_reader(callback) {
 // Copy file
 function copyFile(source, target, filename, timeStamp) {
     try {
-        check_reader(function handleResult(err, result) {
-            if (err) {
-                console.log('check reader error', err);
-                // res.send('No show key error');
-            }
-            else {
-                check_reader_flag = result;
-                console.log('check_reader_flag', check_reader_flag);
+        // check_reader(function handleResult(err, result) {
+        //     if (err) {
+        //         console.log('check reader error', err);
+        //         // res.send('No show key error');
+        //     }
+        //     else {
+        //         check_reader_flag = result;
+        //         console.log('check_reader_flag', check_reader_flag);
+        //     }
+        // });
+
+        var rd = fs.createReadStream(source);
+        rd.on("error", function (err) {
+            console.log("reading error");
+        });
+        var wr = fs.createWriteStream(target);
+        wr.on("error", function (err) {
+            console.log("writing error");
+        });
+        wr.on("close", function (ex) {
+
+            var size = getFilesizeInBytes(target);
+            console.log('6-size', size);
+
+            insert_file_to_db(filename, size, timeStamp);
+            console.log('9-complete insert_file_to_db');
+
+            send_file_aws(target);
+            if (connection_flag == false) {
+                check_backup();
+                console.log('13-data: ' + backuup_data);
+                if (backuup_data.length != 0) {
+                    console.log("14-backing up");
+                    for (var i = 0; i < backuup_data.length; i++) {
+                        send_file_aws(backuup_data[i])
+                    }
+                    connection_flag = true;
+
+                }
             }
         });
-        if (check_reader_flag) {
-            var rd = fs.createReadStream(source);
-            rd.on("error", function (err) {
-                console.log("reading error");
-            });
-            var wr = fs.createWriteStream(target);
-            wr.on("error", function (err) {
-                console.log("writing error");
-            });
-            wr.on("close", function (ex) {
-
-                var size = getFilesizeInBytes(target);
-                console.log('6-size', size);
-
-                insert_file_to_db(filename, size, timeStamp);
-                console.log('9-complete insert_file_to_db');
-
-                send_file_aws(target);
-                if (connection_flag == false) {
-                    check_backup();
-                    console.log('13-data: ' + backuup_data);
-                    if (backuup_data.length != 0) {
-                        console.log("14-backing up");
-                        for (var i = 0; i < backuup_data.length; i++) {
-                            send_file_aws(backuup_data[i])
-                        }
-                        connection_flag = true;
-
-                    }
-                }
-            });
-            rd.pipe(wr);
-        }
-        else{
-            console.log('No data in reader.db');
-        }
+        rd.pipe(wr);
     }
     catch (e) {
         console.log(e);
