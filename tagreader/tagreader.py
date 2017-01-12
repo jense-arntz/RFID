@@ -348,25 +348,18 @@ def start_loop(s, time_interval=5):
     print 'start_loop __enter__'
 
     global tag_reader_thread_event
+    s.send(bytearray(read_single_tag_id()))
+    time.sleep(.1)
+
+    ack = int(s.recv(1).encode('hex'), 16)
+    print 'ack: {}'.format(ack)
+
+    if ack != ACK_SUCCESS:
+        print 'ack no success'
+        return
 
     while tag_reader_thread_event.isSet():
         # Send the read single tag id command.
-        s.send(bytearray(read_single_tag_id_timeout([0x00])))
-        time.sleep(.1)
-
-        ack = int(s.recv(1).encode('hex'), 16)
-        print 'ack: {}'.format(ack)
-        read_count = 0
-
-        if ack != ACK_SUCCESS:
-            print 'ack no success'
-            return
-        # inputready, outputready, exceptready = select.select([s], [], [], .1)
-        # while not s in inputready:
-        #     print "no input ready"
-        #     if tag_reader_thread_event.isSet() == False:
-        #         break
-
         if tag_reader_thread_event.isSet() == False:
             break
         print "start_loop ack success"
@@ -396,9 +389,9 @@ def start_loop(s, time_interval=5):
 
         # check command type and command code
         response = body[2:]
-        print 'response'.format(response)
+        print 'response: {}'.format(response)
         print('protocol code: {}'.format(response[0].encode('hex'), response[1].encode('hex')))
-        print('ePC number: {}'.format(response[2:-4].encode('hex')))
+        print('ePC number: {}'.format(response[2:-5].encode('hex')))
         print('antenna number: {}'.format(response[-3].encode('hex')))
 
         # save EPC number and time into db.
@@ -407,9 +400,9 @@ def start_loop(s, time_interval=5):
         #     time.sleep(time_interval)
         #     continue
 
-        # save_db(response[2:-4].encode('hex'), response[-3].encode('hex'))
+        save_db(response[2:-4].encode('hex'), response[-3].encode('hex'))
 
-        #time.sleep(int(time_interval))
+        time.sleep(int(time_interval))
 
     print "exit socket."
     s.send(bytearray([STOP_COMMAND]))
@@ -427,6 +420,21 @@ def save_db(card_data, antenna_number):
     # return True
 
 
+def reader_power_on(s):
+    # Send the Antenna Source command.
+    s.send(bytearray(sys_rf_power_on()))
+    time.sleep(.1)
+
+    ack = s.recv(1).encode('hex')
+    # sleep ?
+    print 'sys RF Power on: {}'.format(ack)
+    if ack == ACK_FAIL:
+        print('ACK FAIL')
+        return False
+
+    return True
+
+
 def main(timer):
     global s
     # Connect to MPR-2010 via Socket.
@@ -441,25 +449,13 @@ def main(timer):
     # # read out dummy data
     receive_dummy_data(s)
 
-    # read reader's status
-    if not reset_reader(s):
+    if not read_firmware_version(s):
         print('failed to read the reader\'s status.')
         s.close()
         return
 
     # read reader's status
     if not read_reader_status(s):
-        print('failed to read the reader\'s status.')
-        s.close()
-        return
-    time.sleep(.5)
-    if not read_firmware_version(s):
-        print('failed to read the reader\'s status.')
-        s.close()
-        return
-    time.sleep(.5)
-    # control reader power level
-    if not read_power_level(s):
         print('failed to read the reader\'s status.')
         s.close()
         return
@@ -470,31 +466,28 @@ def main(timer):
         print('failed to read the reader\'s status.')
         s.close()
         return
+    time.sleep(1)
+
+    if not reader_power_on(s):
+        print('failed to read the reader\'s status.')
+        s.close()
+        return
+    time.sleep(1)
 
     # Enable Antenna Switch
     if not enable_antenna_switch(s):
         print('failed to read the reader\'s status.')
         s.close()
         return
-    time.sleep(.5)
+    time.sleep(1)
 
-    time.sleep(.5)
-    if not antenna_switch_rate(s):
-        print('failed to set reader switch \'s status.')
-        s.close()
-        return
-    time.sleep(.5)
-
-    # read reader's status
-    if not read_reader_status(s):
+    # control reader power level
+    if not read_power_level(s):
         print('failed to read the reader\'s status.')
         s.close()
         return
-    # if not read_antenna_status(s):
-    #     print('failed to set reader switch \'s status.')
-    #     s.close()
-    #     return
-    # ready to start
+    time.sleep(.5)
+
     start_loop(s, time_interval=timer)
     print 'end'
     s.close()

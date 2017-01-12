@@ -55,8 +55,7 @@ def sys_antenna_rate(antenna_rate):
     return protocol_packet(TYPE_SYSTEM_COMMAMD, 0x1D, antenna_rate)
 
 
-# System Command (0x00) /// Antenna status(0x0E)
-def sys_antenna_status():
+def sys_antenna_2():
     return protocol_packet(TYPE_SYSTEM_COMMAMD, 0x0E)
 
 
@@ -67,7 +66,7 @@ def sys_antenna_source(enable):
 
 # System Command (0x00) /// Antenna switch(0x0F)
 def sys_antenna_switch(enable):
-    return protocol_packet(TYPE_SYSTEM_COMMAMD, 0x0F, enable)
+    return protocol_packet(TYPE_SYSTEM_COMMAMD, 0x0f, enable)
 
 
 # EPC Class 1 Generation 2 Command (0x20) /// Read Single Tag ID (0x00)
