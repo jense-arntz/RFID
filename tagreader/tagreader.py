@@ -495,7 +495,7 @@ def main(timer):
     #     s.close()
     #     return
     # ready to start
-    # start_loop(s, time_interval=timer)
+    start_loop(s, time_interval=timer)
     print 'end'
     s.close()
 
