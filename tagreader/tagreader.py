@@ -291,6 +291,19 @@ def antenna_switch_rate(s):
 
     return True
 
+
+def reset_reader(s):
+    s.send(bytearray(sys_reset()))
+    time.sleep(.1)
+
+    ack = s.recv(1).encode('hex')
+    # sleep ?
+    print 'antenna_reset ACK: {}'.format(ack)
+    if ack == ACK_FAIL:
+        print('ACK FAIL')
+        return False
+
+    return True
 # def reader_antenna_select(s, antenna):
 #     # Get the reader setting from reader_setting.db.
 #
@@ -394,7 +407,7 @@ def start_loop(s, time_interval=5):
         #     time.sleep(time_interval)
         #     continue
 
-        save_db(response[2:-4].encode('hex'), response[-3].encode('hex'))
+        # save_db(response[2:-4].encode('hex'), response[-3].encode('hex'))
 
         #time.sleep(int(time_interval))
 
@@ -427,6 +440,12 @@ def main(timer):
 
     # # read out dummy data
     receive_dummy_data(s)
+
+    # read reader's status
+    if not reset_reader(s):
+        print('failed to read the reader\'s status.')
+        s.close()
+        return
 
     # read reader's status
     if not read_reader_status(s):

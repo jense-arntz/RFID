@@ -46,6 +46,10 @@ def sys_antenna_select():
     return protocol_packet(TYPE_SYSTEM_COMMAMD, 0x0D)
 
 
+def sys_reset():
+    return protocol_packet(TYPE_SYSTEM_COMMAMD, 0x80)
+
+
 # System Command (0x00) /// Antenna Select(0x1D)
 def sys_antenna_rate(antenna_rate):
     return protocol_packet(TYPE_SYSTEM_COMMAMD, 0x1D, antenna_rate)
