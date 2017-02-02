@@ -196,7 +196,7 @@ def read_firmware_version(s):
 def read_power_level(s, power_level=0x0f):
     # Get the reader setting from reader_setting.db.
     power_antenna_data = get_power_level()
-    if power_antenna_data:
+    if power_antenna_data is not False:
         power_level = int(power_antenna_data['power_level'])
     print 'power_level: {}'.format(power_level)
     # Send the Power Level command.
@@ -349,7 +349,7 @@ def start_loop(s, time_interval=5):
 
     global tag_reader_thread_event
     s.send(bytearray(read_single_tag_id()))
-    time.sleep(.1)
+    # time.sleep(.1)
 
     ack = int(s.recv(1).encode('hex'), 16)
     print 'ack: {}'.format(ack)
