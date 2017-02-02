@@ -222,10 +222,9 @@ def get_power_level():
 
         # power level
         for data in datas:
-            if TCP_IP == data[3]:
-                pwr_level = data[4]
-                print {'power_level': pwr_level}
-                return {'power_level': pwr_level}
+            pwr_level = data[4]
+            print {'power_level: {}': pwr_level}
+            return {'power_level': pwr_level}
         return False
     except Exception as e:
         print(e)
