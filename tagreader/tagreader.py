@@ -193,7 +193,7 @@ def read_firmware_version(s):
     return True
 
 
-def read_power_level(s, power_level=0x7d):
+def read_power_level(s, power_level=0x64):
     # Get the reader setting from reader_setting.db.
     power_antenna_data = get_power_level()
     if power_antenna_data is not False:
