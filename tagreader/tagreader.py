@@ -193,7 +193,7 @@ def read_firmware_version(s):
     return True
 
 
-def read_power_level(s, power_level=0x0f):
+def read_power_level(s, power_level=0x7d):
     # Get the reader setting from reader_setting.db.
     power_antenna_data = get_power_level()
     if power_antenna_data is not False:
@@ -278,7 +278,7 @@ def enable_antenna_switch(s):
 
 
 def antenna_switch_rate(s):
-    s.send(bytearray(sys_antenna_rate([0x02, 0x02])))
+    s.send(bytearray(sys_antenna_rate([0x05, 0x05])))
     time.sleep(.1)
 
     ack = s.recv(1).encode('hex')
@@ -439,7 +439,7 @@ def reader_portal_ids(s):
     print 'start_loop __enter__'
 
     global tag_reader_thread_event
-    s.send(bytearray(portal_ids(0x00, 0x00)))
+    s.send(bytearray(portal_ids(0x00, 0x01)))
     ack = int(s.recv(1).encode('hex'), 16)
     print 'ack: {}'.format(ack)
 
