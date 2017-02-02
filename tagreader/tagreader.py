@@ -434,6 +434,69 @@ def reader_power_on(s):
     return True
 
 
+def reader_portal_ids(s):
+    # read portal ids
+    print 'start_loop __enter__'
+
+    global tag_reader_thread_event
+    s.send(bytearray(portal_ids(0x00, 0x00)))
+    ack = int(s.recv(1).encode('hex'), 16)
+    print 'ack: {}'.format(ack)
+
+    if ack != ACK_SUCCESS:
+        print 'ack no success'
+        return
+
+    while tag_reader_thread_event.isSet():
+        # Send the read single tag id command.
+        if tag_reader_thread_event.isSet() == False:
+            break
+        print "start_loop ack success"
+        plen = int(s.recv(1).encode('hex'), 16)
+        print 'start_loop length: {}'.format(plen)
+
+        len_count = 0
+        body = ''
+        if plen > 0:
+
+            while len_count < plen - 1:
+                data = s.recv(1)
+                body += data
+                len_count += 1
+
+            print 'body: {}'.format(body)
+
+        else:
+            print('LEN = 0')
+            break
+
+        cmd_type = body[0].encode('hex')
+        cmd_code = body[1].encode('hex')
+
+        print('command type: {}'.format(cmd_type))
+        print('command code: {}'.format(cmd_code))
+
+        # check command type and command code
+        response = body[2:]
+        print 'response: {}'.format(response)
+        print('protocol code: {}'.format(response[0].encode('hex'), response[1].encode('hex')))
+        print('ePC number: {}'.format(response[2:-5].encode('hex')))
+        print('antenna number: {}'.format(response[-3].encode('hex')))
+
+        # save EPC number and time into db.
+        # if not save_db(response[2:-4].encode('hex')):
+        #     print('Already exists EPC Number in db. Updating time...')
+        #     time.sleep(time_interval)
+        #     continue
+
+        save_db(response[2:-5].encode('hex'), response[-3].encode('hex'))
+
+        # time.sleep(int(time_interval))
+
+    print "exit socket."
+    s.send(bytearray([STOP_COMMAND]))
+
+
 def main(timer):
     global s
     # Connect to MPR-2010 via Socket.
@@ -487,7 +550,8 @@ def main(timer):
         return
     time.sleep(.5)
 
-    start_loop(s, time_interval=timer)
+    # start_loop(s, time_interval=timer)
+    reader_portal_ids(s)
     print 'end'
     s.close()
 
