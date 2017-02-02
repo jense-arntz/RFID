@@ -278,7 +278,7 @@ def enable_antenna_switch(s):
 
 
 def antenna_switch_rate(s):
-    s.send(bytearray(sys_antenna_rate([0x05, 0x05])))
+    s.send(bytearray(sys_antenna_rate([0x02, 0x02])))
     time.sleep(.1)
 
     ack = s.recv(1).encode('hex')
@@ -483,15 +483,7 @@ def reader_portal_ids(s):
         print('ePC number: {}'.format(response[2:-5].encode('hex')))
         print('antenna number: {}'.format(response[-3].encode('hex')))
 
-        # save EPC number and time into db.
-        # if not save_db(response[2:-4].encode('hex')):
-        #     print('Already exists EPC Number in db. Updating time...')
-        #     time.sleep(time_interval)
-        #     continue
-
         save_db(response[2:-5].encode('hex'), response[-3].encode('hex'))
-
-        # time.sleep(int(time_interval))
 
     print "exit socket."
     s.send(bytearray([STOP_COMMAND]))
@@ -538,6 +530,13 @@ def main(timer):
 
     # Enable Antenna Switch
     if not enable_antenna_switch(s):
+        print('failed to read the reader\'s status.')
+        s.close()
+        return
+    time.sleep(1)
+
+    # Enable Antenna Switch
+    if not antenna_switch_rate(s):
         print('failed to read the reader\'s status.')
         s.close()
         return
