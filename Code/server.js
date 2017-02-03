@@ -52,6 +52,7 @@ var reader_name = '';
 var ip_address = '';
 var outputpath = '';
 var backuup_data = [];
+
 // Check status.
 var timerate_status = false;
 var start_status = false;
