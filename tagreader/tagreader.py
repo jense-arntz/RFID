@@ -434,12 +434,29 @@ def reader_power_on(s):
     return True
 
 
+def set_portal_ids_filter(s):
+    """
+    Enable protal IDs filter.
+    """
+
+    s.send(bytearray(sys_antenna_source([0x01])))
+    time.sleep(.1)
+
+    ack = s.recv(1).encode('hex')
+    # sleep ?
+    if ack == ACK_FAIL:
+        print('ACK FAIL')
+        return False
+
+    return True
+
+
 def reader_portal_ids(s):
     # read portal ids
     print 'start_loop __enter__'
 
     global tag_reader_thread_event
-    s.send(bytearray(portal_ids(0x00, 0x01)))
+    s.send(bytearray(portal_ids(0x00, 0x0A)))
     ack = int(s.recv(1).encode('hex'), 16)
     print 'ack: {}'.format(ack)
 
@@ -544,6 +561,13 @@ def main(timer):
 
     # control reader power level
     if not read_power_level(s):
+        print('failed to read the reader\'s status.')
+        s.close()
+        return
+    time.sleep(.5)
+
+    # enable portal IDs filter
+    if not set_portal_ids_filter(s):
         print('failed to read the reader\'s status.')
         s.close()
         return
