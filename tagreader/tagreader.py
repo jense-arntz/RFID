@@ -456,7 +456,7 @@ def reader_portal_ids(s):
     print 'start_loop __enter__'
 
     global tag_reader_thread_event
-    s.send(bytearray(portal_ids(0x00, 0x0A)))
+    s.send(bytearray(portal_ids(0x00, 0x00)))
     ack = int(s.recv(1).encode('hex'), 16)
     print 'ack: {}'.format(ack)
 
