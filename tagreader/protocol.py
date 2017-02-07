@@ -74,6 +74,11 @@ def read_single_tag_id():
     return protocol_packet(TYPE_EPC_COMMAND, 0x00)
 
 
+# EPC Class 1 Generation 2 Command (0x00) /// portal ids (0x13)
+def portal_ids_filter(enable):
+    return protocol_packet(TYPE_SYSTEM_COMMAMD, 0x13, enable)
+
+
 # EPC Class 1 Generation 2 Command (0x20) /// portal ids (0x1E)
 def portal_ids(timeout, repeat):
     return protocol_packet(TYPE_EPC_COMMAND, 0x1E, [timeout, repeat])
