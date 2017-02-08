@@ -341,7 +341,6 @@
         $('.md-trigger').modalEffects();
         device_overview_loads();
         check_status();
-//        data_streaming_load();
         setting_loads();
         select_data();
 
@@ -722,8 +721,7 @@
                 url: "/api/sync_on/",
                 type: 'GET'
             }).success(function (data) {
-//                alert(data);
-//                data_streaming_load();
+
             }).error(function (data) {
                 alert(data);
             });
