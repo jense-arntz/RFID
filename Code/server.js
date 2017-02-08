@@ -45,7 +45,7 @@ var file_path = '';
 var mac_addr = '';
 var interval = null;
 var clock;
-var time_interval = 10000;
+var time_interval = 60000;
 var clock_interval = 5000;
 var srcDirectory = '/home/RFID/';
 var reader_name = '';
