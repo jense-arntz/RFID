@@ -515,11 +515,11 @@ function copyFile(source, target, filename, timeStamp) {
     try {
         var rd = fs.createReadStream(source);
         rd.on("error", function (err) {
-            console.log("reading error");
+            console.log("reading error", err);
         });
         var wr = fs.createWriteStream(target);
         wr.on("error", function (err) {
-            console.log("writing error");
+            console.log("writing error", err);
         });
         wr.on("close", function (ex) {
 
@@ -588,8 +588,6 @@ function insert_file_to_db(filename, size, date) {
         db_insert_file.serialize(function () {
             db_insert_file.run("INSERT into file (file_name, file_size, date) VALUES (?, ?, ?)",
                 [filename, size, date]);
-
-
         });
         console.log('8-Insert data Success!');
         db_insert_file.close();
