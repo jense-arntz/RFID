@@ -58,8 +58,6 @@ var timerate_status = false;
 var start_status = false;
 var syncon_status = false;
 var counter = 0;
-// var TransactionDatabase = require("sqlite3-transactions").TransactionDatabase;
-// var db_stream = new TransactionDatabase(new sqlite3.Database(file_streaming, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE));
 
 // ========================= Pages ========================//
 
@@ -121,7 +119,6 @@ app.get('/api/id/', function (req, res) {
                     eshow_flag = row.show_key;
                     client_key = row.client_key;
                 }
-
             }, function () {
                 // All done fetching records, render response
                 res.set('Content-Type', 'application/json');
@@ -285,8 +282,6 @@ app.post('/api/add/', function (req, res) {
             res.send('Power level value must be lower than 255.');
         }
         else {
-
-
             db_add.run("INSERT into reader_setting (reader_name, mac_address, ip_address, power_level) VALUES (?, ?, ?, ?)",
                 [req.body.name, req.body.mac_address, req.body.address, req.body.power], function (err) {
                     if (err) {
@@ -302,7 +297,6 @@ app.post('/api/add/', function (req, res) {
             console.log('Insert data Success!');
             res.send('Added the Device to List.');
         }
-
     }
     catch (e) {
         console.log('\r\n', e);
@@ -519,17 +513,6 @@ function check_reader(callback) {
 // Copy file
 function copyFile(source, target, filename, timeStamp) {
     try {
-        // check_reader(function handleResult(err, result) {
-        //     if (err) {
-        //         console.log('check reader error', err);
-        //         // res.send('No show key error');
-        //     }
-        //     else {
-        //         check_reader_flag = result;
-        //         console.log('check_reader_flag', check_reader_flag);
-        //     }
-        // });
-
         var rd = fs.createReadStream(source);
         rd.on("error", function (err) {
             console.log("reading error");
@@ -678,10 +661,8 @@ app.get('/api/endshow/', function (req, res) {
                     if (err) {
                         throw err;
                     }
-
                     console.log('done:', base, bytes);
                     send_zip_aws(outputpath);
-
                 });
 
                 data = 'zip archive is sent to AWS successfully.'
@@ -800,46 +781,12 @@ function send_file_aws(file_path) {
                 return;
             }
             clear_reader_db();
-            // try {
-            //
-            //     db_streaming.run("DELETE FROM reader", function (error) {
-            //     console.log("deleting running");
-            //
-            //     if (error) {
-            //         console.log(error);
-            //
-            //     }
-            //     vacuum_db();
-            // });
-            // console.log('Delete Table reader data');
-            //
-            // }
-            // catch (er) {
-            //     console.log('transaction', er)
-            // }
         });
     }
     catch (e) {
         console.log(e);
     }
 }
-
-// function vacuum_db() {
-//
-//     try {
-//         db_streaming.run("VACUUM", function (error) {
-//             console.log("vaccumm running");
-//
-//             if (error) {
-//                 console.log(error);
-//             }
-//         });
-//         console.log('Clear Table reader data');
-//     }
-//     catch(err){
-//         console.log('error', err);
-//     }
-// }
 
 // Back up db files.
 function save_backup(filepath) {
@@ -919,11 +866,6 @@ app.get('/api/sync_on/', function (req, res) {
             });
         }
         try {
-            // if (!exists_streaming_db) {
-            //     console.log('no streaming.db file exists.');
-            //     res.send('No DB File to transfer.');
-            // }
-            // else {
             var folder_path = '/home/pi/' + eshow_flag;
 
             // make eshow dir.
@@ -970,10 +912,6 @@ function self_sync() {
             });
         }
         try {
-            // if (!exists_streaming_db) {
-            //     console.log('no streaming.db file exists.');
-            //     console.log('No DB File to transfer.');
-            // }
 
             console.log("3- starting...");
             var folder_path = '/home/pi/' + eshow_flag;
