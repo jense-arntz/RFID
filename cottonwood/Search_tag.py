@@ -176,7 +176,7 @@ def Next_Inventory():
 def split_data(num, data):
 	Founded = []
 	for i in range(num):
-		Founded.append(data[i*BUF_LEN: 12])
+		Founded.append(data[i*BUF_LEN: BUF_LEN])
 
 	return Founded
 
