@@ -40,7 +40,7 @@ Values
 """
 ser = None
 BUFF_SIZE = 1024
-BUF_LEN = 12
+BUF_LEN = 24
 
 while ser is None:
 	try:
